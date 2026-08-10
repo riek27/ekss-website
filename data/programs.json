@@ -1,0 +1,123 @@
+{
+  "hero": {
+    "title": "Our Programs",
+    "subtitle": "EmpowerKids–South Sudan works through four core programme areas: Education, Agriculture, Youth Empowerment, and Advocacy & Civic Engagement.",
+    "image": "/images/ekss6.jpg"
+  },
+  "overview": {
+    "heading": "What We Do",
+    "cards": [
+      {
+        "icon": "📚",
+        "title": "Education Support",
+        "description": "School partnerships, teacher capacity building, and scholarship pathways to universities abroad.",
+        "results": [
+          "37 scholars placed",
+          "15 teachers trained",
+          "2 schools electrified"
+        ]
+      },
+      {
+        "icon": "🌱",
+        "title": "Empower Farmers South Sudan",
+        "description": "Climate‑smart conservation agriculture using the Foundations for Farming model.",
+        "results": [
+          "129 farmers trained",
+          "50×100 m demo farm",
+          "21‑person field team"
+        ]
+      },
+      {
+        "icon": "👥",
+        "title": "Youth Empowerment",
+        "description": "Entrepreneurship, leadership, and platforms where young voices reach a national audience.",
+        "results": [
+          "3 states reached",
+          "Youth peace essay competitions",
+          "Essays published in national press"
+        ]
+      },
+      {
+        "icon": "🗣️",
+        "title": "Advocacy & Civic Engagement",
+        "description": "Strengthening community voice, governance awareness, and local participation.",
+        "results": [
+          "Councillors for Citizens",
+          "Community dialogues"
+        ]
+      }
+    ]
+  },
+  "featured": {
+    "heading": "Featured Programme",
+    "title": "Empower Farmers South Sudan 🌱",
+    "description": "Our 50×100 m demonstration farm in Gumbo‑Sherikat, Juba 2, uses Foundations for Farming conservation agriculture to promote food security. With a 21‑person field team, we have trained 129 farmers to date, harvesting 472.44 kg of maize from just 0.132 ha.",
+    "image": "/images/ekss5.jpg",
+    "buttonText": "Explore Empower Farmers",
+    "buttonLink": "/programs#featured"
+  },
+  "results": {
+    "heading": "Program Results",
+    "stats": [
+      {
+        "value": 37,
+        "label": "Scholars Placed"
+      },
+      {
+        "value": 129,
+        "label": "Farmers Trained"
+      },
+      {
+        "value": 15,
+        "label": "Teachers Trained"
+      },
+      {
+        "value": 2,
+        "label": "Schools Electrified"
+      },
+      {
+        "value": 3,
+        "label": "States Reached"
+      }
+    ]
+  },
+  "partners": {
+    "heading": "Program Partners",
+    "list": [
+      {
+        "name": "Bridge2Rwanda",
+        "label": "Scholarship partner"
+      },
+      {
+        "name": "SolarSPELL",
+        "label": "Digital libraries"
+      },
+      {
+        "name": "Arizona State University",
+        "label": "Teacher training"
+      },
+      {
+        "name": "Foundations for Farming",
+        "label": "Agriculture model"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Support Our Programs",
+    "text": "Your contribution helps us scale education, agriculture, youth empowerment, and civic engagement across South Sudan.",
+    "buttons": {
+      "donate": {
+        "text": "Donate",
+        "link": "/get-involved"
+      },
+      "partner": {
+        "text": "Partner With Us",
+        "link": "/contact"
+      },
+      "getInvolved": {
+        "text": "Get Involved",
+        "link": "/get-involved"
+      }
+    }
+  }
+}

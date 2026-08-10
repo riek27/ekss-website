@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "title": "Contact EmpowerKids–South Sudan",
+    "subtitle": "Have a question, partnership idea, programme inquiry, or need more information? Get in touch with our team.",
+    "image": "/images/ekss1.jpg"
+  },
+  "contactInfo": {
+    "heading": "Reach Out to Us",
+    "address": "Gudele West, Block 4, Plot 477\nLuri Payam, Juba County\nCentral Equatoria State, South Sudan",
+    "email": "info@ekss.org",
+    "phone": "+211 926 133 777",
+    "executive": {
+      "name": "Hakim Monykuer Awuok",
+      "title": "Executive Director",
+      "email": "hmonykuer@ekss.org"
+    }
+  },
+  "form": {
+    "heading": "Send Us a Message",
+    "successMessage": "Thank you! Your message has been sent. We will get back to you shortly.",
+    "subjectOptions": [
+      "General Inquiry",
+      "Programme Information",
+      "Partnership",
+      "Donation",
+      "Volunteer",
+      "Media / Press",
+      "Other"
+    ]
+  },
+  "map": {
+    "heading": "Find Us",
+    "description": "Gudele West, Block 4, Plot 477, Luri Payam, Juba County, Central Equatoria State, South Sudan",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15919.265421756!2d31.57125!3d4.85165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17128c9e0c0c0c0b%3A0x0!2zNMKwNTEnMDUuOSJOIDMxwrAzNCc0OC4yIkU!5e0!3m2!1sen!2s!4v1690000000000",
+    "directionLink": "https://maps.google.com/?q=Gudele+West,+Juba,+South+Sudan"
+  },
+  "helpCards": {
+    "heading": "What Can We Help You With?",
+    "cards": [
+      {
+        "icon": "🤝",
+        "title": "Partnerships",
+        "description": "Interested in working with EmpowerKids?",
+        "link": "/get-involved#partner-with-us"
+      },
+      {
+        "icon": "📚",
+        "title": "Programs",
+        "description": "Want to learn more about our programmes?",
+        "link": "/programs"
+      },
+      {
+        "icon": "💚",
+        "title": "Donations",
+        "description": "Interested in supporting our work?",
+        "link": "/donate"
+      },
+      {
+        "icon": "📄",
+        "title": "Resources",
+        "description": "Looking for reports or organisational documents?",
+        "link": "/resources"
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "questions": [
+      {
+        "q": "How can I partner with EmpowerKids?",
+        "a": "Visit our Get Involved page or send us a partnership inquiry through the form above."
+      },
+      {
+        "q": "Where is EmpowerKids located?",
+        "a": "Gudele West, Block 4, Plot 477, Luri Payam, Juba County, Central Equatoria State, South Sudan."
+      },
+      {
+        "q": "How can I support a programme?",
+        "a": "Visit our Donate or Get Involved pages, or contact us directly."
+      },
+      {
+        "q": "Where can I find reports and policies?",
+        "a": "Visit our Resources page."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Let's Work Together",
+    "text": "Whether you are looking to support our programmes, explore a partnership, request information, or learn more about our work, our team would be glad to hear from you.",
+    "buttons": [
+      {
+        "text": "Get Involved",
+        "link": "/get-involved"
+      },
+      {
+        "text": "Donate",
+        "link": "/get-involved"
+      }
+    ]
+  }
+}

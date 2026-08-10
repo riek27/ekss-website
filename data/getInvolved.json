@@ -1,0 +1,192 @@
+{
+  "hero": {
+    "title": "Get Involved",
+    "subtitle": "Join us in supporting education, sustainable agriculture, youth empowerment and civic engagement across South Sudan.",
+    "image": "/images/ekss2.jpg",
+    "buttons": [
+      {
+        "text": "Donate",
+        "link": "/contact"
+      },
+      {
+        "text": "Partner With Us",
+        "link": "#partner-with-us"
+      }
+    ]
+  },
+  "ways": {
+    "heading": "Ways to Get Involved",
+    "cards": [
+      {
+        "icon": "💚",
+        "title": "Donate",
+        "description": "Your financial support helps us deliver and expand our programmes in education, agriculture, youth empowerment and civic engagement.",
+        "ctaText": "Donate Now",
+        "ctaLink": "/donate"
+      },
+      {
+        "icon": "🤝",
+        "title": "Partner With Us",
+        "description": "Collaborate with us as a programme, education, agriculture, youth, technical, or funding partner.",
+        "ctaText": "Become a Partner",
+        "ctaLink": "#partner-form"
+      },
+      {
+        "icon": "👥",
+        "title": "Volunteer",
+        "description": "Share your skills, time and experience in education, agriculture, youth activities, communications, research, or administration.",
+        "ctaText": "Interested in Volunteering?",
+        "ctaLink": "#volunteer-form"
+      },
+      {
+        "icon": "📣",
+        "title": "Support & Amplify",
+        "description": "Follow our work, share programme stories, connect potential partners, and help raise awareness.",
+        "ctaText": "Follow Our Work",
+        "ctaLink": "/news"
+      }
+    ]
+  },
+  "programs": {
+    "heading": "Choose a Program to Support",
+    "cards": [
+      {
+        "icon": "📚",
+        "title": "Education Support",
+        "description": "Support scholarship pathways, teacher development and school initiatives.",
+        "link": "/programs"
+      },
+      {
+        "icon": "🌱",
+        "title": "Empower Farmers South Sudan",
+        "description": "Support conservation agriculture and farmer training.",
+        "link": "/programs"
+      },
+      {
+        "icon": "👥",
+        "title": "Youth Empowerment",
+        "description": "Support youth leadership and entrepreneurship initiatives.",
+        "link": "/programs"
+      },
+      {
+        "icon": "🗣️",
+        "title": "Advocacy & Civic Engagement",
+        "description": "Support community voice and civic participation.",
+        "link": "/programs"
+      }
+    ],
+    "ctaText": "Explore Programs",
+    "ctaLink": "/programs"
+  },
+  "organizations": {
+    "heading": "For Organizations & Institutions",
+    "text": "We welcome collaboration with organizations, institutions and partners interested in supporting sustainable development in South Sudan.",
+    "areas": [
+      {
+        "title": "Programme Collaboration",
+        "description": "Work together on programme delivery."
+      },
+      {
+        "title": "Technical Expertise",
+        "description": "Contribute specialist knowledge and expertise."
+      },
+      {
+        "title": "Funding & Grants",
+        "description": "Support programme implementation and expansion."
+      },
+      {
+        "title": "Strategic Partnerships",
+        "description": "Build longer-term institutional collaboration."
+      }
+    ],
+    "ctaText": "Discuss a Partnership",
+    "ctaLink": "#partner-form"
+  },
+  "whyGetInvolved": {
+    "heading": "Your Support Can Help Create Measurable Results",
+    "stats": [
+      {
+        "value": 37,
+        "label": "Scholars Placed"
+      },
+      {
+        "value": 129,
+        "label": "Farmers Trained"
+      },
+      {
+        "value": 15,
+        "label": "Teachers Trained"
+      },
+      {
+        "value": 2,
+        "label": "Schools Electrified"
+      }
+    ],
+    "ctaText": "Learn About Our Impact",
+    "ctaLink": "/about#impact"
+  },
+  "stories": {
+    "heading": "See the Work in Action",
+    "list": [
+      {
+        "image": "/images/ekss4.jpg",
+        "title": "Scholarship Student",
+        "excerpt": "Read how a Bridge2Rwanda scholarship transformed a young person’s future.",
+        "link": "/about#who-we-are"
+      },
+      {
+        "image": "/images/ekss5.jpg",
+        "title": "Farmer Training",
+        "excerpt": "Discover how Foundations for Farming changed the harvest for smallholder farmers.",
+        "link": "/programs#featured"
+      },
+      {
+        "image": "/images/ekss6.jpg",
+        "title": "Youth Voices",
+        "excerpt": "Young people are writing peace essays that are published in the national press.",
+        "link": "/programs"
+      }
+    ],
+    "ctaText": "Read More Stories",
+    "ctaLink": "/news"
+  },
+  "form": {
+    "heading": "Interested in Getting Involved?",
+    "submitUrl": "/contact",
+    "successMessage": "Thank you! We'll be in touch."
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "questions": [
+      {
+        "q": "How can I support EmpowerKids?",
+        "a": "You can donate, partner with us, volunteer where opportunities are available, or contact the organization directly."
+      },
+      {
+        "q": "Can organizations partner with EmpowerKids?",
+        "a": "Yes, we welcome collaboration. Please reach out via the form above or email us at info@ekss.org."
+      },
+      {
+        "q": "Can I support a specific programme?",
+        "a": "Absolutely. Visit our Programs page or contact us to discuss supporting a particular area."
+      },
+      {
+        "q": "Can I volunteer?",
+        "a": "Volunteer opportunities may be available depending on current needs. Please express your interest using the form above."
+      }
+    ]
+  },
+  "finalCta": {
+    "text": "Ready to make a difference?",
+    "buttons": [
+      {
+        "text": "Donate",
+        "link": "/contact"
+      },
+      {
+        "text": "Contact Us",
+        "link": "/contact"
+      }
+    ]
+  }
+}

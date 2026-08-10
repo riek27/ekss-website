@@ -1,0 +1,164 @@
+{
+  "hero": {
+    "title": "Resources & Publications",
+    "subtitle": "Access reports, assessments, policies, governance documents and other publications that provide insight into our work and accountability.",
+    "image": "/images/1786368793947-ekss5.jpg"
+  },
+  "featured": {
+    "title": "Annual Report 2025",
+    "description": "Explore EmpowerKids–South Sudan's programmes, achievements, financial information and organizational progress.",
+    "image": "/images/ekss5.jpg",
+    "link": "/documents/annual-report-2025.pdf",
+    "linkText": "Read Report"
+  },
+  "categories": [
+    {
+      "title": "Annual Reports",
+      "documents": [
+        {
+          "title": "Annual Report 2025",
+          "description": "Our inaugural annual report – audited financials, farmer training results, scholarship placements, and community engagement metrics.",
+          "year": "2025",
+          "type": "Annual Report",
+          "file": "/documents/annual-report-2025.pdf",
+          "fileSize": "4.2 MB"
+        },
+        {
+          "title": "Annual Report 2024",
+          "description": "Our first annual report covering initial program activities and organisational milestones.",
+          "year": "2024",
+          "type": "Annual Report",
+          "file": "/documents/annual-report-2024.pdf",
+          "fileSize": "3.8 MB"
+        }
+      ]
+    },
+    {
+      "title": "Programme Reports",
+      "documents": [
+        {
+          "title": "Education Programme Report",
+          "description": "Scholarship placements, teacher training and school electrification.",
+          "year": "2025",
+          "type": "Programme Report",
+          "file": "/documents/education-report-2025.pdf",
+          "fileSize": "2.1 MB"
+        },
+        {
+          "title": "Empower Farmers Programme Report",
+          "description": "Farmer training, demonstration farm activities and agricultural results.",
+          "year": "2025",
+          "type": "Programme Report",
+          "file": "/documents/empower-farmers-report-2025.pdf",
+          "fileSize": "1.8 MB"
+        }
+      ]
+    },
+    {
+      "title": "Research & Assessments",
+      "documents": [
+        {
+          "title": "Impact Assessment",
+          "description": "Independent evaluation of programme outcomes.",
+          "year": "2025",
+          "type": "Research",
+          "file": "/documents/impact-assessment-2025.pdf",
+          "fileSize": "3.2 MB"
+        },
+        {
+          "title": "Community Needs Assessment",
+          "description": "Baseline study to inform programme design.",
+          "year": "2024",
+          "type": "Research",
+          "file": "/documents/needs-assessment-2024.pdf",
+          "fileSize": "2.5 MB"
+        }
+      ]
+    },
+    {
+      "title": "Governance & Legal",
+      "documents": [
+        {
+          "title": "Certificate of Registration",
+          "description": "RRC Registration No. 169.",
+          "year": "2016",
+          "type": "Legal",
+          "file": "/documents/certificate-of-registration.pdf",
+          "fileSize": "0.5 MB"
+        },
+        {
+          "title": "Constitution",
+          "description": "Governing document of EmpowerKids–South Sudan.",
+          "year": "2026",
+          "type": "Legal",
+          "file": "/documents/constitution-2026.pdf",
+          "fileSize": "1.0 MB"
+        }
+      ]
+    },
+    {
+      "title": "Policies",
+      "documents": [
+        {
+          "title": "Safeguarding Policy",
+          "description": "Child Protection & PSEAH.",
+          "year": "2026",
+          "type": "Policy",
+          "file": "/documents/safeguarding-policy.pdf",
+          "fileSize": "0.8 MB"
+        },
+        {
+          "title": "Anti-Fraud & Corruption Policy",
+          "description": "",
+          "year": "2026",
+          "type": "Policy",
+          "file": "/documents/anti-fraud-policy.pdf",
+          "fileSize": "0.6 MB"
+        }
+      ]
+    },
+    {
+      "title": "Strategic Documents",
+      "documents": [
+        {
+          "title": "Strategic Plan 2026–2030",
+          "description": "Five-year strategic direction.",
+          "year": "2026",
+          "type": "Strategy",
+          "file": "/documents/strategic-plan-2026-2030.pdf",
+          "fileSize": "2.3 MB"
+        }
+      ]
+    }
+  ],
+  "donorsPartners": {
+    "heading": "For Donors & Partners",
+    "text": "Looking for organizational information, programme documentation or governance materials? Explore our reports, policies and strategic documents.",
+    "buttons": [
+      {
+        "text": "View Governance Documents",
+        "link": "/resources?category=governance"
+      },
+      {
+        "text": "View Programme Reports",
+        "link": "/resources?category=programme-reports"
+      },
+      {
+        "text": "Contact Us",
+        "link": "/contact"
+      }
+    ]
+  },
+  "requestDocument": {
+    "heading": "Can't Find What You're Looking For?",
+    "text": "If you need a report, programme document or supporting data that is not currently available in our resource library, contact our team.",
+    "buttonText": "Request a Document",
+    "buttonLink": "/contact"
+  },
+  "transparency": {
+    "heading": "Our Commitment to Transparency",
+    "text": "EmpowerKids–South Sudan is committed to making relevant organizational, programme and governance information accessible to partners, funders and the wider public.",
+    "ctaText": "Contact Us",
+    "ctaLink": "/contact"
+  }
+}

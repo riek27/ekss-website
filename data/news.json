@@ -1,0 +1,83 @@
+{
+  "hero": {
+    "title": "News & Updates",
+    "subtitle": "Stay informed about our latest programmes, events, and stories from the field.",
+    "image": "/images/ekss2.jpg"
+  },
+  "featured": {
+    "id": 2,
+    "date": "September 1, 2025",
+    "title": "Successful Maize Harvest at Juba Demonstration Farm",
+    "excerpt": "A moment of joy and hard work paying off – our team harvested 472.44 kg of maize from 0.132 ha.",
+    "content": "On September 1, 2025, we witnessed a moment of joy and hard work paying off: the successful Maize Harvest at our Juba Demonstration Farm!\n\nA big thank you goes to our casual workers, Welfare staff, security personnel, interns, champions, and technical advisors whose dedication, resilience, and tireless efforts made this harvest possible. You have shown that with teamwork and commitment, we can overcome challenges and achieve remarkable results.\n\nWe also extend our deepest gratitude to Mr. Ed, whose unlimited support to the people of South Sudan goes on to motivate and sustain us. Your belief in our mission makes dreams turn into reality.\n\nTogether, we are proving that “It Can Be Done.”\n\n#EmpowerFarmersSouthSudan #EmpowerKidsSouthSudan #HarvestDay #ItCanBeDone",
+    "image": "/images/news/maize-harvest.jpg"
+  },
+  "items": [
+    {
+      "id": 1,
+      "date": "September 9, 2025",
+      "title": "Healthy Tomato Growth at Juba Demonstration Farm",
+      "excerpt": "Conservation agriculture using Foundations for Farming proves to be a solution for food security.",
+      "content": "Healthy tomato growth at Juba Demonstration Farm showcases conservation agriculture, using Foundations for Farming, as a solution to improve food security for smallholder farmers and the nation.\n\n“Growing Quality, Yielding Trust.”",
+      "image": "/images/news/tomato.jpg"
+    },
+    {
+      "id": 2,
+      "date": "September 1, 2025",
+      "title": "Successful Maize Harvest at Juba Demonstration Farm",
+      "excerpt": "A moment of joy and hard work paying off – our team harvested 472.44 kg of maize.",
+      "content": "On September 1, 2025, we witnessed a moment of joy and hard work paying off: the successful Maize Harvest at our Juba Demonstration Farm!\n\nA big thank you goes to our casual workers, Welfare staff, security personnel, interns, champions, and technical advisors whose dedication, resilience, and tireless efforts made this harvest possible. You have shown that with teamwork and commitment, we can overcome challenges and achieve remarkable results.\n\nWe also extend our deepest gratitude to Mr. Ed, whose unlimited support to the people of South Sudan goes on to motivate and sustain us. Your belief in our mission makes dreams turn into reality.\n\nTogether, we are proving that “It Can Be Done.”\n\n#EmpowerFarmersSouthSudan #EmpowerKidsSouthSudan #HarvestDay #ItCanBeDone",
+      "image": "/images/news/maize-harvest.jpg"
+    },
+    {
+      "id": 3,
+      "date": "August 25, 2025",
+      "title": "Empower Farmers South Sudan Featured LIVE on SSBC's 'The Dawn Show'",
+      "excerpt": "Our Champions represented us on national television, reaching audiences across the country.",
+      "content": "We are excited to share that Empower Farmers South Sudan was featured LIVE on SSBC’s “The Dawn Show” (Arabic Program) today!\n\nOur Champions, Ms. Awel and Ms. Magret, represented us with passion and spoke powerfully about the Empower Farmers South Sudan Program, reaching audiences across the country for a full 30 minutes.\n\nSSBC has also invited us back during the upcoming harvest on September 1, where they will host the Executive Director on the English Program of the same show. This is a wonderful opportunity to continue spreading the message of sustainable farming, empowerment, and hope for South Sudan.\n\nTogether, let’s build a brighter future for our farmers and communities!\n\n#empowerfarmerssouthsudan #SustainableAgriculture #SouthSudan #CommunityEmpowerment #empowerkidssouthsudan",
+      "image": "/images/news/ssbc-show.jpg"
+    },
+    {
+      "id": 4,
+      "date": "August 9, 2025",
+      "title": "SolarSPELL Collaboration Enhances Agricultural Training",
+      "excerpt": "The SolarSPELL agriculture library is a game-changer for our demonstration farm and interns.",
+      "content": "We are grateful for this wonderful collaboration and continued support from the SolarSPELL team.\n\nThe SolarSPELL agriculture library has truly been a game-changer for our work at Empower Farmers South Sudan (EFSS), a flagship program of EmpowerKids-South Sudan. It has not only strengthened our demonstration farm but also empowered our interns and trainers with practical, research-based knowledge they can access anytime.\n\nFrom tackling pest challenges like fall armyworms to improved farming techniques, our team’s skills have grown alongside our crops. The recent train-the-trainer session was another step forward, equipping us to share these tools more effectively with farmers in our communities.\n\nThank you, Arizona State University, School for the Future of Innovation in Society at ASU, and Ira A. Fulton Schools of Engineering, for walking this journey with us toward sustainable agriculture and food security in South Sudan. Together, we’re cultivating change!",
+      "image": "/images/news/solarspell.jpg"
+    },
+    {
+      "id": 5,
+      "date": "July 23, 2025",
+      "title": "Empowering Farmers in Bilnyang with Foundations for Farming",
+      "excerpt": "Our team trained 32 smallholder farmers in the Bilnyang area on conservation agriculture.",
+      "content": "EMPOWERING FARMERS IN BILNYANG (Empower Farmers South Sudan Program): Our dedicated National Champions (Trainers and Farm Managers), together with our passionate Interns, are actively on the ground in the Bilnyang area of Juba, training 32 smallholder farmers on the Foundations for Farming approach.\n\nThis hands-on training is part of our commitment to building food security, restoring dignity in agriculture, and equipping communities with sustainable farming skills.\n\nTogether, we're planting seeds of hope and harvesting a better future for South Sudan!",
+      "image": "/images/news/bilnyang-training.jpg"
+    },
+    {
+      "id": 6,
+      "date": "June 4, 2025",
+      "title": "Empowering Smallholder Farmers & Youth Across South Sudan",
+      "excerpt": "From agriculture to advocacy, our programs are nurturing leadership and opportunity.",
+      "content": "EMPOWERING SMALLHOLDER FARMERS & YOUTH THROUGH OUR EMPOWER FARMERS SOUTH SUDAN PROGRAM: At EmpowerKids-South Sudan, we believe in the power of education, sustainability, and civic engagement to build a better future for our children and communities.\n\nFrom agriculture to advocacy, our programs are nurturing leadership, resilience, and opportunity. Whether it’s through school support, conservation farming, or youth empowerment, we are committed to transforming lives.\n\nTake a look at our recent work in the field—real change is happening.\n\nThank you to our donors, champions, and community partners who stand with us in building a brighter South Sudan.",
+      "image": "/images/news/youth-empowerment.jpg"
+    }
+  ],
+  "cta": {
+    "heading": "Stay Connected",
+    "text": "Follow our journey as we empower children, farmers, and communities across South Sudan.",
+    "buttons": [
+      {
+        "text": "Donate",
+        "link": "/donate"
+      },
+      {
+        "text": "Get Involved",
+        "link": "/get-involved"
+      },
+      {
+        "text": "Contact Us",
+        "link": "/contact"
+      }
+    ]
+  }
+}

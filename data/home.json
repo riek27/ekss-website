@@ -1,0 +1,435 @@
+{
+  "hero": {
+    "tagline": "Education · Agriculture · Youth · Civic Voice",
+    "title": "We train, we teach,\nwe plant — and we count every result.",
+    "subtitle": "EmpowerKids–South Sudan works with schools, smallholder farmers and young people across three states. Every figure on this page comes from our own field records, and every one of them is open to verification.",
+    "images": [
+      "/images/1786274743829-ekss7.jpg",
+      "/images/1786274759440-ekss6.jpg",
+      "/images/1786274786254-ekss5.jpg",
+      "/images/1786274803749-ekss4.jpg",
+      "/images/1786274814881-ekss3.jpg",
+      "/images/1786274829031-ekss2.jpg",
+      "/images/1786274846637-ekss1.jpg"
+    ]
+  },
+  "stats": [
+    {
+      "value": 37,
+      "label": "Scholars Placed"
+    },
+    {
+      "value": 129,
+      "label": "Farmers Trained"
+    },
+    {
+      "value": 15,
+      "label": "Teachers Trained"
+    },
+    {
+      "value": 2,
+      "label": "Schools Electrified"
+    }
+  ],
+  "about": {
+    "heading": "Verified impact.\nRadical transparency.",
+    "description1": "EmpowerKids–South Sudan is a non‑governmental organisation registered under the NGO Act 2016 (RRC Reg. No. 169). Founded in 2014, we operate in Juba, Central Equatoria State. Our Juba Demonstration Farm is located at Juba 2, Gumbo‑Sherikat Area. Our programmes span education, agriculture, youth empowerment, and civic voice. Our work is validated by CAF America, allowing US donors to give tax‑deductibly.",
+    "description2": "Every figure on this page is taken directly from our programme monitoring records. Funders and evaluators can request the underlying data at any time — we have nothing to hide.",
+    "image": "/images/1786273115374-ekss5.jpg",
+    "ctaText": "Meet our leadership",
+    "ctaLink": "/about"
+  },
+  "board": {
+    "heading": "Board & Leadership",
+    "subtitle": "EmpowerKids–South Sudan is guided by a strong governance framework and led by a dedicated management team committed to delivering impact.",
+    "columns": [
+      {
+        "title": "Board of Directors",
+        "description": "Provides strategic direction, policy oversight, and fiduciary responsibility to ensure the organization operates with integrity and accountability.",
+        "icon": "user-group"
+      },
+      {
+        "title": "Executive Leadership",
+        "description": "Responsible for the implementation of programs, operational management, and execution of strategic priorities under the guidance of the Board.",
+        "icon": "user",
+        "highlight": true,
+        "executive": {
+          "name": "Hakim Monykuer Awuok",
+          "title": "Executive Director"
+        }
+      },
+      {
+        "title": "Advisory Committee",
+        "description": "Provides technical expertise and strategic guidance to strengthen programme quality.",
+        "icon": "light-bulb"
+      }
+    ],
+    "executiveSpotlight": {
+      "name": "Hakim Monykuer Awuok",
+      "title": "Executive Director",
+      "image": "/images/1786275030375-eksshakim.png",
+      "bio1": "Hakim Monykuer Awuok is a public policy and governance professional with extensive experience in nonprofit leadership, currently serving as Executive Director of EmpowerKids–South Sudan.",
+      "bio2": "He brings expertise in strategic planning, partnership development, and programme management, driving the mission to create lasting impact for children and communities.",
+      "email": "hmonykuer@ekss.org",
+      "phone": "+211 926 133 777"
+    },
+    "teamCTA": {
+      "heading": "Meet our team",
+      "text": "Our Board, Executive Leadership, and Advisory Committee bring decades of experience across education, agriculture, governance, and finance.",
+      "buttonText": "See our team",
+      "link": "/about"
+    }
+  },
+  "programs": {
+    "heading": "One system, four points of entry",
+    "subtitle": "Our programmes connect: a farmer's daughter who earns a scholarship, a school with power to study by, a young person with something to say.",
+    "list": [
+      {
+        "title": "Education ",
+        "icon": "📚",
+        "description": "School partnerships, teacher capacity building, and scholarship pathways to universities abroad.",
+        "bullets": [
+          "37 scholars placed",
+          "15 teachers trained",
+          "2 schools electrified"
+        ]
+      },
+      {
+        "title": "Empower Farmers SS",
+        "icon": "🌱",
+        "description": "Climate‑smart conservation agriculture on the Foundations for Farming model.",
+        "bullets": [
+          "129 farmers trained",
+          "50×100 m demo farm",
+          "21‑person field team"
+        ]
+      },
+      {
+        "title": "Youth Empowerment",
+        "icon": "👥",
+        "description": "Entrepreneurship, leadership and platforms where young voices reach a national audience.",
+        "bullets": [
+          "3 states reached",
+          "Essays in national press"
+        ]
+      },
+      {
+        "title": "Advocacy & Civic Engagement",
+        "icon": "🗣️",
+        "description": "Strengthening community voice, governance awareness, and local participation.",
+        "bullets": [
+          "Councillors for Citizens",
+          "Community dialogues"
+        ]
+      }
+    ],
+    "cta": {
+      "title": "Ready to make a difference?",
+      "text": "Your support helps us scale these programmes – train more farmers, place more scholars, and amplify more young voices across South Sudan.",
+      "donateText": "Donate now",
+      "getInvolvedText": "Get involved",
+      "footerText": "Every contribution counts – even a small monthly gift helps us plan for the long term."
+    }
+  },
+  "scholarSpotlight": {
+    "image": "/images/1786275360634-ekss4.jpg",
+    "label": "One of thirty‑seven",
+    "quote": "“Add one direct quotation here from a named scholar: where they came from, what changed, where they are studying now.”",
+    "name": "[Scholar's nam]",
+    "details": "[University, country]\nBridge2Rwanda cohort [year] · Placed through EKSS",
+    "footerNote": "Aggregate numbers open the door. A named person, photographed and quoted with their permission, is what makes an individual donor give and a programme officer remember you."
+  },
+  "featuredProject": {
+    "label": "Featured Programme",
+    "title": "Empower Farmers South Sudan 🌱",
+    "description": "Using Foundations for Farming conservation agriculture on our 50×100 m demonstration farm in Gumbo‑Sherikat (Juba 2). Our 21‑person field team has trained 75 smallholder farmers this year (129 total), and we've harvested 472.44 kg of maize from just 0.132 ha — proof that climate‑smart farming works.",
+    "bullets": [
+      "Demonstration farm & hands‑on training",
+      "75 farmers trained this year (129 total) in Biliny, Bajur, Dumandong & Mangala",
+      "Conservation agriculture & food security"
+    ],
+    "image": "/images/1786273958835-ekss7.jpg",
+    "buttonText": "Discover the programme",
+    "buttonLink": "#programs"
+  },
+  "resultsLedger": {
+    "heading": "Extracted from programme monitoring records",
+    "updateInfo": "Last updated: July 2026 · Funders and evaluators may request the underlying monitoring data at any time. Write to info@ekss.org.",
+    "rows": [
+      {
+        "value": "37",
+        "result": "Students placed on fully funded university scholarships through our Bridge2Rwanda partnership",
+        "programme": "Education",
+        "verification": "B2R placement records"
+      },
+      {
+        "value": "129",
+        "result": "Smallholder farmers and interns trained in Foundations for Farming conservation agriculture (cumulative across all training cycles)",
+        "programme": "Empower Farmers",
+        "verification": "Training attendance registers"
+      },
+      {
+        "value": "15",
+        "result": "Secondary school teachers trained at Arizona State University in student‑centred methods",
+        "programme": "Education",
+        "verification": "ASU completion records"
+      },
+      {
+        "value": "632.97 kg",
+        "result": "Assorted vegetables and groundnuts harvested from 0.01865 ha using sack and bed methods",
+        "programme": "Empower Farmers",
+        "verification": "Farm harvest logs"
+      },
+      {
+        "value": "2",
+        "result": "Schools fitted with solar electricity — Juba Girls Secondary and Nimule Model Secondary",
+        "programme": "Education",
+        "verification": "Installation handover notes"
+      },
+      {
+        "value": "3",
+        "result": "States reached by youth peace essay competitions, with selected essays published in national press",
+        "programme": "Youth Empowerment",
+        "verification": "Competition records & press cuttings"
+      }
+    ]
+  },
+  "news": {
+    "heading": "Latest From the Field",
+    "items": [
+      {
+        "date": "September 2025",
+        "title": "Successful Maize Harvest at Juba Demonstration Farm",
+        "excerpt": "A moment of joy and hard work paying off — our team harvested 472.44 kg of maize from 0.132 ha, proving that \"It Can Be Done.\"",
+        "link": "#"
+      },
+      {
+        "date": "July 2025",
+        "title": "75 Farmers Trained Through Conservation Agriculture",
+        "excerpt": "Our National Champions and interns trained 75 smallholder farmers on the Foundations for Farming approach, bringing the total to 129.",
+        "link": "#"
+      },
+      {
+        "date": "August 2025",
+        "title": "Featured LIVE on SSBC's \"The Dawn Show\"",
+        "excerpt": "Our Champions represented Empower Farmers South Sudan on national television, reaching audiences across the country.",
+        "link": "#"
+      }
+    ],
+    "cta": {
+      "title": "Stay in the loop",
+      "text": "From harvest updates to scholar achievements – follow our journey as it unfolds.",
+      "buttonText": "See all news & updates",
+      "link": "#news"
+    }
+  },
+  "resources": {
+    "heading": "Our Publications & Governance",
+    "subtitle": "Transparency is at the heart of our work. Here you’ll find our annual reports, strategic reviews, programme reports, research findings, and the policies that guide our operations — all available for download.",
+    "annualReports": [
+      {
+        "title": "Annual Report 2025",
+        "description": "Our inaugural annual report – audited financials, farmer training results, scholarship placements, and community engagement metrics.",
+        "link": "#"
+      },
+      {
+        "title": "Annual Report 2024",
+        "description": "Our first annual report covering initial program activities and organisational milestones.",
+        "link": "#"
+      }
+    ],
+    "organizationalReview": {
+      "title": "Strategic Progress & Milestones",
+      "description": "This review details our growth from a startup initiative to a nationally registered organisation, highlighting governance improvements, programme scaling, and partnership development.",
+      "link": "#"
+    },
+    "programReports": [
+      {
+        "title": "Education Program Reports",
+        "description": "Detailed reports on scholarship placements, teacher training, and school electrification projects.",
+        "link": "#"
+      },
+      {
+        "title": "Livelihood Assessments",
+        "description": "Community livelihood and food security studies from our field operations.",
+        "link": "#"
+      },
+      {
+        "title": "Peacebuilding Reports",
+        "description": "Insights from dialogue and reconciliation initiatives across South Sudan.",
+        "link": "#"
+      }
+    ],
+    "research": [
+      {
+        "title": "Impact Assessments",
+        "description": "Independent evaluations of program outcomes.",
+        "link": "#"
+      },
+      {
+        "title": "Community Needs Assessments",
+        "description": "Baseline studies to inform program design.",
+        "link": "#"
+      }
+    ],
+    "policies": [
+      {
+        "title": "Certificate of Registration",
+        "subtitle": "RRC No. 169",
+        "link": "#"
+      },
+      {
+        "title": "Constitution (Amendment 2026)",
+        "link": "#"
+      },
+      {
+        "title": "Safeguarding Policy",
+        "subtitle": "Child Protection & PSEAH",
+        "link": "#"
+      },
+      {
+        "title": "Anti-Fraud & Corruption Policy",
+        "link": "#"
+      },
+      {
+        "title": "Data Protection Policy",
+        "link": "#"
+      },
+      {
+        "title": "Strategic Plan 2026–2030",
+        "link": "#"
+      }
+    ],
+    "footerNote": "All documents are available for download. For any inquiries, please contact us."
+  },
+  "donate": {
+    "heading": "What your money buys",
+    "subtitle": "We publish unit costs so you can see exactly what a gift does. US donors give through CAF America and receive a tax deduction.",
+    "badges": [
+      "CAF America validated",
+      "Tax-deductible in the US"
+    ],
+    "tiers": [
+      {
+        "amount": "$40",
+        "title": "Train one champion farmer",
+        "description": "A full season of Foundations for Farming training, inputs and follow-up visits.",
+        "buttonText": "Give $40",
+        "highlight": false,
+        "icon": "🌾"
+      },
+      {
+        "amount": "$250",
+        "title": "Prepare one scholarship candidate",
+        "description": "Testing, coaching, application support and placement follow-through.",
+        "buttonText": "Give $250",
+        "highlight": false,
+        "icon": "📚"
+      },
+      {
+        "amount": "Monthly",
+        "title": "Become a sustaining partner",
+        "description": "Predictable income lets us plan beyond a single season and invest in long-term impact.",
+        "buttonText": "Set up monthly giving →",
+        "highlight": true,
+        "badge": "Best value",
+        "icon": "🤝"
+      }
+    ],
+    "note": "Your donation supports our education, agriculture, youth and civic engagement programmes. We report on how funds are used in our annual report, published here each year.",
+    "institutionalContact": "Contact us for institutional giving",
+    "email": "info@ekss.org"
+  },
+  "partners": {
+    "heading": "Who works with us",
+    "subtitle": "Verified by Others",
+    "list": [
+      {
+        "name": "Bridge2Rwanda",
+        "label": "Scholarship partner"
+      },
+      {
+        "name": "SolarSPELL",
+        "label": "Digital libraries"
+      },
+      {
+        "name": "Arizona State University",
+        "label": "Teacher training"
+      },
+      {
+        "name": "Foundations for Farming",
+        "label": "Agriculture model"
+      },
+      {
+        "name": "CAF America",
+        "label": "Validated charity"
+      }
+    ]
+  },
+  "getInvolved": {
+    "heading": "Join Our Mission",
+    "options": [
+      {
+        "title": "Donate",
+        "description": "Your financial support directly funds our programmes, from scholarships to farming equipment.",
+        "icon": "❤️"
+      },
+      {
+        "title": "Volunteer",
+        "description": "Lend your time and skills to support our work on the ground in South Sudan.",
+        "icon": "👥"
+      },
+      {
+        "title": "Partner",
+        "description": "Organisations and institutions can collaborate with us to scale impact.",
+        "icon": "🌍"
+      }
+    ],
+    "cta": {
+      "title": "Every action counts",
+      "text": "Whether you give, volunteer, or partner — your contribution helps us reach more children, train more farmers, and build a stronger South Sudan.",
+      "donateText": "Donate now",
+      "contactText": "Contact us"
+    }
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "subtitle": "We'd love to hear from you. Whether you want to partner, volunteer, donate, or simply learn more — reach out.",
+    "address": "Gudele West, Block 4, Plot 477\nLuri Payam, Juba County\nCentral Equatoria State, South Sudan",
+    "email": "info@ekss.org",
+    "phone": "+211 926 133 777",
+    "hours": "Monday – Friday: 8:00 AM – 5:00 PM (CAT)\nSaturday: 9:00 AM – 1:00 PM",
+    "social": {
+      "facebook": "https://www.facebook.com/empowerkidssouthsudan",
+      "linkedin": "https://www.linkedin.com/company/empowerkids-south-sudan/",
+      "twitter": "https://x.com/empowerkidsss",
+      "tiktok": "https://www.tiktok.com/@empower.farmers.s"
+    },
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15919.265421756!2d31.57125!3d4.85165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17128c9e0c0c0c0b%3A0x0!2zNMKwNTEnMDUuOSJOIDMxwrAzNCc0OC4yIkU!5e0!3m2!1sen!2s!4v1690000000000"
+  },
+  "footer": {
+    "description": "Building a brighter future for kids. Registered with the Relief and Rehabilitation Commission under the NGO Act 2016.",
+    "programmes": [
+      "Education Support",
+      "Empower Farmers SS",
+      "Youth Empowerment",
+      "Advocacy & Civic Engagement"
+    ],
+    "organisation": [
+      "Results",
+      "Governance & policies",
+      "Partners",
+      "Board & leadership",
+      "News"
+    ],
+    "address": "Gudele West, Block 4, Plot 477\nLuri Payam, Juba County\nCentral Equatoria State, South Sudan",
+    "email": "info@ekss.org",
+    "phone": "+211 926 133 777",
+    "social": {
+      "facebook": "https://www.facebook.com/empowerkidssouthsudan",
+      "linkedin": "#",
+      "twitter": "#",
+      "tiktok": "#"
+    }
+  }
+}
