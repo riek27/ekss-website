@@ -1,19 +1,22 @@
-// @ts-nocheck
-import { getPageData } from '@/app/actions';
+'use client';
+
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default async function ProgramsPage() {
-  const programsData = await getPageData('programs');
-  if (!programsData) {
-    return (
-      <>
-        <Header />
-        <div className="text-center py-20 text-gray-500">Loading...</div>
-        <Footer />
-      </>
-    );
-  }
+export default function ProgramsPage() {
+  const [programsData, setProgramsData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/page-data?page=programs')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setProgramsData(json);
+      })
+      .catch(console.error);
+  }, []);
+
+  if (!programsData) return null;
 
   const { hero, overview, featured, results, partners, cta } = programsData;
 
@@ -48,7 +51,7 @@ export default async function ProgramsPage() {
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {overview.cards.map((card, i) => (
+            {overview.cards.map((card: any, i: number) => (
               <div
                 key={i}
                 className="card-hover bg-white rounded-3xl overflow-hidden shadow-md border p-6 flex flex-col"
@@ -59,7 +62,7 @@ export default async function ProgramsPage() {
                 </h3>
                 <p className="text-gray-500 text-sm flex-1">{card.description}</p>
                 <ul className="text-xs text-gray-600 space-y-1 mt-4">
-                  {card.results.map((r, j) => (
+                  {card.results.map((r: string, j: number) => (
                     <li key={j} className="flex items-start gap-1">
                       <span className="text-emerald-green">✓</span> {r}
                     </li>
@@ -109,7 +112,7 @@ export default async function ProgramsPage() {
             {results.heading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {results.stats.map((stat, i) => (
+            {results.stats.map((stat: any, i: number) => (
               <div
                 key={i}
                 className="bg-soft-bg rounded-3xl shadow-md p-5 sm:p-7 text-center border"
@@ -135,7 +138,7 @@ export default async function ProgramsPage() {
             <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-soft-bg to-transparent z-10 pointer-events-none"></div>
             <div className="marquee-wrapper">
               <div className="marquee-track">
-                {[...partners.list, ...partners.list].map((p, i) => (
+                {[...partners.list, ...partners.list].map((p: any, i: number) => (
                   <div key={i} className="partner-card">
                     <span className="partner-name">{p.name}</span>
                     <span className="partner-label">{p.label}</span>

@@ -1,19 +1,22 @@
-// @ts-nocheck
-import { getPageData } from '@/app/actions';
+'use client';
+
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default async function AboutPage() {
-  const aboutData = await getPageData('about');
-  if (!aboutData) {
-    return (
-      <>
-        <Header />
-        <div className="text-center py-20 text-gray-500">Loading...</div>
-        <Footer />
-      </>
-    );
-  }
+export default function AboutPage() {
+  const [aboutData, setAboutData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/page-data?page=about')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setAboutData(json);
+      })
+      .catch(console.error);
+  }, []);
+
+  if (!aboutData) return null; // nothing visible until loaded – no "Loading…" text
 
   const {
     hero,
@@ -108,7 +111,7 @@ export default async function AboutPage() {
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {coreValues.list.map((value, i) => (
+            {coreValues.list.map((value: any, i: number) => (
               <div
                 key={i}
                 className="card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
@@ -149,7 +152,7 @@ export default async function AboutPage() {
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whatWeDo.cards.map((card, i) => (
+            {whatWeDo.cards.map((card: any, i: number) => (
               <div
                 key={i}
                 className="card-hover bg-white rounded-3xl overflow-hidden shadow-md border p-6"
@@ -183,7 +186,7 @@ export default async function AboutPage() {
             {background.heading}
           </h2>
           <div className="relative border-l-2 border-emerald-green ml-6 md:ml-12">
-            {background.timeline.map((item, i) => (
+            {background.timeline.map((item: any, i: number) => (
               <div key={i} className="mb-10 ml-8 md:ml-10">
                 <div className="absolute w-4 h-4 bg-emerald-green rounded-full -left-[9px] mt-1.5" />
                 <span className="text-warm-gold font-semibold text-sm uppercase tracking-wide">
@@ -207,7 +210,7 @@ export default async function AboutPage() {
             <p className="text-gray-500 text-sm mb-10">{impact.subtitle}</p>
           )}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {impact.stats.map((stat, i) => (
+            {impact.stats.map((stat: any, i: number) => (
               <div
                 key={i}
                 className="bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border"
@@ -229,7 +232,7 @@ export default async function AboutPage() {
             {whereWeWork.heading}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whereWeWork.locations.map((loc, i) => (
+            {whereWeWork.locations.map((loc: any, i: number) => (
               <div
                 key={i}
                 className="card-hover bg-white rounded-2xl p-6 shadow-md border"
@@ -249,7 +252,7 @@ export default async function AboutPage() {
             {transparency.heading}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {transparency.items.map((item, i) => (
+            {transparency.items.map((item: any, i: number) => (
               <div
                 key={i}
                 className="card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
@@ -275,7 +278,7 @@ export default async function AboutPage() {
             <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
             <div className="marquee-wrapper">
               <div className="marquee-track">
-                {[...partners.list, ...partners.list].map((partner, i) => (
+                {[...partners.list, ...partners.list].map((partner: any, i: number) => (
                   <div key={i} className="partner-card">
                     <span className="partner-name">{partner.name}</span>
                     <span className="partner-label">{partner.label}</span>
@@ -299,7 +302,7 @@ export default async function AboutPage() {
 
           {/* Governance Columns */}
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            {governance.columns.map((col, i) => (
+            {governance.columns.map((col: any, i: number) => (
               <div
                 key={i}
                 className={`card-hover bg-white rounded-3xl p-8 shadow-lg border ${
