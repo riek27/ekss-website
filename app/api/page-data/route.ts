@@ -21,7 +21,22 @@ export async function GET(request: Request) {
       return NextResponse.json(null, { status: 404 });
     }
 
-    return NextResponse.json(JSON.parse(raw as string));
+    // The value might be already an object (if the client unpacks it) or a JSON string.
+    let data: any;
+    if (typeof raw === 'string') {
+      data = JSON.parse(raw);
+    } else if (typeof raw === 'object' && raw !== null) {
+      // Some Upstash responses come as { result: "..." }
+      if ('result' in raw) {
+        data = JSON.parse(raw.result as string);
+      } else {
+        data = raw; // assume it's already the parsed object
+      }
+    } else {
+      throw new Error('Unexpected data type from Redis');
+    }
+
+    return NextResponse.json(data);
   } catch (error: any) {
     console.error('API route error:', error);
     return NextResponse.json(
