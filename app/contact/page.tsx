@@ -1,13 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import contactData from '@/data/contact.json';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function ContactPage() {
-  const { hero, contactInfo, form, map, helpCards, faq, finalCta } = contactData;
-
+  const [contactData, setContactData] = useState<any>(null);
+  const [dataLoading, setDataLoading] = useState(true);
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -18,6 +17,16 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/page-data?page=contact')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setContactData(json);
+        setDataLoading(false);
+      })
+      .catch(() => setDataLoading(false));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +48,6 @@ export default function ContactPage() {
 
       if (response.ok) {
         setSubmitted(true);
-        // Reset form fields after success
         setFormState({
           name: '',
           email: '',
@@ -58,11 +66,16 @@ export default function ContactPage() {
     }
   };
 
+  if (dataLoading) return <div className="text-center py-20">Loading...</div>;
+  if (!contactData) return <div className="text-center py-20">Contact information unavailable.</div>;
+
+  const { hero, contactInfo, form, map, helpCards, faq, finalCta } = contactData;
+
   return (
     <>
       <Header />
 
-      {/* ===== Hero ===== */}
+      {/* Hero */}
       <section
         className="relative h-[60vh] flex items-center justify-center overflow-hidden mb-16"
         style={{
@@ -74,22 +87,17 @@ export default function ContactPage() {
       >
         <div className="absolute inset-0 bg-deep-forest/70" style={{ top: '8rem' }}></div>
         <div className="relative z-10 text-center px-4 max-w-3xl">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            {hero.title}
-          </h1>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">{hero.title}</h1>
           <p className="text-gray-200 text-lg md:text-xl">{hero.subtitle}</p>
         </div>
       </section>
 
-      {/* ===== Contact Info & Form ===== */}
+      {/* Contact Info & Form */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Contact Details */}
             <div className="space-y-8">
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest">
-                {contactInfo.heading}
-              </h2>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest">{contactInfo.heading}</h2>
               <div className="flex gap-4">
                 <div className="w-12 h-12 bg-emerald-green/10 rounded-2xl flex items-center justify-center flex-shrink-0">
                   <svg className="w-6 h-6 text-emerald-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,9 +117,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-deep-forest">Email</p>
-                  <a href={`mailto:${contactInfo.email}`} className="text-emerald-green text-sm hover:text-deep-forest transition">
-                    {contactInfo.email}
-                  </a>
+                  <a href={`mailto:${contactInfo.email}`} className="text-emerald-green text-sm hover:text-deep-forest transition">{contactInfo.email}</a>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -122,9 +128,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-deep-forest">Phone</p>
-                  <a href={`tel:${contactInfo.phone}`} className="text-gray-500 text-sm hover:text-deep-forest transition">
-                    {contactInfo.phone}
-                  </a>
+                  <a href={`tel:${contactInfo.phone}`} className="text-gray-500 text-sm hover:text-deep-forest transition">{contactInfo.phone}</a>
                 </div>
               </div>
               {contactInfo.executive && (
@@ -136,102 +140,52 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-semibold text-deep-forest">Executive Director</p>
-                    <p className="text-gray-500 text-sm mt-1">
-                      {contactInfo.executive.name}, {contactInfo.executive.title}
-                    </p>
-                    <a href={`mailto:${contactInfo.executive.email}`} className="text-emerald-green text-sm hover:text-deep-forest transition">
-                      {contactInfo.executive.email}
-                    </a>
+                    <p className="text-gray-500 text-sm mt-1">{contactInfo.executive.name}, {contactInfo.executive.title}</p>
+                    <a href={`mailto:${contactInfo.executive.email}`} className="text-emerald-green text-sm hover:text-deep-forest transition">{contactInfo.executive.email}</a>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Contact Form */}
+            {/* Form */}
             <div className="bg-soft-bg rounded-4xl p-8 shadow-xl">
               <h3 className="font-display text-2xl font-bold text-deep-forest mb-6">{form.heading}</h3>
               {submitted ? (
-                <div className="bg-emerald-green/10 text-emerald-green p-6 rounded-2xl font-medium text-center">
-                  {form.successMessage}
-                </div>
+                <div className="bg-emerald-green/10 text-emerald-green p-6 rounded-2xl font-medium text-center">{form.successMessage}</div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={formState.name}
-                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-                      placeholder="Enter your name"
-                    />
+                    <input type="text" required value={formState.name} onChange={(e) => setFormState({ ...formState, name: e.target.value })} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none" placeholder="Enter your name" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-                      <input
-                        type="email"
-                        required
-                        value={formState.email}
-                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-                        placeholder="you@example.com"
-                      />
+                      <input type="email" required value={formState.email} onChange={(e) => setFormState({ ...formState, email: e.target.value })} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none" placeholder="you@example.com" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Phone / WhatsApp</label>
-                      <input
-                        type="text"
-                        value={formState.phone}
-                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                        className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-                        placeholder="+211..."
-                      />
+                      <input type="text" value={formState.phone} onChange={(e) => setFormState({ ...formState, phone: e.target.value })} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none" placeholder="+211..." />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Organization</label>
-                    <input
-                      type="text"
-                      value={formState.organization}
-                      onChange={(e) => setFormState({ ...formState, organization: e.target.value })}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-                      placeholder="Organization name"
-                    />
+                    <input type="text" value={formState.organization} onChange={(e) => setFormState({ ...formState, organization: e.target.value })} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none" placeholder="Organization name" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
-                    <select
-                      required
-                      value={formState.subject}
-                      onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-                    >
+                    <select required value={formState.subject} onChange={(e) => setFormState({ ...formState, subject: e.target.value })} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none">
                       <option value="">Select a subject</option>
-                      {form.subjectOptions.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
+                      {form.subjectOptions.map((opt: string) => (
+                        <option key={opt} value={opt}>{opt}</option>
                       ))}
                     </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Message *</label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formState.message}
-                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-                      placeholder="Write your message..."
-                    />
+                    <textarea required rows={4} value={formState.message} onChange={(e) => setFormState({ ...formState, message: e.target.value })} className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none" placeholder="Write your message..." />
                   </div>
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-emerald-green text-white font-semibold py-3 px-6 rounded-full hover:bg-deep-forest transition shadow-lg disabled:opacity-50"
-                  >
+                  <button type="submit" disabled={submitting} className="w-full bg-emerald-green text-white font-semibold py-3 px-6 rounded-full hover:bg-deep-forest transition shadow-lg disabled:opacity-50">
                     {submitting ? 'Sending…' : 'Send Message'}
                   </button>
                 </form>
@@ -241,12 +195,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ===== Map ===== */}
+      {/* Map */}
       <section className="py-16 lg:py-24 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-6 text-center">
-            {map.heading}
-          </h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-6 text-center">{map.heading}</h2>
           <p className="text-gray-600 text-center mb-8">{map.description}</p>
           <div className="rounded-4xl overflow-hidden shadow-2xl">
             <iframe
@@ -261,12 +213,7 @@ export default function ContactPage() {
             ></iframe>
           </div>
           <div className="text-center mt-6">
-            <a
-              href={map.directionLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition"
-            >
+            <a href={map.directionLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition">
               Get Directions
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -276,19 +223,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ===== Help Cards ===== */}
+      {/* Help Cards */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-12 text-center">
-            {helpCards.heading}
-          </h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-12 text-center">{helpCards.heading}</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {helpCards.cards.map((card, i) => (
-              <a
-                key={i}
-                href={card.link}
-                className="card-hover bg-white rounded-3xl p-6 shadow-md border text-center block"
-              >
+            {helpCards.cards.map((card: any, i: number) => (
+              <a key={i} href={card.link} className="card-hover bg-white rounded-3xl p-6 shadow-md border text-center block">
                 <span className="text-3xl block mb-3">{card.icon}</span>
                 <h3 className="font-display font-bold text-lg text-deep-forest mb-2">{card.title}</h3>
                 <p className="text-gray-500 text-sm">{card.description}</p>
@@ -301,14 +242,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ===== FAQ ===== */}
+      {/* FAQ */}
       <section className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-12 text-center">
-            {faq.heading}
-          </h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-12 text-center">{faq.heading}</h2>
           <div className="space-y-4">
-            {faq.questions.map((item, i) => (
+            {faq.questions.map((item: any, i: number) => (
               <details key={i} className="bg-white rounded-2xl p-6 group shadow-sm">
                 <summary className="font-semibold text-deep-forest cursor-pointer list-none flex items-center justify-between">
                   {item.q}
@@ -323,18 +262,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ===== Final CTA ===== */}
+      {/* Final CTA */}
       <section className="py-20 lg:py-28 bg-dark-section text-white">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">{finalCta.heading}</h2>
           <p className="text-gray-300 text-lg mb-8">{finalCta.text}</p>
           <div className="flex flex-wrap justify-center gap-4">
-            {finalCta.buttons.map((btn, i) => (
-              <a
-                key={i}
-                href={btn.link}
-                className="btn-gold-pulse inline-flex items-center px-8 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition"
-              >
+            {finalCta.buttons.map((btn: any, i: number) => (
+              <a key={i} href={btn.link} className="btn-gold-pulse inline-flex items-center px-8 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition">
                 {btn.text}
               </a>
             ))}

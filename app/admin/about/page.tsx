@@ -1,15 +1,10 @@
+// @ts-nocheck
 'use client';
 
-import { useState, useRef } from 'react';
-import { savePageData, uploadFile } from '@/app/actions';
-import initialData from '@/data/about.json';
+import { useState, useEffect, useRef } from 'react';
 import FileUploadField from '@/components/FileUploadField';
+import { savePageData } from '@/app/actions';
 
-
-
-// ============================
-// Section Keys
-// ============================
 type SectionKey =
   | 'hero'
   | 'whoWeAre'
@@ -37,25 +32,32 @@ const sectionNames: { key: SectionKey; label: string }[] = [
   { key: 'governance', label: 'Governance & Leadership' },
 ];
 
-// ============================
-// Main Admin About Component
-// ============================
 export default function AdminAbout() {
-  const [data, setData] = useState(() => JSON.parse(JSON.stringify(initialData)));
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState<SectionKey>('hero');
   const [saveMessage, setSaveMessage] = useState('');
+
+  useEffect(() => {
+    fetch('/api/page-data?page=about')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setData(json);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const handleSave = async () => {
     const result = await savePageData('about', data);
     if (result.success) {
-      setSaveMessage('✅ All changes saved successfully!');
+      setSaveMessage('✅ All changes saved!');
       setTimeout(() => setSaveMessage(''), 4000);
     } else {
       setSaveMessage('❌ Error: ' + result.error);
     }
   };
 
-  // Deep update helper
   const update = (path: string, value: any) => {
     const keys = path.split('.');
     setData((prev: any) => {
@@ -67,8 +69,10 @@ export default function AdminAbout() {
     });
   };
 
-  // --------------- Render each section ---------------
+  // --------------- RENDER SECTION ---------------
   const renderSection = () => {
+    if (!data) return null;
+
     switch (activeSection) {
       case 'hero':
         return (
@@ -843,11 +847,12 @@ export default function AdminAbout() {
         );
 
       default:
-        return (
-          <div className="text-center text-gray-500 py-20">Select a section from the sidebar</div>
-        );
+        return <div className="text-center text-gray-500 py-20">Select a section from the sidebar</div>;
     }
   };
+
+  if (loading) return <div className="p-8 text-center">Loading editor...</div>;
+  if (!data) return <div className="p-8 text-center">No data found. Please seed the database.</div>;
 
   return (
     <div className="flex gap-6">

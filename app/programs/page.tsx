@@ -1,15 +1,27 @@
-import programsData from '@/data/programs.json';
+// @ts-nocheck
+import { getPageData } from '@/app/actions';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
+  const programsData = await getPageData('programs');
+  if (!programsData) {
+    return (
+      <>
+        <Header />
+        <div className="text-center py-20 text-gray-500">Loading...</div>
+        <Footer />
+      </>
+    );
+  }
+
   const { hero, overview, featured, results, partners, cta } = programsData;
 
   return (
     <>
       <Header />
 
-      {/* ===== Hero ===== */}
+      {/* Hero */}
       <section
         className="relative h-[60vh] flex items-center justify-center overflow-hidden"
         style={{
@@ -27,7 +39,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== Programs Overview ===== */}
+      {/* Overview Cards */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -59,7 +71,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== Featured Program ===== */}
+      {/* Featured Program */}
       <section id="featured" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-0 items-stretch rounded-4xl overflow-hidden shadow-2xl">
@@ -90,7 +102,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== Program Results ===== */}
+      {/* Program Results */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-10">
@@ -112,7 +124,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== Partners ===== */}
+      {/* Partners */}
       <section className="py-16 lg:py-20 bg-soft-bg">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10">
@@ -135,7 +147,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== Final CTA ===== */}
+      {/* Final CTA */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-4">

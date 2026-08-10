@@ -1,29 +1,47 @@
 'use client';
 
-import { useState } from 'react';
-import newsData from '@/data/news.json';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function NewsPage() {
-  const { hero, featured, items, cta } = newsData;
+  const [newsData, setNewsData] = useState<any>(null);
+  const [dataLoading, setDataLoading] = useState(true);
   const [expandedIds, setExpandedIds] = useState<number[]>([]);
 
+  useEffect(() => {
+    fetch('/api/page-data?page=news')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setNewsData(json);
+        setDataLoading(false);
+      })
+      .catch(() => setDataLoading(false));
+  }, []);
+
+  if (dataLoading) {
+    return <div className="text-center py-20">Loading...</div>;
+  }
+  if (!newsData) {
+    return <div className="text-center py-20">News not available.</div>;
+  }
+
+  const { hero, featured, items, cta } = newsData;
+
   const toggleExpand = (id: number) => {
-    setExpandedIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    setExpandedIds(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
     );
   };
 
-  // Split featured item from the rest (if featured is set, remove it from the general list)
   const featuredItem = featured;
-  const otherItems = items.filter((item) => item.id !== featuredItem?.id);
+  const otherItems = items.filter((item: any) => item.id !== featuredItem?.id);
 
   return (
     <>
       <Header />
 
-      {/* ===== Hero ===== */}
+      {/* Hero */}
       <section
         className="relative h-[50vh] flex items-center justify-center overflow-hidden"
         style={{
@@ -41,14 +59,12 @@ export default function NewsPage() {
         </div>
       </section>
 
-      {/* ===== Featured News ===== */}
+      {/* Featured */}
       {featuredItem && (
         <section className="py-16 lg:py-24 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
-              <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">
-                Featured Story
-              </span>
+              <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">Featured Story</span>
             </div>
             <div className="bg-soft-bg rounded-4xl overflow-hidden shadow-2xl grid md:grid-cols-5">
               <div className="md:col-span-2 image-zoom-wrapper h-64 md:h-full">
@@ -83,66 +99,57 @@ export default function NewsPage() {
         </section>
       )}
 
-      {/* ===== All News Grid ===== */}
+      {/* Grid */}
       <section className="py-16 lg:py-24 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10 text-center">Latest News</h2>
-          {otherItems.length === 0 ? (
-            <div className="text-center py-20 text-gray-500">No more articles yet.</div>
-          ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {otherItems.map((item) => {
-                const isExpanded = expandedIds.includes(item.id);
-                return (
-                  <article
-                    key={item.id}
-                    className="bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100 card-hover flex flex-col"
-                  >
-                    {item.image && (
-                      <div className="image-zoom-wrapper h-48 overflow-hidden">
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
-                      </div>
-                    )}
-                    <div className="p-6 flex flex-col flex-1">
-                      <span className="text-emerald-green font-semibold text-sm uppercase mb-2">{item.date}</span>
-                      <h3 className="font-display font-bold text-lg text-deep-forest mb-2">{item.title}</h3>
-                      {isExpanded ? (
-                        <div className="prose prose-sm text-gray-600 flex-1 whitespace-pre-line">
-                          {item.content}
-                        </div>
-                      ) : (
-                        <p className="text-gray-600 flex-1">{item.excerpt}</p>
-                      )}
-                      <button
-                        onClick={() => toggleExpand(item.id)}
-                        className="inline-flex items-center gap-1 text-emerald-green font-semibold text-sm hover:text-deep-forest transition-colors mt-4"
-                      >
-                        {isExpanded ? 'Read Less' : 'Read More'}
-                        <svg
-                          className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {otherItems.map((item: any) => {
+              const isExpanded = expandedIds.includes(item.id);
+              return (
+                <article key={item.id} className="bg-white rounded-3xl overflow-hidden shadow-md border border-gray-100 card-hover flex flex-col">
+                  {item.image && (
+                    <div className="image-zoom-wrapper h-48 overflow-hidden">
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
                     </div>
-                  </article>
-                );
-              })}
-            </div>
-          )}
+                  )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <span className="text-emerald-green font-semibold text-sm uppercase mb-2">{item.date}</span>
+                    <h3 className="font-display font-bold text-lg text-deep-forest mb-2">{item.title}</h3>
+                    {isExpanded ? (
+                      <div className="prose prose-sm text-gray-600 flex-1 whitespace-pre-line">{item.content}</div>
+                    ) : (
+                      <p className="text-gray-600 flex-1">{item.excerpt}</p>
+                    )}
+                    <button
+                      onClick={() => toggleExpand(item.id)}
+                      className="inline-flex items-center gap-1 text-emerald-green font-semibold text-sm hover:text-deep-forest transition-colors mt-4"
+                    >
+                      {isExpanded ? 'Read Less' : 'Read More'}
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* ===== Call to Action ===== */}
+      {/* CTA */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-4">{cta.heading}</h2>
           <p className="text-gray-600 text-lg mb-10">{cta.text}</p>
           <div className="flex flex-wrap justify-center gap-4">
-            {cta.buttons.map((btn, i) => (
+            {cta.buttons.map((btn: any, i: number) => (
               <a
                 key={i}
                 href={btn.link}

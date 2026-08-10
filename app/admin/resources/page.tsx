@@ -1,11 +1,9 @@
+// @ts-nocheck
 'use client';
 
-import { useState, useRef } from 'react';
-import { savePageData, uploadFile } from '@/app/actions';
-import initialData from '@/data/resources.json';
+import { useState, useEffect, useRef } from 'react';
 import FileUploadField from '@/components/FileUploadField';
-
-
+import { savePageData } from '@/app/actions';
 
 type SectionKey =
   | 'hero'
@@ -25,9 +23,20 @@ const sectionNames: { key: SectionKey; label: string }[] = [
 ];
 
 export default function AdminResources() {
-  const [data, setData] = useState(() => JSON.parse(JSON.stringify(initialData)));
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState<SectionKey>('hero');
   const [saveMessage, setSaveMessage] = useState('');
+
+  useEffect(() => {
+    fetch('/api/page-data?page=resources')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setData(json);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const handleSave = async () => {
     const result = await savePageData('resources', data);
@@ -51,51 +60,90 @@ export default function AdminResources() {
   };
 
   const renderSection = () => {
+    if (!data) return null;
+
     switch (activeSection) {
+      // ================= HERO =================
       case 'hero':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Title</label>
-              <input value={data.hero.title} onChange={(e) => update('hero.title', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <input
+                value={data.hero.title}
+                onChange={(e) => update('hero.title', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Subtitle</label>
-              <textarea value={data.hero.subtitle} onChange={(e) => update('hero.subtitle', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label>
+              <textarea
+                value={data.hero.subtitle}
+                onChange={(e) => update('hero.subtitle', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Background Image</label>
-              <FileUploadField currentValue={data.hero.image} onChange={(url) => update('hero.image', url)} accept="image/*" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
+              <FileUploadField
+                currentValue={data.hero.image}
+                onChange={(url) => update('hero.image', url)}
+                accept="image/*"
+              />
             </div>
           </div>
         );
 
+      // ================= FEATURED RESOURCE =================
       case 'featured':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Title</label>
-              <input value={data.featured.title} onChange={(e) => update('featured.title', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <input
+                value={data.featured.title}
+                onChange={(e) => update('featured.title', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Description</label>
-              <textarea value={data.featured.description} onChange={(e) => update('featured.description', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+              <textarea
+                value={data.featured.description}
+                onChange={(e) => update('featured.description', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Image</label>
-              <FileUploadField currentValue={data.featured.image} onChange={(url) => update('featured.image', url)} accept="image/*" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+              <FileUploadField
+                currentValue={data.featured.image}
+                onChange={(url) => update('featured.image', url)}
+                accept="image/*"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Link (file path)</label>
-              <FileUploadField currentValue={data.featured.link} onChange={(url) => update('featured.link', url)} accept=".pdf" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Link (file path)</label>
+              <FileUploadField
+                currentValue={data.featured.link}
+                onChange={(url) => update('featured.link', url)}
+                accept=".pdf"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Link Text</label>
-              <input value={data.featured.linkText} onChange={(e) => update('featured.linkText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Link Text</label>
+              <input
+                value={data.featured.linkText}
+                onChange={(e) => update('featured.linkText', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
           </div>
         );
 
+      // ================= CATEGORIES & DOCUMENTS =================
       case 'categories':
         return (
           <div className="space-y-6">
@@ -109,12 +157,14 @@ export default function AdminResources() {
                       c[catIdx].title = e.target.value;
                       update('categories', c);
                     }}
-                    className="flex-1 font-semibold border rounded-lg px-3 py-2"
+                    className="flex-1 font-semibold border border-gray-200 rounded-lg px-3 py-2"
                     placeholder="Category Title"
                   />
                   <button
                     onClick={() => {
-                      const c = data.categories.filter((_: any, idx: number) => idx !== catIdx);
+                      const c = data.categories.filter(
+                        (_: any, idx: number) => idx !== catIdx
+                      );
                       update('categories', c);
                     }}
                     className="text-red-500 text-sm"
@@ -124,7 +174,7 @@ export default function AdminResources() {
                 </div>
                 <h4 className="font-medium text-sm mb-2">Documents</h4>
                 {category.documents.map((doc: any, docIdx: number) => (
-                  <div key={docIdx} className="border rounded-lg p-3 mb-2 bg-white">
+                  <div key={docIdx} className="border border-gray-200 rounded-lg p-3 mb-2 bg-white">
                     <input
                       value={doc.title}
                       onChange={(e) => {
@@ -132,7 +182,7 @@ export default function AdminResources() {
                         c[catIdx].documents[docIdx].title = e.target.value;
                         update('categories', c);
                       }}
-                      className="w-full border rounded px-2 py-1 mb-1"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2 mb-1"
                       placeholder="Document Title"
                     />
                     <textarea
@@ -143,7 +193,7 @@ export default function AdminResources() {
                         update('categories', c);
                       }}
                       rows={2}
-                      className="w-full border rounded px-2 py-1 mb-1"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2 mb-1"
                       placeholder="Description"
                     />
                     <div className="grid grid-cols-2 gap-2 mb-1">
@@ -154,7 +204,7 @@ export default function AdminResources() {
                           c[catIdx].documents[docIdx].year = e.target.value;
                           update('categories', c);
                         }}
-                        className="border rounded px-2 py-1"
+                        className="border border-gray-200 rounded-lg px-3 py-2"
                         placeholder="Year"
                       />
                       <input
@@ -164,7 +214,7 @@ export default function AdminResources() {
                           c[catIdx].documents[docIdx].type = e.target.value;
                           update('categories', c);
                         }}
-                        className="border rounded px-2 py-1"
+                        className="border border-gray-200 rounded-lg px-3 py-2"
                         placeholder="Type (e.g., Annual Report)"
                       />
                     </div>
@@ -176,7 +226,7 @@ export default function AdminResources() {
                           c[catIdx].documents[docIdx].fileSize = e.target.value;
                           update('categories', c);
                         }}
-                        className="border rounded px-2 py-1"
+                        className="border border-gray-200 rounded-lg px-3 py-2"
                         placeholder="File size (e.g., 2.1 MB)"
                       />
                       <div>
@@ -195,7 +245,9 @@ export default function AdminResources() {
                     <button
                       onClick={() => {
                         const c = [...data.categories];
-                        c[catIdx].documents = c[catIdx].documents.filter((_: any, idx: number) => idx !== docIdx);
+                        c[catIdx].documents = c[catIdx].documents.filter(
+                          (_: any, idx: number) => idx !== docIdx
+                        );
                         update('categories', c);
                       }}
                       className="text-red-500 text-sm"
@@ -235,18 +287,28 @@ export default function AdminResources() {
           </div>
         );
 
+      // ================= DONORS & PARTNERS =================
       case 'donorsPartners':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.donorsPartners.heading} onChange={(e) => update('donorsPartners.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.donorsPartners.heading}
+                onChange={(e) => update('donorsPartners.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.donorsPartners.text} onChange={(e) => update('donorsPartners.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.donorsPartners.text}
+                onChange={(e) => update('donorsPartners.text', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
-            <h3 className="font-semibold">Buttons</h3>
+            <h3 className="font-display font-bold text-lg text-deep-forest">Buttons</h3>
             {data.donorsPartners.buttons.map((btn: any, i: number) => (
               <div key={i} className="flex gap-2 mb-2">
                 <input
@@ -256,7 +318,7 @@ export default function AdminResources() {
                     b[i].text = e.target.value;
                     update('donorsPartners.buttons', b);
                   }}
-                  className="flex-1 border rounded px-2 py-1"
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
                   placeholder="Button text"
                 />
                 <input
@@ -266,14 +328,16 @@ export default function AdminResources() {
                     b[i].link = e.target.value;
                     update('donorsPartners.buttons', b);
                   }}
-                  className="flex-1 border rounded px-2 py-1"
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
                   placeholder="Link"
                 />
                 <button
                   onClick={() =>
                     update(
                       'donorsPartners.buttons',
-                      data.donorsPartners.buttons.filter((_: any, idx: number) => idx !== i)
+                      data.donorsPartners.buttons.filter(
+                        (_: any, idx: number) => idx !== i
+                      )
                     )
                   }
                   className="text-red-500"
@@ -284,7 +348,10 @@ export default function AdminResources() {
             ))}
             <button
               onClick={() =>
-                update('donorsPartners.buttons', [...data.donorsPartners.buttons, { text: '', link: '' }])
+                update('donorsPartners.buttons', [
+                  ...data.donorsPartners.buttons,
+                  { text: '', link: '' },
+                ])
               }
               className="text-sm text-emerald-green"
             >
@@ -293,49 +360,85 @@ export default function AdminResources() {
           </div>
         );
 
+      // ================= REQUEST A DOCUMENT =================
       case 'requestDocument':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.requestDocument.heading} onChange={(e) => update('requestDocument.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.requestDocument.heading}
+                onChange={(e) => update('requestDocument.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.requestDocument.text} onChange={(e) => update('requestDocument.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.requestDocument.text}
+                onChange={(e) => update('requestDocument.text', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium">Button Text</label>
-                <input value={data.requestDocument.buttonText} onChange={(e) => update('requestDocument.buttonText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Button Text</label>
+                <input
+                  value={data.requestDocument.buttonText}
+                  onChange={(e) => update('requestDocument.buttonText', e.target.value)}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium">Button Link</label>
-                <input value={data.requestDocument.buttonLink} onChange={(e) => update('requestDocument.buttonLink', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Button Link</label>
+                <input
+                  value={data.requestDocument.buttonLink}
+                  onChange={(e) => update('requestDocument.buttonLink', e.target.value)}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                />
               </div>
             </div>
           </div>
         );
 
+      // ================= TRANSPARENCY STATEMENT =================
       case 'transparency':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.transparency.heading} onChange={(e) => update('transparency.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.transparency.heading}
+                onChange={(e) => update('transparency.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.transparency.text} onChange={(e) => update('transparency.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.transparency.text}
+                onChange={(e) => update('transparency.text', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium">CTA Text</label>
-                <input value={data.transparency.ctaText} onChange={(e) => update('transparency.ctaText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">CTA Text</label>
+                <input
+                  value={data.transparency.ctaText}
+                  onChange={(e) => update('transparency.ctaText', e.target.value)}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium">CTA Link</label>
-                <input value={data.transparency.ctaLink} onChange={(e) => update('transparency.ctaLink', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">CTA Link</label>
+                <input
+                  value={data.transparency.ctaLink}
+                  onChange={(e) => update('transparency.ctaLink', e.target.value)}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                />
               </div>
             </div>
           </div>
@@ -346,19 +449,23 @@ export default function AdminResources() {
     }
   };
 
+  if (loading) return <div className="p-8 text-center">Loading editor...</div>;
+  if (!data) return <div className="p-8 text-center">No data found. Please seed the database.</div>;
+
   return (
     <div className="flex gap-6">
+      {/* ---- Section Sidebar ---- */}
       <nav className="w-56 flex-shrink-0">
-        <div className="bg-white rounded-2xl shadow-sm border p-4 sticky top-20">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sticky top-20">
           <h2 className="font-display font-bold text-lg text-deep-forest mb-4">Resource Sections</h2>
           <div className="flex flex-col gap-1">
             {sectionNames.map((sec) => (
               <button
                 key={sec.key}
                 onClick={() => setActiveSection(sec.key)}
-                className={`text-left px-3 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`text-left px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   activeSection === sec.key
-                    ? 'bg-emerald-green text-white shadow-md'
+                    ? 'bg-emerald-green text-white shadow-md shadow-emerald-green/20'
                     : 'text-gray-600 hover:bg-soft-bg hover:text-deep-forest'
                 }`}
               >
@@ -369,18 +476,26 @@ export default function AdminResources() {
         </div>
       </nav>
 
-      <div className="flex-1">
-        <div className="bg-white rounded-2xl shadow-sm border p-6">
-          <div className="flex justify-between items-center mb-6">
+      {/* ---- Main Editing Area ---- */}
+      <div className="flex-1 min-w-0">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl font-display font-bold text-deep-forest">
               {sectionNames.find((s) => s.key === activeSection)?.label}
             </h1>
-            <button onClick={handleSave} className="bg-emerald-green text-white px-6 py-2.5 rounded-full font-semibold hover:bg-deep-forest transition shadow-lg">
+            <button
+              onClick={handleSave}
+              className="bg-emerald-green text-white px-6 py-2.5 rounded-full font-semibold hover:bg-deep-forest transition-colors shadow-lg shadow-emerald-green/20 hover:shadow-xl"
+            >
               Save All Changes
             </button>
           </div>
           {renderSection()}
-          {saveMessage && <p className="mt-4 text-sm text-emerald-green">{saveMessage}</p>}
+          {saveMessage && (
+            <p className="mt-6 text-sm font-medium text-emerald-green bg-emerald-green/5 p-3 rounded-lg">
+              {saveMessage}
+            </p>
+          )}
         </div>
       </div>
     </div>

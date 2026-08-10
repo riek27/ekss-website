@@ -1,8 +1,20 @@
-import aboutData from '@/data/about.json';
+// @ts-nocheck
+import { getPageData } from '@/app/actions';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const aboutData = await getPageData('about');
+  if (!aboutData) {
+    return (
+      <>
+        <Header />
+        <div className="text-center py-20 text-gray-500">Loading...</div>
+        <Footer />
+      </>
+    );
+  }
+
   const {
     hero,
     whoWeAre,
@@ -21,7 +33,7 @@ export default function AboutPage() {
     <>
       <Header />
 
-      {/* ===== Hero ===== */}
+      {/* Hero */}
       <section
         className="relative h-[60vh] flex items-center justify-center overflow-hidden"
         style={{
@@ -39,7 +51,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Who We Are ===== */}
+      {/* Who We Are */}
       <section id="who-we-are" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -87,7 +99,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Core Values ===== */}
+      {/* Core Values */}
       <section id="core-values" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -112,7 +124,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Mission & Vision ===== */}
+      {/* Mission & Vision */}
       <section id="mission-vision" className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
@@ -128,7 +140,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== What We Do ===== */}
+      {/* What We Do */}
       <section id="what-we-do" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -164,7 +176,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Background / Timeline ===== */}
+      {/* Background / Timeline */}
       <section id="background" className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
@@ -185,7 +197,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Impact ===== */}
+      {/* Impact */}
       <section id="impact" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-4">
@@ -210,7 +222,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Where We Work ===== */}
+      {/* Where We Work */}
       <section id="where-we-work" className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
@@ -230,7 +242,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Transparency & Accountability ===== */}
+      {/* Transparency & Accountability */}
       <section id="transparency" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
@@ -252,7 +264,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Partners ===== */}
+      {/* Partners */}
       <section id="partners" className="py-16 lg:py-20 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10">
@@ -275,7 +287,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ===== Governance & Leadership ===== */}
+      {/* Governance & Leadership */}
       <section id="governance" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">

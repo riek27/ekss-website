@@ -1,24 +1,34 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import homeData from '@/data/home.json';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [backToTopVisible, setBackToTopVisible] = useState(false);
+  const [homeData, setHomeData] = useState<any>(null);
+  const [dataLoading, setDataLoading] = useState(true);
 
-  const hero = homeData.hero;
+  // Fetch homepage data from Redis
+  useEffect(() => {
+    fetch('/api/page-data?page=home')
+      .then(res => res.json())
+      .then(json => {
+        if (json) setHomeData(json);
+        setDataLoading(false);
+      })
+      .catch(() => setDataLoading(false));
+  }, []);
 
   // Hero slider
   useEffect(() => {
-    if (hero.images.length <= 1) return;
+    if (!homeData?.hero?.images || homeData.hero.images.length <= 1) return;
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % hero.images.length);
+      setCurrentSlide((prev) => (prev + 1) % homeData.hero.images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [hero.images.length]);
+  }, [homeData?.hero?.images]);
 
   // Back to top button visibility
   useEffect(() => {
@@ -42,10 +52,11 @@ export default function HomePage() {
     );
     document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [homeData]);
 
   // Counter animation
   useEffect(() => {
+    if (!homeData) return;
     const counterObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -70,17 +81,24 @@ export default function HomePage() {
     );
     document.querySelectorAll('.counter-value').forEach((el) => counterObserver.observe(el));
     return () => counterObserver.disconnect();
-  }, []);
+  }, [homeData]);
 
-  const { stats, about, board, programs, scholarSpotlight, featuredProject, resultsLedger, news, resources, donate, partners, getInvolved, contact } = homeData;
+  if (dataLoading) {
+    return <div className="text-center py-20">Loading...</div>;
+  }
+  if (!homeData) {
+    return <div className="text-center py-20">Content not available</div>;
+  }
+
+  const { hero, stats, about, board, programs, scholarSpotlight, featuredProject, resultsLedger, news, resources, donate, partners, getInvolved, contact } = homeData;
 
   return (
     <>
       <Header />
 
-      {/* ========== HERO WITH SLIDER ========== */}
+      {/* Hero slider */}
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: '5rem' }}>
-        {hero.images.map((img, index) => (
+        {hero.images.map((img: string, index: number) => (
           <div key={index} className={`hero-slide ${index === currentSlide ? 'active' : ''}`}>
             <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
           </div>
@@ -109,11 +127,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== IMPACT STATS ========== */}
+      {/* Stats */}
       <section className="relative -mt-20 z-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {stats.map((stat, i) => (
+            {stats.map((stat: any, i: number) => (
               <div key={i} className="fade-up bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border">
                 <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-deep-forest counter-value mb-1" data-target={stat.value}>0</div>
                 <p className="text-xs sm:text-sm text-gray-500">{stat.label}</p>
@@ -123,7 +141,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== ABOUT ========== */}
+      {/* About */}
       <section id="about" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -144,7 +162,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== BOARD & LEADERSHIP ========== */}
+      {/* Board */}
       <section id="board-leadership" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -154,7 +172,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            {board.columns.map((col, i) => (
+            {board.columns.map((col: any, i: number) => (
               <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-center ${col.highlight ? 'border-2 border-warm-gold/30 relative overflow-hidden' : ''}`}
                 style={{ transitionDelay: `${i * 0.1}s` }}
               >
@@ -223,7 +241,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== PROGRAMS ========== */}
+      {/* Programs */}
       <section id="programs" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -232,14 +250,14 @@ export default function HomePage() {
             <p className="text-gray-600 text-lg">{programs.subtitle}</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {programs.list.map((prog, i) => (
+            {programs.list.map((prog: any, i: number) => (
               <div key={i} className={`fade-up card-hover bg-white rounded-3xl overflow-hidden shadow-md border`} style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div className="p-6">
                   <span className="text-3xl mb-3 block">{prog.icon}</span>
                   <h3 className="font-display text-xl font-bold text-deep-forest mb-2">{prog.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">{prog.description}</p>
                   <ul className="text-xs text-gray-600 space-y-1 mb-4">
-                    {prog.bullets.map((b, j) => (
+                    {prog.bullets.map((b: string, j: number) => (
                       <li key={j}>✓ {b}</li>
                     ))}
                   </ul>
@@ -273,7 +291,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== SCHOLAR SPOTLIGHT ========== */}
+      {/* Scholar Spotlight */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="fade-up bg-soft-bg rounded-4xl overflow-hidden shadow-xl grid md:grid-cols-5">
@@ -292,7 +310,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== FEATURED PROJECT ========== */}
+      {/* Featured Project */}
       <section id="featured" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-0 items-stretch rounded-4xl overflow-hidden shadow-2xl">
@@ -304,7 +322,7 @@ export default function HomePage() {
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">{featuredProject.title}</h2>
               <p className="text-gray-300 leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: featuredProject.description }} />
               <ul className="space-y-3 text-gray-300 mb-8">
-                {featuredProject.bullets.map((b, i) => (
+                {featuredProject.bullets.map((b: string, i: number) => (
                   <li key={i} className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-warm-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
                     {b}
@@ -317,7 +335,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== RESULTS LEDGER ========== */}
+      {/* Results Ledger */}
       <section id="results-ledger" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -336,7 +354,7 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {resultsLedger.rows.map((row, i) => (
+                {resultsLedger.rows.map((row: any, i: number) => (
                   <tr key={i} className="hover:bg-soft-bg transition">
                     <td className="px-6 py-4 font-semibold text-deep-forest text-lg" data-label="Value">{row.value}</td>
                     <td className="px-6 py-4" data-label="Result">{row.result}</td>
@@ -350,7 +368,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== NEWS ========== */}
+      {/* News */}
       <section id="news" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
@@ -364,7 +382,7 @@ export default function HomePage() {
             </a>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {news.items.map((item, i) => (
+            {news.items.map((item: any, i: number) => (
               <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-6 shadow-md border flex flex-col`} style={{ transitionDelay: `${i * 0.1}s` }}>
                 <span className="text-xs text-emerald-green font-semibold uppercase">{item.date}</span>
                 <h3 className="font-display text-lg font-bold text-deep-forest mt-2 mb-3">{item.title}</h3>
@@ -390,7 +408,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== RESOURCES SECTION ========== */}
+      {/* Resources */}
       <section id="resources" className="py-20 lg:py-28 bg-gradient-to-b from-soft-bg to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
@@ -406,7 +424,7 @@ export default function HomePage() {
               <p className="text-gray-500 mt-2 max-w-2xl mx-auto">Updates on programs, achievements, financial information, and organizational progress. Each report tells the story of our impact.</p>
             </div>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {resources.annualReports.map((report, i) => (
+              {resources.annualReports.map((report: any, i: number) => (
                 <div key={i} className="fade-up card-hover resource-annual-card bg-white rounded-4xl p-8 shadow-xl border flex flex-col text-center items-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-emerald-green/20 to-emerald-green/5 rounded-2xl flex items-center justify-center mb-4">
                     <svg className="w-8 h-8 text-emerald-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -448,7 +466,7 @@ export default function HomePage() {
               <p className="text-gray-500 mt-2 max-w-2xl mx-auto">Detailed information about specific projects and activities.</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {resources.programReports.map((report, i) => (
+              {resources.programReports.map((report: any, i: number) => (
                 <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-6 border flex flex-col items-center text-center`} style={{ transitionDelay: `${i * 0.1}s` }}>
                   <div className={`w-14 h-14 ${i === 0 ? 'bg-emerald-green/10' : i === 1 ? 'bg-deep-forest/10' : 'bg-warm-gold/10'} rounded-2xl flex items-center justify-center mb-4`}>
                     {i === 0 ? (
@@ -474,7 +492,7 @@ export default function HomePage() {
               <p className="text-gray-500 mt-2 max-w-2xl mx-auto">Evidence, studies, and evaluations that guide our work.</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {resources.research.map((item, i) => (
+              {resources.research.map((item: any, i: number) => (
                 <div key={i} className={`fade-up card-hover bg-white rounded-4xl p-8 shadow-xl border flex flex-col items-center text-center`} style={{ transitionDelay: `${i * 0.1}s` }}>
                   <div className={`w-16 h-16 ${i === 0 ? 'bg-emerald-green/10' : 'bg-deep-forest/10'} rounded-2xl flex items-center justify-center mb-4`}>
                     {i === 0 ? (
@@ -498,7 +516,7 @@ export default function HomePage() {
               <p className="text-gray-500 max-w-2xl mx-auto">Documents that guide our organization — publicly available for transparency.</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {resources.policies.map((policy, i) => (
+              {resources.policies.map((policy: any, i: number) => (
                 <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-6 border flex flex-col items-center text-center`} style={{ transitionDelay: `${i * 0.05}s` }}>
                   <div className={`w-14 h-14 ${i % 3 === 0 ? 'bg-emerald-green/10' : i % 3 === 1 ? 'bg-deep-forest/10' : 'bg-warm-gold/10'} rounded-2xl flex items-center justify-center mb-4`}>
                     <svg className={`w-8 h-8 ${i % 3 === 0 ? 'text-emerald-green' : i % 3 === 1 ? 'text-deep-forest' : 'text-warm-gold'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -517,7 +535,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== DONATE ========== */}
+      {/* Donate */}
       <section id="donate" className="relative py-20 lg:py-28 bg-dark-section overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-warm-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-green/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
@@ -526,7 +544,7 @@ export default function HomePage() {
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4 mb-5">{donate.heading}</h2>
           <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">{donate.subtitle}</p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {donate.badges.map((badge, i) => (
+            {donate.badges.map((badge: string, i: number) => (
               <span key={i} className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 text-white/80 text-xs">
                 <svg className="w-4 h-4 text-warm-gold" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                 ✅ {badge}
@@ -534,7 +552,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="grid sm:grid-cols-3 gap-6 mb-8">
-            {donate.tiers.map((tier, i) => (
+            {donate.tiers.map((tier: any, i: number) => (
               <div key={i} className={`fade-up bg-white/5 backdrop-blur-sm rounded-3xl p-6 border ${tier.highlight ? 'border-2 border-warm-gold/50 shadow-lg shadow-warm-gold/10' : 'border-white/10'} hover:border-warm-gold/40 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 flex flex-col justify-between relative overflow-hidden`}
                 style={{ transitionDelay: `${i * 0.1}s` }}
               >
@@ -576,7 +594,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== PARTNERS ========== */}
+      {/* Partners */}
       <section id="partners" className="py-16 lg:py-20 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">{partners.subtitle}</span>
@@ -587,7 +605,7 @@ export default function HomePage() {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           <div className="marquee-wrapper">
             <div className="marquee-track">
-              {[...partners.list, ...partners.list].map((partner, i) => (
+              {[...partners.list, ...partners.list].map((partner: any, i: number) => (
                 <div key={i} className="partner-card">
                   <span className="partner-name">{partner.name}</span>
                   <span className="partner-label">{partner.label}</span>
@@ -598,7 +616,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== GET INVOLVED ========== */}
+      {/* Get Involved */}
       <section id="get-involved" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -606,7 +624,7 @@ export default function HomePage() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mt-3 mb-5">{getInvolved.heading}</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {getInvolved.options.map((option, i) => (
+            {getInvolved.options.map((option: any, i: number) => (
               <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-8 text-center`} style={{ transitionDelay: `${i * 0.1}s` }}>
                 <div className={`w-16 h-16 ${i === 0 ? 'bg-warm-gold/20' : i === 1 ? 'bg-emerald-green/20' : 'bg-deep-forest/20'} rounded-2xl mx-auto mb-5 flex items-center justify-center text-3xl`}>
                   {option.icon}
@@ -640,7 +658,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== CONTACT ========== */}
+      {/* Contact */}
       <section id="contact" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">

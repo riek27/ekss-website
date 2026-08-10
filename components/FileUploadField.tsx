@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { uploadFile } from '@/app/actions';
 
 export default function FileUploadField({
   currentValue,
@@ -18,14 +19,7 @@ export default function FileUploadField({
     setUploading(true);
     const formData = new FormData();
     formData.append('file', file);
-
-    const res = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData,
-    });
-
-    const result = await res.json();
-
+    const result = await uploadFile(formData);
     if (result.success && result.url) {
       onChange(result.url);
     } else {
