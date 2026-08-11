@@ -10,12 +10,14 @@ export default function HomePage() {
   const [homeData, setHomeData] = useState<any>(null);
   const [dataLoading, setDataLoading] = useState(true);
 
-  // Fetch homepage data from Redis
+  // Fetch homepage data from Redis, only accept valid data
   useEffect(() => {
     fetch('/api/page-data?page=home')
       .then(res => res.json())
       .then(json => {
-        if (json) setHomeData(json);
+        if (json && json.hero) {
+          setHomeData(json);
+        }
         setDataLoading(false);
       })
       .catch(() => setDataLoading(false));
@@ -83,12 +85,9 @@ export default function HomePage() {
     return () => counterObserver.disconnect();
   }, [homeData]);
 
-  if (dataLoading) {
-    return <div className="text-center py-20">Loading...</div>;
-  }
-  if (!homeData) {
-    return <div className="text-center py-20">Content not available</div>;
-  }
+  // Show nothing while loading or if data is invalid
+  if (dataLoading) return null;
+  if (!homeData || !homeData.hero) return null;
 
   const { hero, stats, about, board, programs, scholarSpotlight, featuredProject, resultsLedger, news, resources, donate, partners, getInvolved, contact } = homeData;
 

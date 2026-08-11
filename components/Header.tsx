@@ -111,15 +111,17 @@ export default function Header() {
 
               {/* Resources Dropdown */}
               <div className="relative group">
-                <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green transition-colors rounded-lg hover:bg-soft-bg flex items-center gap-1">
-                  Resources <svg className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
-                  <Link href="/resources#annual-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Annual Reports</Link>
-                  <Link href="/resources#organizational-review" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Organizational Review</Link>
-                  <Link href="/resources#documents" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Governance & Policies</Link>
-                </div>
-              </div>
+  <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green transition-colors rounded-lg hover:bg-soft-bg flex items-center gap-1">
+    Resources <svg className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+  </button>
+  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+    <Link href="/resources#annual-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Annual Reports</Link>
+    <Link href="/resources#programme-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Programme Reports</Link>
+    <Link href="/resources#research-assessments" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Research & Assessments</Link>
+    <Link href="/resources#governance-legal" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Governance & Legal</Link>
+    <Link href="/resources#policies" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Policies & Strategic Documents</Link>
+  </div>
+</div>
 
               <Link href="/news" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green rounded-lg hover:bg-soft-bg">News</Link>
               <Link href="/get-involved" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green rounded-lg hover:bg-soft-bg">Get Involved</Link>
@@ -172,14 +174,16 @@ export default function Header() {
               <Link href="/programs" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Advocacy & Civic Engagement</Link>
             </div>
 
-            <button className="mobile-accordion-btn" data-target="resourcesMobile">
-              Resources <svg className="accordion-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="resourcesMobile" className="mobile-accordion-content">
-              <Link href="/resources#annual-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Annual Reports</Link>
-              <Link href="/resources#organizational-review" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Organizational Review</Link>
-              <Link href="/resources#documents" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Governance & Policies</Link>
-            </div>
+           <button className="mobile-accordion-btn" data-target="resourcesMobile">
+  Resources <svg className="accordion-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+</button>
+<div id="resourcesMobile" className="mobile-accordion-content">
+  <Link href="/resources#annual-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Annual Reports</Link>
+  <Link href="/resources#programme-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Programme Reports</Link>
+  <Link href="/resources#research-assessments" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Research & Assessments</Link>
+  <Link href="/resources#governance-legal" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Governance & Legal</Link>
+  <Link href="/resources#policies" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Policies & Strategic Documents</Link>
+</div>
 
             <Link href="/news" className="mobile-link" onClick={() => setMobileOpen(false)}>News</Link>
             <Link href="/get-involved" className="mobile-link" onClick={() => setMobileOpen(false)}>Get Involved</Link>
