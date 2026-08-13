@@ -1,0 +1,99 @@
+{
+  "hero": {
+    "tagline": "Empower Farmers South Sudan",
+    "title": "Climate‑smart farming for food security",
+    "subtitle": "Building resilient livelihoods through conservation agriculture on the Foundations for Farming model.",
+    "image": "/images/ekss6.jpg"
+  },
+  "stats": [
+    { "value": 129, "label": "Smallholder Farmers Trained" },
+    { "value": "50×100 m", "label": "Demonstration Farm" },
+    { "value": 21, "label": "Field Team Members" }
+  ],
+  "challenge": {
+    "heading": "The Challenge",
+    "text": "Smallholder households face low and unreliable yields, degraded soils, erratic rainfall and high post-harvest losses, leaving them food-insecure and dependent on negative coping during hunger gaps. EFSS promotes conservation agriculture and climate-smart practices to raise and stabilise production and build resilience."
+  },
+  "approach": {
+    "heading": "Our Approach",
+    "items": [
+      {
+        "title": "Farmer field groups & lead farmers",
+        "description": "Organise and train farmer groups, using a lead‑farmer model and demonstration plots for practical, farmer‑to‑farmer learning."
+      },
+      {
+        "title": "Conservation & climate‑smart practices",
+        "description": "Promote minimum soil disturbance, soil cover, crop rotation/association, and moisture‑ and soil‑fertility management suited to local conditions."
+      },
+      {
+        "title": "Inputs & market links",
+        "description": "Improve access to appropriate seed and basic tools, and connect farmers to input suppliers and markets."
+      },
+      {
+        "title": "Post‑harvest & food availability",
+        "description": "Support better storage and handling to cut losses and extend food availability."
+      },
+      {
+        "title": "Inclusion",
+        "description": "Ensure women farmers and youth participate fully and benefit equitably."
+      }
+    ]
+  },
+  "currentWork": {
+    "heading": "What We Are Doing Now",
+    "items": [
+      "Training 129 smallholder farmers (54 prior year + 75 this year) in Biliny, Bajur, Dumandong, and Jerusal Church, Mangala Payam.",
+      "Operating a 50×100 m demonstration farm in Gumbo‑Sherikat (Juba 2) showcasing Foundations for Farming techniques.",
+      "21‑person field team (National Champions & interns) delivering hands‑on training and follow‑up support.",
+      "Harvested 472.44 kg of maize from 0.132 ha – clear proof that climate‑smart farming works.",
+      "Produced 632.97 kg of assorted vegetables and groundnuts using sack and bed methods on 0.01865 ha."
+    ]
+  },
+  "results": {
+    "heading": "Results",
+    "rows": [
+      { "metric": "129", "outcome": "Farmers trained in conservation agriculture (54 prior year + 75 this year)", "verification": "Training attendance registers" },
+      { "metric": "472.44 kg", "outcome": "Maize harvested from 0.132 ha demonstration plot", "verification": "Farm harvest logs" },
+      { "metric": "632.97 kg", "outcome": "Vegetables & groundnuts produced from 0.01865 ha", "verification": "Farm harvest logs" },
+      { "metric": "21", "outcome": "Field team members delivering training and support", "verification": "HR records" }
+    ]
+  },
+  "projects": {
+    "heading": "Projects",
+    "items": [
+      {
+        "icon": "🌱",
+        "title": "Juba Demonstration Farm",
+        "description": "A 50×100 m training site in Gumbo‑Sherikat (Juba 2) showcasing conservation agriculture practices and hosting farmer field days."
+      },
+      {
+        "icon": "👥",
+        "title": "Smallholder Training Outreach",
+        "description": "Mobile training delivered in Biliny, Bajur, Dumandong, and Jerusal Church (Mangala Payam), reaching 129 farmers with hands‑on conservation agriculture."
+      }
+    ]
+  },
+  "partners": {
+    "heading": "Partners & Donors",
+    "text": "Foundations for Farming, county agriculture departments, traditional authorities, seed and input suppliers, and agriculture and food‑security donors."
+  },
+  "resources": {
+    "heading": "Resources",
+    "text": "Farmer training manual, programme brief, and harvest reports.",
+    "link": "/resources"
+  },
+  "gallery": {
+    "heading": "Our Farm in Action",
+    "images": [
+      "/images/ekss6.jpg",
+      "/images/ekss5.jpg",
+      "/images/ekss7.jpg"
+    ]
+  },
+  "cta": {
+    "heading": "Support a Farmer",
+    "text": "Help us train more farmers and strengthen food security across Central Equatoria.",
+    "buttonText": "Donate now",
+    "buttonLink": "/get-involved"
+  }
+}

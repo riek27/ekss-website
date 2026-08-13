@@ -9,7 +9,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
-  // ----- Offset nav below top bar (like original snapNavbar) -----
+  // Offset nav below top bar
   useEffect(() => {
     const adjustNav = () => {
       const topBar = document.getElementById('top-bar');
@@ -18,25 +18,24 @@ export default function Header() {
         navRef.current.style.top = topBarVisible ? `${topBar.offsetHeight}px` : '0px';
       }
     };
-
     adjustNav();
     window.addEventListener('resize', adjustNav);
     return () => window.removeEventListener('resize', adjustNav);
   }, []);
 
-  // ----- Scroll effect for glass -----
+  // Scroll effect for glass
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // ----- Body scroll lock when mobile menu open -----
+  // Body scroll lock when mobile menu open
   useEffect(() => {
     document.body.classList.toggle('menu-open', mobileOpen);
   }, [mobileOpen]);
 
-  // ----- Mobile accordion logic -----
+  // Mobile accordion logic
   useEffect(() => {
     const buttons = document.querySelectorAll('.mobile-accordion-btn');
     const handler = (e: Event) => {
@@ -71,10 +70,10 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-              <img src="/images/eksslogo.jpg" alt="EmpowerKids logo" className="h-9 w-auto rounded-full object-contain" />
+              <img src="/images/eksslogo.jpg" alt="EmpowerKids logo" className="h-16 w-auto rounded-full object-contain" />
               <span className="font-display font-semibold text-deep-forest text-sm sm:text-base leading-tight hidden sm:block">
-                EmpowerKids<br className="sm:hidden" /> South Sudan
-              </span>
+  EmpowerKids–South Sudan
+</span>
               <span className="font-display font-semibold text-deep-forest text-sm sm:hidden">EK-SS</span>
             </Link>
 
@@ -102,26 +101,26 @@ export default function Header() {
                   Programs <svg className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
-                  <Link href="/programs" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Education Support</Link>
-                  <Link href="/programs" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Empower Farmers</Link>
-                  <Link href="/programs" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Youth Empowerment</Link>
-                  <Link href="/programs" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Advocacy & Civic Engagement</Link>
+                  <Link href="/education" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Education</Link>
+                  <Link href="/empower-farmers" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Conservation Agriculture</Link>
+                  <Link href="/youth" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Youth Empowerment</Link>
+                  <Link href="/advocacy" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Advocacy & Civic Engagement</Link>
                 </div>
               </div>
 
               {/* Resources Dropdown */}
               <div className="relative group">
-  <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green transition-colors rounded-lg hover:bg-soft-bg flex items-center gap-1">
-    Resources <svg className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
-  </button>
-  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
-    <Link href="/resources#annual-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Annual Reports</Link>
-    <Link href="/resources#programme-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Programme Reports</Link>
-    <Link href="/resources#research-assessments" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Research & Assessments</Link>
-    <Link href="/resources#governance-legal" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Governance & Legal</Link>
-    <Link href="/resources#policies" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Policies & Strategic Documents</Link>
-  </div>
-</div>
+                <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green transition-colors rounded-lg hover:bg-soft-bg flex items-center gap-1">
+                  Resources <svg className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+                  <Link href="/resources#annual-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Annual Reports</Link>
+                  <Link href="/resources#programme-reports" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Programme Reports</Link>
+                  <Link href="/resources#research-assessments" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Research & Assessments</Link>
+                  <Link href="/resources#governance-legal" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Governance & Legal</Link>
+                  <Link href="/resources#policies" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Policies & Strategic Documents</Link>
+                </div>
+              </div>
 
               <Link href="/news" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green rounded-lg hover:bg-soft-bg">News</Link>
               <Link href="/get-involved" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-green rounded-lg hover:bg-soft-bg">Get Involved</Link>
@@ -129,7 +128,7 @@ export default function Header() {
             </div>
 
             <div className="hidden lg:block">
-              <Link href="/contact" className="btn-gold-pulse inline-flex items-center px-5 py-2.5 bg-warm-gold text-white font-semibold text-sm rounded-full shadow-lg hover:bg-yellow-600 transition">
+              <Link href="/get-involved" className="btn-gold-pulse inline-flex items-center px-5 py-2.5 bg-warm-gold text-white font-semibold text-sm rounded-full shadow-lg hover:bg-yellow-600 transition">
                 Donate
               </Link>
             </div>
@@ -168,29 +167,29 @@ export default function Header() {
               Programs <svg className="accordion-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div id="programsMobile" className="mobile-accordion-content">
-              <Link href="/programs" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Education Support</Link>
-              <Link href="/programs" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Empower Farmers</Link>
-              <Link href="/programs" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Youth Empowerment</Link>
-              <Link href="/programs" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Advocacy & Civic Engagement</Link>
+              <Link href="/education" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Education</Link>
+              <Link href="/empower-farmers" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Conservation Agriculture</Link>
+              <Link href="/youth" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Youth Empowerment</Link>
+              <Link href="/advocacy" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Advocacy & Civic Engagement</Link>
             </div>
 
-           <button className="mobile-accordion-btn" data-target="resourcesMobile">
-  Resources <svg className="accordion-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
-</button>
-<div id="resourcesMobile" className="mobile-accordion-content">
-  <Link href="/resources#annual-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Annual Reports</Link>
-  <Link href="/resources#programme-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Programme Reports</Link>
-  <Link href="/resources#research-assessments" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Research & Assessments</Link>
-  <Link href="/resources#governance-legal" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Governance & Legal</Link>
-  <Link href="/resources#policies" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Policies & Strategic Documents</Link>
-</div>
+            <button className="mobile-accordion-btn" data-target="resourcesMobile">
+              Resources <svg className="accordion-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="resourcesMobile" className="mobile-accordion-content">
+              <Link href="/resources#annual-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Annual Reports</Link>
+              <Link href="/resources#programme-reports" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Programme Reports</Link>
+              <Link href="/resources#research-assessments" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Research & Assessments</Link>
+              <Link href="/resources#governance-legal" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Governance & Legal</Link>
+              <Link href="/resources#policies" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Policies & Strategic Documents</Link>
+            </div>
 
             <Link href="/news" className="mobile-link" onClick={() => setMobileOpen(false)}>News</Link>
             <Link href="/get-involved" className="mobile-link" onClick={() => setMobileOpen(false)}>Get Involved</Link>
             <Link href="/contact" className="mobile-link" onClick={() => setMobileOpen(false)}>Contact</Link>
           </div>
           <div className="mt-6">
-            <Link href="/contact" className="btn-gold-pulse block text-center px-5 py-3 bg-warm-gold text-white font-semibold rounded-full" onClick={() => setMobileOpen(false)}>
+            <Link href="/get-involved" className="btn-gold-pulse block text-center px-5 py-3 bg-warm-gold text-white font-semibold rounded-full" onClick={() => setMobileOpen(false)}>
               Donate
             </Link>
           </div>

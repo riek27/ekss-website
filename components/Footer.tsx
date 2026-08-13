@@ -83,10 +83,10 @@ export default function Footer() {
               Programmes
             </h4>
             <ul className="space-y-3">
-              <li><Link href="/programs" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Education Support</Link></li>
-              <li><Link href="/programs" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Empower Farmers SS</Link></li>
-              <li><Link href="/programs" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Youth Empowerment</Link></li>
-              <li><Link href="/programs" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Advocacy & Civic Engagement</Link></li>
+              <li><Link href="/education" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Education Support</Link></li>
+              <li><Link href="/empower-farmers" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Conservation Agriculture Programme</Link></li>
+              <li><Link href="/youth" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Youth Empowerment</Link></li>
+              <li><Link href="/advocacy" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Advocacy & Civic Engagement</Link></li>
             </ul>
           </div>
 
@@ -98,7 +98,6 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link href="/" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Home</Link></li>
               <li><Link href="/about" className="footer-link text-gray-400 hover:text-warm-gold text-sm">About</Link></li>
-              <li><Link href="/programs" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Programs</Link></li>
               <li><Link href="/resources" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Resources</Link></li>
               <li><Link href="/news" className="footer-link text-gray-400 hover:text-warm-gold text-sm">News</Link></li>
               <li><Link href="/get-involved" className="footer-link text-gray-400 hover:text-warm-gold text-sm">Get Involved</Link></li>

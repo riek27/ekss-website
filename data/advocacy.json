@@ -1,0 +1,93 @@
+{
+  "hero": {
+    "tagline": "Advocacy & Civic Engagement",
+    "title": "Citizen voice & accountability",
+    "subtitle": "Strengthening participation, especially for women and youth, and building bridges to decision‑makers.",
+    "image": "/images/ekss1.jpg"
+  },
+  "stats": [
+    { "value": "8+", "label": "Community Dialogues" },
+    { "value": "3", "label": "Councillor Initiatives" },
+    { "value": "500+", "label": "Community Members Reached" }
+  ],
+  "challenge": {
+    "heading": "The Challenge",
+    "text": "Communities, especially women and youth, often lack the information, space and channels to participate in decisions that affect them or to hold service providers and authorities to account. EKSS’s Advocacy & Civic Engagement programme strengthens citizen voice, participation and accountability."
+  },
+  "approach": {
+    "heading": "Our Approach",
+    "items": [
+      {
+        "title": "Civic awareness",
+        "description": "Building understanding of rights, entitlements and how to engage in public processes."
+      },
+      {
+        "title": "Community platforms",
+        "description": "Strengthening inclusive community structures and forums for dialogue and accountability."
+      },
+      {
+        "title": "Constructive engagement",
+        "description": "Facilitating respectful, evidence‑based engagement with decision‑makers and service providers."
+      },
+      {
+        "title": "Inclusion of voice",
+        "description": "Creating deliberate space for women, youth and marginalised groups to be heard and to lead."
+      }
+    ]
+  },
+  "currentWork": {
+    "heading": "What We Are Doing Now",
+    "items": [
+      "Community dialogue series in Juba and surrounding areas, bringing together residents, local leaders and service providers.",
+      "\"Councillors for Citizens\" initiative, supporting elected representatives to be more responsive and accountable.",
+      "Civic awareness sessions on rights, governance and participation, with a focus on women and youth.",
+      "Facilitating constructive engagement between communities and local authorities on service delivery issues."
+    ]
+  },
+  "results": {
+    "heading": "Results",
+    "rows": [
+      { "metric": "8", "outcome": "Community dialogues held", "verification": "Dialogue reports & attendance lists" },
+      { "metric": "3", "outcome": "Councillor accountability initiatives supported", "verification": "Project documentation" },
+      { "metric": "500+", "outcome": "Community members engaged in civic education and dialogue", "verification": "Participant registers" }
+    ]
+  },
+  "projects": {
+    "heading": "Projects",
+    "items": [
+      {
+        "icon": "💬",
+        "title": "Community Dialogue Series",
+        "description": "Regular, facilitated dialogues that give community members a safe space to raise concerns and propose solutions directly to duty‑bearers."
+      },
+      {
+        "icon": "🏛️",
+        "title": "Councillors for Citizens",
+        "description": "Supporting elected local representatives to hold regular community meetings, report back and take action on citizen priorities."
+      }
+    ]
+  },
+  "partners": {
+    "heading": "Partners & Donors",
+    "text": "Community structures, civil‑society networks, local authorities and service providers, and governance‑ and civic‑space donors."
+  },
+  "resources": {
+    "heading": "Resources",
+    "text": "Advocacy brief, dialogue guides and civic education materials.",
+    "link": "/resources"
+  },
+  "gallery": {
+    "heading": "Civic Engagement in Action",
+    "images": [
+      "/images/ekss1.jpg",
+      "/images/ekss4.jpg",
+      "/images/ekss6.jpg"
+    ]
+  },
+  "cta": {
+    "heading": "Strengthen Civic Voice",
+    "text": "Help communities participate in decisions that shape their lives.",
+    "buttonText": "Donate now",
+    "buttonLink": "/get-involved"
+  }
+}

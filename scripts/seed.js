@@ -9,7 +9,7 @@ const redis = new Redis({
 
 const PREFIX = process.env.REDIS_PREFIX || 'ekss:';
 
-const pages = ['home', 'about', 'programs', 'news', 'resources', 'getInvolved', 'contact'];
+const pages = ['home', 'about', 'news', 'resources', 'getInvolved', 'contact', 'education', 'empower-farmers', 'advocacy', 'youth'];
 
 async function seed() {
   for (const page of pages) {

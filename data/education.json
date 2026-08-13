@@ -1,0 +1,73 @@
+{
+  "hero": {
+    "tagline": "Education Programme",
+    "title": "Widening access to quality, inclusive education",
+    "subtitle": "Keeping children in school and learning, especially girls and the most vulnerable.",
+    "image": "/images/ekss4.jpg"
+  },
+  "stats": [
+    { "value": 37, "label": "Scholars Placed" },
+    { "value": 15, "label": "Teachers Trained" },
+    { "value": 2, "label": "Schools Electrified" }
+  ],
+  "challenge": {
+    "heading": "The Challenge",
+    "text": "Conflict, displacement and poverty keep many children in South Sudan out of school or in classrooms without trained teachers, learning materials or safe facilities. Girls, children with disabilities and displaced children are most likely to miss out, and hunger at home pulls children away from learning."
+  },
+  "approach": {
+    "heading": "Our Approach",
+    "items": [
+      { "title": "Access & retention", "description": "removing barriers for the most marginalised." },
+      { "title": "Teaching quality", "description": "strengthening teachers and providing learning materials." },
+      { "title": "Safe, inclusive spaces", "description": "improving facilities and safeguarding." },
+      { "title": "Community ownership", "description": "engaging caregivers and local leaders." }
+    ]
+  },
+  "currentWork": {
+    "heading": "What We Are Doing Now",
+    "items": [
+      "Scholarship placements via Bridge2Rwanda (37 scholars to date).",
+      "Teacher training at Arizona State University (15 teachers).",
+      "Solar electrification of Juba Girls and Nimule Model Secondary Schools.",
+      "School supplies and community engagement activities."
+    ]
+  },
+  "results": {
+    "heading": "Results",
+    "rows": [
+      { "metric": "37", "outcome": "Scholars placed on fully funded scholarships", "verification": "B2R placement records" },
+      { "metric": "15", "outcome": "Teachers trained at ASU", "verification": "ASU completion records" },
+      { "metric": "2", "outcome": "Schools solar‑powered", "verification": "Installation handover notes" }
+    ]
+  },
+  "projects": {
+    "heading": "Projects",
+    "items": [
+      { "icon": "📚", "title": "Bridge2Rwanda Scholarship Pathway", "description": "Fully funded university scholarships for high‑performing students." },
+      { "icon": "💡", "title": "School Solar Electrification", "description": "Installing solar power in Juba Girls and Nimule Model Secondary Schools." }
+    ]
+  },
+  "partners": {
+    "heading": "Partners & Donors",
+    "text": "Bridge2Rwanda, SolarSPELL, Arizona State University, CAF America, and local education authorities."
+  },
+  "resources": {
+    "heading": "Resources",
+    "text": "Programme brief, scholarship application guidance, and teacher training materials.",
+    "link": "/resources"
+  },
+  "gallery": {
+    "heading": "Education in Action",
+    "images": [
+      "/images/ekss4.jpg",
+      "/images/ekss5.jpg",
+      "/images/ekss6.jpg"
+    ]
+  },
+  "cta": {
+    "heading": "Support Education",
+    "text": "Help a child stay in school. Donate, partner, or volunteer.",
+    "buttonText": "Donate now",
+    "buttonLink": "/get-involved"
+  }
+}

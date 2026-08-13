@@ -96,35 +96,35 @@ export default function HomePage() {
       <Header />
 
       {/* Hero slider */}
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: '5rem' }}>
-        {hero.images.map((img: string, index: number) => (
-          <div key={index} className={`hero-slide ${index === currentSlide ? 'active' : ''}`}>
-            <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
-          </div>
-        ))}
-        <div className="hero-overlay absolute inset-0 z-10"></div>
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 w-full">
-          <div className="max-w-3xl">
-            <span className="inline-block px-4 py-1.5 bg-warm-gold/20 backdrop-blur-sm text-warm-gold text-xs sm:text-sm font-semibold rounded-full mb-6 uppercase border border-warm-gold/30">
-              {hero.tagline}
-            </span>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
-              dangerouslySetInnerHTML={{ __html: hero.title.replace(/\n/g, '<br/>') }} />
-            <p className="text-lg sm:text-xl text-gray-200 leading-relaxed mb-8 max-w-xl">{hero.subtitle}</p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="/programs" className="btn-gold-pulse inline-flex items-center justify-center px-7 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-xl hover:bg-yellow-600 transition text-base">
-                Fund a programme
-              </a>
-              <a href="/resources" className="inline-flex items-center justify-center px-7 py-3.5 bg-white/15 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/40 hover:bg-white/25 transition text-base">
-                Review our documents
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-          <svg className="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        </div>
-      </section>
+<section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: '5rem' }}>
+  {hero.images.map((img: string, index: number) => (
+    <div key={index} className={`hero-slide ${index === currentSlide ? 'active' : ''}`}>
+      <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+    </div>
+  ))}
+  <div className="hero-overlay absolute inset-0 z-10"></div>
+  <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 w-full">
+    <div className="max-w-3xl">
+      <span className="inline-block px-4 py-1.5 bg-warm-gold/20 backdrop-blur-sm text-warm-gold text-xs sm:text-sm font-semibold rounded-full mb-6 uppercase border border-warm-gold/30">
+        {hero.tagline}
+      </span>
+      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+        dangerouslySetInnerHTML={{ __html: hero.title.replace(/\n/g, '<br/>') }} />
+      <p className="text-lg sm:text-xl text-gray-200 leading-relaxed mb-8 max-w-xl">{hero.subtitle}</p>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <a href="/get-involved" className="btn-gold-pulse inline-flex items-center justify-center px-7 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-xl hover:bg-yellow-600 transition text-base">
+          Fund a programme
+        </a>
+        <a href="/resources" className="inline-flex items-center justify-center px-7 py-3.5 bg-white/15 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/40 hover:bg-white/25 transition text-base">
+          Review our documents
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+    <svg className="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+  </div>
+</section>
 
       {/* Stats */}
       <section className="relative -mt-20 z-20">
@@ -241,54 +241,54 @@ export default function HomePage() {
       </section>
 
       {/* Programs */}
-      <section id="programs" className="py-20 lg:py-28 bg-soft-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">Four Programmes</span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mt-3 mb-5">{programs.heading}</h2>
-            <p className="text-gray-600 text-lg">{programs.subtitle}</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {programs.list.map((prog: any, i: number) => (
-              <div key={i} className={`fade-up card-hover bg-white rounded-3xl overflow-hidden shadow-md border`} style={{ transitionDelay: `${i * 0.1}s` }}>
-                <div className="p-6">
-                  <span className="text-3xl mb-3 block">{prog.icon}</span>
-                  <h3 className="font-display text-xl font-bold text-deep-forest mb-2">{prog.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{prog.description}</p>
-                  <ul className="text-xs text-gray-600 space-y-1 mb-4">
-                    {prog.bullets.map((b: string, j: number) => (
-                      <li key={j}>✓ {b}</li>
-                    ))}
-                  </ul>
-                  <a href="/programs" className="text-emerald-green font-semibold text-sm hover:text-deep-forest">See the programme →</a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16 md:mt-20 text-center">
-            <div className="fade-up bg-white rounded-4xl shadow-2xl p-8 sm:p-10 md:p-14 max-w-3xl mx-auto border border-gray-100/80 relative overflow-hidden">
-              <div className="absolute -top-16 -right-16 w-64 h-64 bg-emerald-green/5 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-warm-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="relative z-10">
-                <span className="text-4xl block mb-4">🌟</span>
-                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-deep-forest mb-3">{programs.cta.title}</h3>
-                <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto mb-8">{programs.cta.text}</p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <a href="/get-involved" className="btn-gold-pulse inline-flex items-center justify-center px-8 py-4 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-base gap-2">
-                    {programs.cta.donateText}
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                  </a>
-                  <a href="/get-involved" className="inline-flex items-center justify-center px-8 py-4 bg-deep-forest/10 text-deep-forest font-semibold rounded-full hover:bg-deep-forest/20 transition text-base">
-                    {programs.cta.getInvolvedText}
-                  </a>
-                </div>
-                <p className="text-xs text-gray-400 mt-6">{programs.cta.footerText}</p>
-              </div>
-            </div>
+<section id="programs" className="py-20 lg:py-28 bg-soft-bg">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center max-w-3xl mx-auto mb-14">
+      <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">Four Programmes</span>
+      <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mt-3 mb-5">{programs.heading}</h2>
+      <p className="text-gray-600 text-lg">{programs.subtitle}</p>
+    </div>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {programs.list.map((prog: any, i: number) => (
+        <div key={i} className={`fade-up card-hover bg-white rounded-3xl overflow-hidden shadow-md border`} style={{ transitionDelay: `${i * 0.1}s` }}>
+          <div className="p-6">
+            <span className="text-3xl mb-3 block">{prog.icon}</span>
+            <h3 className="font-display text-xl font-bold text-deep-forest mb-2">{prog.title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed mb-4">{prog.description}</p>
+            <ul className="text-xs text-gray-600 space-y-1 mb-4">
+              {prog.bullets.map((b: string, j: number) => (
+                <li key={j}>✓ {b}</li>
+              ))}
+            </ul>
+            <a href={prog.link} className="text-emerald-green font-semibold text-sm hover:text-deep-forest">See the programme →</a>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+    <div className="mt-16 md:mt-20 text-center">
+      <div className="fade-up bg-white rounded-4xl shadow-2xl p-8 sm:p-10 md:p-14 max-w-3xl mx-auto border border-gray-100/80 relative overflow-hidden">
+        <div className="absolute -top-16 -right-16 w-64 h-64 bg-emerald-green/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-warm-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="relative z-10">
+          <span className="text-4xl block mb-4">🌟</span>
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-deep-forest mb-3">{programs.cta.title}</h3>
+          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto mb-8">{programs.cta.text}</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="/get-involved" className="btn-gold-pulse inline-flex items-center justify-center px-8 py-4 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-base gap-2">
+              {programs.cta.donateText}
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="/get-involved" className="inline-flex items-center justify-center px-8 py-4 bg-deep-forest/10 text-deep-forest font-semibold rounded-full hover:bg-deep-forest/20 transition text-base">
+              {programs.cta.getInvolvedText}
+            </a>
+          </div>
+          <p className="text-xs text-gray-400 mt-6">{programs.cta.footerText}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Scholar Spotlight */}
       <section className="py-16 lg:py-24 bg-white">
@@ -328,7 +328,9 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <a href="/programs#featured" className="btn-gold-pulse inline-flex items-center self-start px-6 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition">{featuredProject.buttonText}</a>
+              <a href="/empower-farmers" className="btn-gold-pulse inline-flex items-center self-start px-6 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition">
+  {featuredProject.buttonText}
+</a>
             </div>
           </div>
         </div>

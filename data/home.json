@@ -14,22 +14,10 @@
     ]
   },
   "stats": [
-    {
-      "value": 37,
-      "label": "Scholars Placed"
-    },
-    {
-      "value": 129,
-      "label": "Farmers Trained"
-    },
-    {
-      "value": 15,
-      "label": "Teachers Trained"
-    },
-    {
-      "value": 2,
-      "label": "Schools Electrified"
-    }
+    { "value": 37, "label": "Scholars Placed" },
+    { "value": 129, "label": "Farmers Trained" },
+    { "value": 15, "label": "Teachers Trained" },
+    { "value": 2, "label": "Schools Electrified" }
   ],
   "about": {
     "heading": "Verified impact.\nRadical transparency.",
@@ -37,7 +25,7 @@
     "description2": "Every figure on this page is taken directly from our programme monitoring records. Funders and evaluators can request the underlying data at any time — we have nothing to hide.",
     "image": "/images/1786273115374-ekss5.jpg",
     "ctaText": "Meet our leadership",
-    "ctaLink": "/about"
+    "ctaLink": "/about#governance"
   },
   "board": {
     "heading": "Board & Leadership",
@@ -77,7 +65,7 @@
       "heading": "Meet our team",
       "text": "Our Board, Executive Leadership, and Advisory Committee bring decades of experience across education, agriculture, governance, and finance.",
       "buttonText": "See our team",
-      "link": "/about"
+      "link": "/about#governance"
     }
   },
   "programs": {
@@ -85,14 +73,15 @@
     "subtitle": "Our programmes connect: a farmer's daughter who earns a scholarship, a school with power to study by, a young person with something to say.",
     "list": [
       {
-        "title": "Education ",
+        "title": "Education Support",
         "icon": "📚",
         "description": "School partnerships, teacher capacity building, and scholarship pathways to universities abroad.",
         "bullets": [
           "37 scholars placed",
           "15 teachers trained",
           "2 schools electrified"
-        ]
+        ],
+        "link": "/education"
       },
       {
         "title": "Empower Farmers SS",
@@ -102,7 +91,8 @@
           "129 farmers trained",
           "50×100 m demo farm",
           "21‑person field team"
-        ]
+        ],
+        "link": "/empower-farmers"
       },
       {
         "title": "Youth Empowerment",
@@ -111,7 +101,8 @@
         "bullets": [
           "3 states reached",
           "Essays in national press"
-        ]
+        ],
+        "link": "/youth"
       },
       {
         "title": "Advocacy & Civic Engagement",
@@ -120,7 +111,8 @@
         "bullets": [
           "Councillors for Citizens",
           "Community dialogues"
-        ]
+        ],
+        "link": "/advocacy"
       }
     ],
     "cta": {
@@ -150,7 +142,7 @@
     ],
     "image": "/images/1786273958835-ekss7.jpg",
     "buttonText": "Discover the programme",
-    "buttonLink": "#programs"
+    "buttonLink": "/empower-farmers"
   },
   "resultsLedger": {
     "heading": "Extracted from programme monitoring records",
@@ -201,26 +193,26 @@
         "date": "September 2025",
         "title": "Successful Maize Harvest at Juba Demonstration Farm",
         "excerpt": "A moment of joy and hard work paying off — our team harvested 472.44 kg of maize from 0.132 ha, proving that \"It Can Be Done.\"",
-        "link": "#"
+        "link": "/news"
       },
       {
         "date": "July 2025",
         "title": "75 Farmers Trained Through Conservation Agriculture",
         "excerpt": "Our National Champions and interns trained 75 smallholder farmers on the Foundations for Farming approach, bringing the total to 129.",
-        "link": "#"
+        "link": "/news"
       },
       {
         "date": "August 2025",
         "title": "Featured LIVE on SSBC's \"The Dawn Show\"",
         "excerpt": "Our Champions represented Empower Farmers South Sudan on national television, reaching audiences across the country.",
-        "link": "#"
+        "link": "/news"
       }
     ],
     "cta": {
       "title": "Stay in the loop",
       "text": "From harvest updates to scholar achievements – follow our journey as it unfolds.",
       "buttonText": "See all news & updates",
-      "link": "#news"
+      "link": "/news"
     }
   },
   "resources": {
@@ -344,26 +336,11 @@
     "heading": "Who works with us",
     "subtitle": "Verified by Others",
     "list": [
-      {
-        "name": "Bridge2Rwanda",
-        "label": "Scholarship partner"
-      },
-      {
-        "name": "SolarSPELL",
-        "label": "Digital libraries"
-      },
-      {
-        "name": "Arizona State University",
-        "label": "Teacher training"
-      },
-      {
-        "name": "Foundations for Farming",
-        "label": "Agriculture model"
-      },
-      {
-        "name": "CAF America",
-        "label": "Validated charity"
-      }
+      { "name": "Bridge2Rwanda", "label": "Scholarship partner" },
+      { "name": "SolarSPELL", "label": "Digital libraries" },
+      { "name": "Arizona State University", "label": "Teacher training" },
+      { "name": "Foundations for Farming", "label": "Agriculture model" },
+      { "name": "CAF America", "label": "Validated charity" }
     ]
   },
   "getInvolved": {
@@ -427,9 +404,9 @@
     "phone": "+211 926 133 777",
     "social": {
       "facebook": "https://www.facebook.com/empowerkidssouthsudan",
-      "linkedin": "#",
-      "twitter": "#",
-      "tiktok": "#"
+      "linkedin": "https://www.linkedin.com/company/empowerkids-south-sudan/",
+      "twitter": "https://x.com/empowerkidsss",
+      "tiktok": "https://www.tiktok.com/@empower.farmers.s"
     }
   }
 }
