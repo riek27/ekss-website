@@ -7,29 +7,27 @@ import { savePageData } from '@/app/actions';
 
 type SectionKey =
   | 'hero'
-  | 'stats'
+  | 'mission'
   | 'challenge'
-  | 'approach'
-  | 'currentWork'
-  | 'results'
-  | 'projects'
-  | 'partners'
-  | 'resources'
-  | 'gallery'
-  | 'cta';
+  | 'future'
+  | 'strategy'
+  | 'methods'
+  | 'pfumvudza'
+  | 'impact'
+  | 'training'
+  | 'contact';
 
 const sectionNames: { key: SectionKey; label: string }[] = [
   { key: 'hero', label: 'Hero' },
-  { key: 'stats', label: 'Stats' },
+  { key: 'mission', label: 'Mission' },
   { key: 'challenge', label: 'Challenge' },
-  { key: 'approach', label: 'Our Approach' },
-  { key: 'currentWork', label: 'What We Are Doing' },
-  { key: 'results', label: 'Results' },
-  { key: 'projects', label: 'Projects' },
-  { key: 'partners', label: 'Partners & Donors' },
-  { key: 'resources', label: 'Resources' },
-  { key: 'gallery', label: 'Gallery' },
-  { key: 'cta', label: 'Call to Action' },
+  { key: 'future', label: 'Future' },
+  { key: 'strategy', label: 'Strategy' },
+  { key: 'methods', label: 'Methods' },
+  { key: 'pfumvudza', label: 'Pfumvudza' },
+  { key: 'impact', label: 'Impact' },
+  { key: 'training', label: 'Training' },
+  { key: 'contact', label: 'Contact' },
 ];
 
 export default function AdminEmpowerFarmers() {
@@ -73,218 +71,579 @@ export default function AdminEmpowerFarmers() {
     if (!data) return null;
 
     switch (activeSection) {
+      // ================= HERO =================
       case 'hero':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Tagline</label>
-              <input value={data.hero.tagline} onChange={(e) => update('hero.tagline', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Tagline</label>
+              <input
+                value={data.hero.tagline}
+                onChange={(e) => update('hero.tagline', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Title</label>
-              <input value={data.hero.title} onChange={(e) => update('hero.title', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <input
+                value={data.hero.title}
+                onChange={(e) => update('hero.title', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Subtitle</label>
-              <textarea value={data.hero.subtitle} onChange={(e) => update('hero.subtitle', e.target.value)} rows={2} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label>
+              <textarea
+                value={data.hero.subtitle}
+                onChange={(e) => update('hero.subtitle', e.target.value)}
+                rows={2}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Background Image</label>
-              <FileUploadField currentValue={data.hero.image} onChange={(url) => update('hero.image', url)} accept="image/*" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
+              <FileUploadField
+                currentValue={data.hero.image}
+                onChange={(url) => update('hero.image', url)}
+                accept="image/*"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Logo</label>
+              <FileUploadField
+                currentValue={data.hero.logo || ''}
+                onChange={(url) => update('hero.logo', url)}
+                accept="image/*"
+              />
             </div>
           </div>
         );
 
-      case 'stats':
+      // ================= MISSION =================
+      case 'mission':
         return (
-          <div>
-            {data.stats.map((stat: any, i: number) => (
-              <div key={i} className="flex gap-3 items-end mb-3">
-                <div className="flex-1">
-                  <label className="text-xs">Value</label>
-                  <input value={stat.value} onChange={(e) => { const s = [...data.stats]; s[i].value = e.target.value; update('stats', s); }} className="w-full border rounded-lg px-2 py-1 mt-1" />
-                </div>
-                <div className="flex-1">
-                  <label className="text-xs">Label</label>
-                  <input value={stat.label} onChange={(e) => { const s = [...data.stats]; s[i].label = e.target.value; update('stats', s); }} className="w-full border rounded-lg px-2 py-1 mt-1" />
-                </div>
-                <button onClick={() => update('stats', data.stats.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">✕</button>
-              </div>
-            ))}
-            <button onClick={() => update('stats', [...data.stats, { value: '', label: 'New stat' }])} className="text-sm text-emerald-green">+ Add Stat</button>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.mission.heading}
+                onChange={(e) => update('mission.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.mission.text}
+                onChange={(e) => update('mission.text', e.target.value)}
+                rows={5}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
           </div>
         );
 
+      // ================= CHALLENGE =================
       case 'challenge':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.challenge.heading} onChange={(e) => update('challenge.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.challenge.heading}
+                onChange={(e) => update('challenge.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.challenge.text} onChange={(e) => update('challenge.text', e.target.value)} rows={4} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.challenge.text}
+                onChange={(e) => update('challenge.text', e.target.value)}
+                rows={7}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
           </div>
         );
 
-      case 'approach':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.approach.heading} onChange={(e) => update('approach.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <h3 className="font-semibold">Items</h3>
-            {data.approach.items.map((item: any, i: number) => (
-              <div key={i} className="border rounded p-3 mb-2">
-                <input value={item.title} onChange={(e) => { const a = [...data.approach.items]; a[i].title = e.target.value; update('approach.items', a); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
-                <input value={item.description} onChange={(e) => { const a = [...data.approach.items]; a[i].description = e.target.value; update('approach.items', a); }} className="w-full border rounded px-2 py-1" placeholder="Description" />
-                <button onClick={() => update('approach.items', data.approach.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
-              </div>
-            ))}
-            <button onClick={() => update('approach.items', [...data.approach.items, { title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Item</button>
-          </div>
-        );
-
-      case 'currentWork':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.currentWork.heading} onChange={(e) => update('currentWork.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <h3 className="font-semibold">Items</h3>
-            {data.currentWork.items.map((item: string, i: number) => (
-              <div key={i} className="flex gap-2 mb-2">
-                <input value={item} onChange={(e) => { const c = [...data.currentWork.items]; c[i] = e.target.value; update('currentWork.items', c); }} className="flex-1 border rounded px-3 py-2" />
-                <button onClick={() => update('currentWork.items', data.currentWork.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
-              </div>
-            ))}
-            <button onClick={() => update('currentWork.items', [...data.currentWork.items, ''])} className="text-sm text-emerald-green">+ Add Item</button>
-          </div>
-        );
-
-      case 'results':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.results.heading} onChange={(e) => update('results.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <h3 className="font-semibold">Rows</h3>
-            {data.results.rows.map((row: any, i: number) => (
-              <div key={i} className="border rounded p-3 mb-2">
-                <input value={row.metric} onChange={(e) => { const r = [...data.results.rows]; r[i].metric = e.target.value; update('results.rows', r); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Metric" />
-                <input value={row.outcome} onChange={(e) => { const r = [...data.results.rows]; r[i].outcome = e.target.value; update('results.rows', r); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Outcome" />
-                <input value={row.verification} onChange={(e) => { const r = [...data.results.rows]; r[i].verification = e.target.value; update('results.rows', r); }} className="w-full border rounded px-2 py-1" placeholder="Verification" />
-                <button onClick={() => update('results.rows', data.results.rows.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
-              </div>
-            ))}
-            <button onClick={() => update('results.rows', [...data.results.rows, { metric: '', outcome: '', verification: '' }])} className="text-sm text-emerald-green">+ Add Row</button>
-          </div>
-        );
-
-      case 'projects':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.projects.heading} onChange={(e) => update('projects.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <h3 className="font-semibold">Projects</h3>
-            {data.projects.items.map((project: any, i: number) => (
-              <div key={i} className="border rounded p-3 mb-2">
-                <input value={project.icon} onChange={(e) => { const p = [...data.projects.items]; p[i].icon = e.target.value; update('projects.items', p); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Icon (emoji)" />
-                <input value={project.title} onChange={(e) => { const p = [...data.projects.items]; p[i].title = e.target.value; update('projects.items', p); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
-                <textarea value={project.description} onChange={(e) => { const p = [...data.projects.items]; p[i].description = e.target.value; update('projects.items', p); }} rows={2} className="w-full border rounded px-2 py-1" placeholder="Description" />
-                <button onClick={() => update('projects.items', data.projects.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
-              </div>
-            ))}
-            <button onClick={() => update('projects.items', [...data.projects.items, { icon: '', title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Project</button>
-          </div>
-        );
-
-      case 'partners':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.partners.heading} onChange={(e) => update('partners.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.partners.text} onChange={(e) => update('partners.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-          </div>
-        );
-
-      case 'resources':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.resources.heading} onChange={(e) => update('resources.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.resources.text} onChange={(e) => update('resources.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Link</label>
-              <input value={data.resources.link} onChange={(e) => update('resources.link', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-          </div>
-        );
-
-      case 'gallery':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.gallery.heading} onChange={(e) => update('gallery.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <h3 className="font-semibold">Images</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {data.gallery.images.map((img: string, i: number) => (
-  <div key={i} className="border rounded-lg p-3">
-    {img ? (
-      <img src={img} alt="" className="h-32 w-full object-cover rounded mb-2" />
-    ) : (
-      <div className="h-32 w-full flex items-center justify-center bg-gray-100 rounded mb-2 text-gray-400 text-sm">
-        No image
+      // ================= FUTURE =================
+case 'future':
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+        <input
+          value={data.future.heading}
+          onChange={(e) => update('future.heading', e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+        />
       </div>
-    )}
-    <FileUploadField currentValue={img} onChange={(url) => { const g = [...data.gallery.images]; g[i] = url; update('gallery.images', g); }} accept="image/*" />
-    <button onClick={() => update('gallery.images', data.gallery.images.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm mt-1">Remove</button>
-  </div>
-))}
-            </div>
-            <button onClick={() => update('gallery.images', [...data.gallery.images, ''])} className="text-sm text-emerald-green">+ Add Image</button>
-          </div>
-        );
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+        <textarea
+          value={data.future.text}
+          onChange={(e) => update('future.text', e.target.value)}
+          rows={4}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+        <FileUploadField
+          currentValue={data.future.image || ''}
+          onChange={(url) => update('future.image', url)}
+          accept="image/*"
+        />
+      </div>
+      <h3 className="font-display font-bold text-lg text-deep-forest">Items</h3>
+      {data.future.items.map((item: string, i: number) => (
+        <div key={i} className="flex gap-2 items-center">
+          <input
+            value={item}
+            onChange={(e) => {
+              const f = [...data.future.items];
+              f[i] = e.target.value;
+              update('future.items', f);
+            }}
+            className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
+          />
+          <button
+            onClick={() =>
+              update('future.items', data.future.items.filter((_: any, idx: number) => idx !== i))
+            }
+            className="text-red-500"
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() => update('future.items', [...data.future.items, ''])}
+        className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
+      >
+        <span>+</span> Add Item
+      </button>
+    </div>
+  );
 
-      case 'cta':
+      // ================= STRATEGY =================
+      case 'strategy':
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.cta.heading} onChange={(e) => update('cta.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.strategy.heading}
+                onChange={(e) => update('strategy.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.cta.text} onChange={(e) => update('cta.text', e.target.value)} rows={2} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Intro</label>
+              <input
+                value={data.strategy.intro}
+                onChange={(e) => update('strategy.intro', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <h3 className="font-display font-bold text-lg text-deep-forest">Strategies</h3>
+            {data.strategy.items.map((item: any, i: number) => (
+              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+                <input
+                  value={item.icon}
+                  onChange={(e) => {
+                    const s = [...data.strategy.items];
+                    s[i].icon = e.target.value;
+                    update('strategy.items', s);
+                  }}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="Icon (emoji)"
+                />
+                <input
+                  value={item.title}
+                  onChange={(e) => {
+                    const s = [...data.strategy.items];
+                    s[i].title = e.target.value;
+                    update('strategy.items', s);
+                  }}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="Title"
+                />
+                <textarea
+                  value={item.description}
+                  onChange={(e) => {
+                    const s = [...data.strategy.items];
+                    s[i].description = e.target.value;
+                    update('strategy.items', s);
+                  }}
+                  rows={4}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="Description"
+                />
+                <input
+                  value={item.cta}
+                  onChange={(e) => {
+                    const s = [...data.strategy.items];
+                    s[i].cta = e.target.value;
+                    update('strategy.items', s);
+                  }}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="CTA text"
+                />
+                <button
+                  onClick={() =>
+                    update(
+                      'strategy.items',
+                      data.strategy.items.filter((_: any, idx: number) => idx !== i)
+                    )
+                  }
+                  className="text-red-500 text-sm hover:text-red-700"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() =>
+                update('strategy.items', [
+                  ...data.strategy.items,
+                  { icon: '', title: '', description: '', cta: '' },
+                ])
+              }
+              className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
+            >
+              <span>+</span> Add Strategy
+            </button>
+          </div>
+        );
+
+      // ================= METHODS =================
+      case 'methods':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.methods.heading}
+                onChange={(e) => update('methods.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Intro</label>
+              <input
+                value={data.methods.intro}
+                onChange={(e) => update('methods.intro', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <h3 className="font-display font-bold text-lg text-deep-forest">Methods</h3>
+            {data.methods.items.map((item: any, i: number) => (
+              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+                <input
+                  value={item.icon}
+                  onChange={(e) => {
+                    const m = [...data.methods.items];
+                    m[i].icon = e.target.value;
+                    update('methods.items', m);
+                  }}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="Icon"
+                />
+                <input
+                  value={item.title}
+                  onChange={(e) => {
+                    const m = [...data.methods.items];
+                    m[i].title = e.target.value;
+                    update('methods.items', m);
+                  }}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="Title"
+                />
+                <textarea
+                  value={item.description}
+                  onChange={(e) => {
+                    const m = [...data.methods.items];
+                    m[i].description = e.target.value;
+                    update('methods.items', m);
+                  }}
+                  rows={3}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                  placeholder="Description"
+                />
+                <button
+                  onClick={() =>
+                    update(
+                      'methods.items',
+                      data.methods.items.filter((_: any, idx: number) => idx !== i)
+                    )
+                  }
+                  className="text-red-500 text-sm hover:text-red-700"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() =>
+                update('methods.items', [
+                  ...data.methods.items,
+                  { icon: '', title: '', description: '' },
+                ])
+              }
+              className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
+            >
+              <span>+</span> Add Method
+            </button>
+          </div>
+        );
+
+      // ================= PFUMVUDZA =================
+      case 'pfumvudza':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.pfumvudza.heading}
+                onChange={(e) => update('pfumvudza.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.pfumvudza.text}
+                onChange={(e) => update('pfumvudza.text', e.target.value)}
+                rows={4}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <h3 className="font-display font-bold text-lg text-deep-forest">Stats</h3>
+            {data.pfumvudza.stats.map((stat: any, i: number) => (
+              <div key={i} className="flex gap-3 items-end mb-3">
+                <div className="flex-1">
+                  <label className="text-xs text-gray-500">Value</label>
+                  <input
+                    value={stat.value}
+                    onChange={(e) => {
+                      const s = [...data.pfumvudza.stats];
+                      s[i].value = e.target.value;
+                      update('pfumvudza.stats', s);
+                    }}
+                    className="w-full border border-gray-200 rounded-lg px-2 py-1 mt-1"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="text-xs text-gray-500">Label</label>
+                  <input
+                    value={stat.label}
+                    onChange={(e) => {
+                      const s = [...data.pfumvudza.stats];
+                      s[i].label = e.target.value;
+                      update('pfumvudza.stats', s);
+                    }}
+                    className="w-full border border-gray-200 rounded-lg px-2 py-1 mt-1"
+                  />
+                </div>
+                <button
+                  onClick={() =>
+                    update(
+                      'pfumvudza.stats',
+                      data.pfumvudza.stats.filter((_: any, idx: number) => idx !== i)
+                    )
+                  }
+                  className="text-red-500 text-sm"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() =>
+                update('pfumvudza.stats', [
+                  ...data.pfumvudza.stats,
+                  { value: '', label: 'New stat' },
+                ])
+              }
+              className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
+            >
+              <span>+</span> Add Stat
+            </button>
+          </div>
+        );
+
+      // ================= IMPACT =================
+      case 'impact':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.impact.heading}
+                onChange={(e) => update('impact.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <h3 className="font-display font-bold text-lg text-deep-forest">Stats</h3>
+            {data.impact.stats.map((stat: any, i: number) => (
+              <div key={i} className="flex gap-3 items-end mb-3">
+                <div className="flex-1">
+                  <label className="text-xs text-gray-500">Value</label>
+                  <input
+                    value={stat.value}
+                    onChange={(e) => {
+                      const s = [...data.impact.stats];
+                      s[i].value = e.target.value;
+                      update('impact.stats', s);
+                    }}
+                    className="w-full border border-gray-200 rounded-lg px-2 py-1 mt-1"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="text-xs text-gray-500">Label</label>
+                  <input
+                    value={stat.label}
+                    onChange={(e) => {
+                      const s = [...data.impact.stats];
+                      s[i].label = e.target.value;
+                      update('impact.stats', s);
+                    }}
+                    className="w-full border border-gray-200 rounded-lg px-2 py-1 mt-1"
+                  />
+                </div>
+                <button
+                  onClick={() =>
+                    update(
+                      'impact.stats',
+                      data.impact.stats.filter((_: any, idx: number) => idx !== i)
+                    )
+                  }
+                  className="text-red-500 text-sm"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() =>
+                update('impact.stats', [...data.impact.stats, { value: '', label: '' }])
+              }
+              className="text-sm text-emerald-green"
+            >
+              + Add Stat
+            </button>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Note</label>
+              <textarea
+                value={data.impact.note}
+                onChange={(e) => update('impact.note', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+          </div>
+        );
+
+      // ================= TRAINING =================
+      case 'training':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.training.heading}
+                onChange={(e) => update('training.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Intro</label>
+              <input
+                value={data.training.intro}
+                onChange={(e) => update('training.intro', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <h3 className="font-display font-bold text-lg text-deep-forest">Modules</h3>
+            {data.training.modules.map((module: string, i: number) => (
+              <div key={i} className="flex gap-2 items-center mb-2">
+                <input
+                  value={module}
+                  onChange={(e) => {
+                    const m = [...data.training.modules];
+                    m[i] = e.target.value;
+                    update('training.modules', m);
+                  }}
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
+                />
+                <button
+                  onClick={() =>
+                    update('training.modules', data.training.modules.filter((_: any, idx: number) => idx !== i))
+                  }
+                  className="text-red-500"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() => update('training.modules', [...data.training.modules, ''])}
+              className="text-sm text-emerald-green"
+            >
+              + Add Module
+            </button>
+          </div>
+        );
+
+      // ================= CONTACT =================
+      case 'contact':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.contact.heading}
+                onChange={(e) => update('contact.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Text</label>
+              <textarea
+                value={data.contact.text}
+                onChange={(e) => update('contact.text', e.target.value)}
+                rows={4}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium">Button Text</label>
-                <input value={data.cta.buttonText} onChange={(e) => update('cta.buttonText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  value={data.contact.email}
+                  onChange={(e) => update('contact.email', e.target.value)}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium">Button Link</label>
-                <input value={data.cta.buttonLink} onChange={(e) => update('cta.buttonLink', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input
+                  value={data.contact.phone}
+                  onChange={(e) => update('contact.phone', e.target.value)}
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                />
               </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+              <textarea
+                value={data.contact.address}
+                onChange={(e) => update('contact.address', e.target.value)}
+                rows={3}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+              />
             </div>
           </div>
         );
@@ -299,15 +658,20 @@ export default function AdminEmpowerFarmers() {
 
   return (
     <div className="flex gap-6">
+      {/* ---- Section Sidebar ---- */}
       <nav className="w-56 flex-shrink-0">
-        <div className="bg-white rounded-2xl shadow-sm border p-4 sticky top-20">
-          <h2 className="font-display font-bold text-lg text-deep-forest mb-4">Empower Farmers Sections</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sticky top-20">
+          <h2 className="font-display font-bold text-lg text-deep-forest mb-4">EFSS Sections</h2>
           <div className="flex flex-col gap-1">
             {sectionNames.map((sec) => (
               <button
                 key={sec.key}
                 onClick={() => setActiveSection(sec.key)}
-                className={`text-left px-3 py-2 rounded-xl text-sm font-medium transition-all ${activeSection === sec.key ? 'bg-emerald-green text-white shadow-md' : 'text-gray-600 hover:bg-soft-bg hover:text-deep-forest'}`}
+                className={`text-left px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  activeSection === sec.key
+                    ? 'bg-emerald-green text-white shadow-md shadow-emerald-green/20'
+                    : 'text-gray-600 hover:bg-soft-bg hover:text-deep-forest'
+                }`}
               >
                 {sec.label}
               </button>
@@ -315,16 +679,27 @@ export default function AdminEmpowerFarmers() {
           </div>
         </div>
       </nav>
-      <div className="flex-1">
-        <div className="bg-white rounded-2xl shadow-sm border p-6">
-          <div className="flex justify-between items-center mb-6">
+
+      {/* ---- Main Editing Area ---- */}
+      <div className="flex-1 min-w-0">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl font-display font-bold text-deep-forest">
               {sectionNames.find((s) => s.key === activeSection)?.label}
             </h1>
-            <button onClick={handleSave} className="bg-emerald-green text-white px-6 py-2.5 rounded-full font-semibold hover:bg-deep-forest transition shadow-lg">Save All Changes</button>
+            <button
+              onClick={handleSave}
+              className="bg-emerald-green text-white px-6 py-2.5 rounded-full font-semibold hover:bg-deep-forest transition-colors shadow-lg shadow-emerald-green/20 hover:shadow-xl"
+            >
+              Save All Changes
+            </button>
           </div>
           {renderSection()}
-          {saveMessage && <p className="mt-4 text-sm text-emerald-green">{saveMessage}</p>}
+          {saveMessage && (
+            <p className="mt-6 text-sm font-medium text-emerald-green bg-emerald-green/5 p-3 rounded-lg">
+              {saveMessage}
+            </p>
+          )}
         </div>
       </div>
     </div>

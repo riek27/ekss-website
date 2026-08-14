@@ -149,30 +149,35 @@
     ]
   },
   "partners": {
-    "heading": "Our Partners & Collaborators",
-    "list": [
-      {
-        "name": "Bridge2Rwanda",
-        "label": "Scholarship partner"
-      },
-      {
-        "name": "SolarSPELL",
-        "label": "Digital libraries"
-      },
-      {
-        "name": "Arizona State University",
-        "label": "Teacher training"
-      },
-      {
-        "name": "Foundations for Farming",
-        "label": "Agriculture model"
-      },
-      {
-        "name": "CAF America",
-        "label": "Validated charity"
-      }
-    ]
-  },
+  "heading": "Our Partners & Collaborators",
+  "list": [
+    {
+      "name": "Bridge2Rwanda",
+      "label": "Scholarship partner",
+      "image": "/images/partners/bridge2rwanda.png"
+    },
+    {
+      "name": "SolarSPELL",
+      "label": "Digital libraries",
+      "image": "/images/partners/solarspell.png"
+    },
+    {
+      "name": "Arizona State University",
+      "label": "Teacher training",
+      "image": "/images/partners/asu.png"
+    },
+    {
+      "name": "Foundations for Farming",
+      "label": "Agriculture model",
+      "image": "/images/partners/foundations-for-farming.png"
+    },
+    {
+      "name": "CAF America",
+      "label": "Validated charity",
+      "image": "/images/partners/caf-america.png"
+    }
+  ]
+},
   "governance": {
     "heading": "Governance & Leadership",
     "description": "EmpowerKids–South Sudan is guided by a strong governance framework and led by a dedicated management team committed to delivering impact.",

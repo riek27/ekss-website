@@ -606,13 +606,18 @@ export default function HomePage() {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           <div className="marquee-wrapper">
             <div className="marquee-track">
-              {[...partners.list, ...partners.list].map((partner: any, i: number) => (
-                <div key={i} className="partner-card">
-                  <span className="partner-name">{partner.name}</span>
-                  <span className="partner-label">{partner.label}</span>
-                </div>
-              ))}
-            </div>
+  {[...partners.list, ...partners.list].map((partner: any, i: number) => (
+    <div key={i} className="partner-card">
+      <img
+        src={partner.image}
+        alt={partner.name}
+        className="h-12 w-auto object-contain mb-2"
+      />
+      <span className="partner-name">{partner.name}</span>
+      <span className="partner-label">{partner.label}</span>
+    </div>
+  ))}
+</div>
           </div>
         </div>
       </section>

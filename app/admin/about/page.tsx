@@ -623,65 +623,94 @@ export default function AdminAbout() {
         );
 
       case 'partners':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+        <input
+          value={data.partners.heading}
+          onChange={(e) => update('partners.heading', e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+        />
+      </div>
+
+      <h3 className="font-display font-bold text-lg text-deep-forest">Partner List</h3>
+      <div className="space-y-3">
+        {data.partners.list.map((partner: any, i: number) => (
+          <div key={i} className="border border-gray-200 rounded-xl p-3 bg-gray-50">
+            <div className="flex gap-2 items-start">
               <input
-                value={data.partners.heading}
-                onChange={(e) => update('partners.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
+                value={partner.name}
+                onChange={(e) => {
+                  const l = [...data.partners.list];
+                  l[i].name = e.target.value;
+                  update('partners.list', l);
+                }}
+                className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
+                placeholder="Partner Name"
               />
+              <input
+                value={partner.label}
+                onChange={(e) => {
+                  const l = [...data.partners.list];
+                  l[i].label = e.target.value;
+                  update('partners.list', l);
+                }}
+                className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
+                placeholder="Label"
+              />
+              <button
+                onClick={() =>
+                  update(
+                    'partners.list',
+                    data.partners.list.filter((_: any, idx: number) => idx !== i)
+                  )
+                }
+                className="text-red-500 hover:text-red-700"
+              >
+                ✕
+              </button>
             </div>
-            <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Partner List</h3>
-            {data.partners.list.map((partner: any, i: number) => (
-              <div key={i} className="flex gap-2 mb-2">
-                <input
-                  value={partner.name}
-                  onChange={(e) => {
-                    const list = [...data.partners.list];
-                    list[i].name = e.target.value;
-                    update('partners.list', list);
+
+            {/* Logo Upload with preview */}
+            <div className="mt-2">
+              <label className="text-xs text-gray-500 font-medium mb-1 block">Logo</label>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+                  {partner.image ? (
+                    <img src={partner.image} alt="" className="w-full h-full object-contain" />
+                  ) : (
+                    <span className="text-gray-300 text-xs">No logo</span>
+                  )}
+                </div>
+                <FileUploadField
+                  currentValue={partner.image || ''}
+                  onChange={(url) => {
+                    const l = [...data.partners.list];
+                    l[i].image = url;
+                    update('partners.list', l);
                   }}
-                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Name"
+                  accept="image/*"
                 />
-                <input
-                  value={partner.label}
-                  onChange={(e) => {
-                    const list = [...data.partners.list];
-                    list[i].label = e.target.value;
-                    update('partners.list', list);
-                  }}
-                  className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Label"
-                />
-                <button
-                  onClick={() =>
-                    update(
-                      'partners.list',
-                      data.partners.list.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500"
-                >
-                  ✕
-                </button>
               </div>
-            ))}
-            <button
-              onClick={() =>
-                update('partners.list', [
-                  ...data.partners.list,
-                  { name: '', label: '' },
-                ])
-              }
-              className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-            >
-              <span>+</span> Add Partner
-            </button>
+            </div>
           </div>
-        );
+        ))}
+      </div>
+
+      <button
+        onClick={() =>
+          update('partners.list', [
+            ...data.partners.list,
+            { name: '', label: '', image: '' },
+          ])
+        }
+        className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
+      >
+        <span>+</span> Add Partner
+      </button>
+    </div>
+  );
 
       case 'governance':
         return (

@@ -267,28 +267,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Partners */}
-      <section id="partners" className="py-16 lg:py-20 bg-white overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10">
-            {partners.heading}
-          </h2>
-          <div className="relative w-full overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="marquee-wrapper">
-              <div className="marquee-track">
-                {[...partners.list, ...partners.list].map((partner: any, i: number) => (
-                  <div key={i} className="partner-card">
-                    <span className="partner-name">{partner.name}</span>
-                    <span className="partner-label">{partner.label}</span>
-                  </div>
-                ))}
-              </div>
+     {/* Partners */}
+<section id="partners" className="py-16 lg:py-20 bg-white overflow-hidden">
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10">
+      {partners.heading}
+    </h2>
+    <div className="relative w-full overflow-hidden">
+      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+      <div className="marquee-wrapper">
+        <div className="marquee-track">
+          {[...partners.list, ...partners.list].map((partner: any, i: number) => (
+            <div key={i} className="partner-card">
+              <img
+                src={partner.image}
+                alt={partner.name}
+                className="h-12 w-auto object-contain mb-2"
+              />
+              <span className="partner-name">{partner.name}</span>
+              <span className="partner-label">{partner.label}</span>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Governance & Leadership */}
       <section id="governance" className="py-20 lg:py-28 bg-soft-bg">
