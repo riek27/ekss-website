@@ -1,117 +1,471 @@
 {
   "hero": {
-    "tagline": "Empower Farmers South Sudan",
-    "title": "Conservation Agriculture Programme (EFSS)",
+    "tagline": "Conservation Agriculture Programme",
+    "title": "Empower Farmers South Sudan (EFSS)",
     "subtitle": "Building food-secure and climate-resilient communities across South Sudan.",
     "image": "/images/efss-hero.jpg",
-    "logo": "/images/efss-logo.png"
+    "logo": "/images/efss-logo.png",
+    "buttons": [
+      { "text": "Explore Our Work", "link": "#efss-in-action" },
+      { "text": "Partner With EFSS", "link": "#contact-efss" }
+    ]
+  },
+  "glance": {
+    "heading": "EFSS At a Glance",
+    "intro": "Empowering farmers. Equipping youth. Restoring land.",
+    "stats": [
+      { "value": "54", "label": "Smallholder Farmers Trained" },
+      { "value": "9", "label": "Youth Trained (Champions & Fellows)" },
+      { "value": "1", "label": "Demonstration Farm (Operational in Juba)" },
+      { "value": "2025", "label": "Programme Launched (Pilot phase)" }
+    ]
   },
   "mission": {
     "heading": "Our Mission",
-    "text": "Empower Farmers South Sudan (EFSS) teaches smallholder farmers how to grow more food with less effort, using the Foundations for Farming model. Our mission is to improve food security, create dignified agricultural livelihoods for the communities, and help families thrive through climate-resilient farming."
+    "intro": "Helping farmers grow more food with less effort",
+    "text1": "Empower Farmers South Sudan (EFSS) is the conservation agriculture programme of EmpowerKids–South Sudan. EFSS teaches smallholder farmers how to grow more food with less effort through the Foundations for Farming model.",
+    "text2": "Our mission is to improve food security, create dignified agricultural livelihoods for communities, restore degraded land and help farming households become more resilient to climate and economic pressures.",
+    "text3": "We believe that practical knowledge, disciplined farming practices and locally trained leaders can help communities build stronger and more productive agricultural systems."
   },
   "challenge": {
     "heading": "The Challenge",
-    "text": "Food insecurity and soil degradation threaten millions of families in South Sudan. Years of conflict, climate shocks, and unsustainable farming practices have left soils exhausted and harvests unreliable. Many smallholder farmers work hard but still face hunger seasons, low yields, and limited access to training or markets. Most farming households depend on unpredictable rains, exhausted soils, and traditional methods that no longer meet today's climate challenges. Farmers work hard, yet many still face hunger seasons and low yields."
+    "intro": "Food insecurity. Degraded soils. Uncertain harvests.",
+    "text": "Food insecurity and soil degradation threaten millions of families in South Sudan. Years of conflict, climate shocks and unsustainable farming practices have left soils exhausted and harvests unreliable. Many smallholder farmers work hard but still face:",
+    "bullets": [
+      "Hunger seasons",
+      "Low and unreliable yields",
+      "Exhausted soils",
+      "Unpredictable rainfall",
+      "Limited access to agricultural training",
+      "Limited access to markets",
+      "Climate-related production risks"
+    ],
+    "conclusion": "EFSS exists to help turn that hard work into stronger harvests, healthier soils and more stable livelihoods."
   },
   "future": {
-  "heading": "The Future We Are Building",
-  "text": "We envision rural communities where every household produces enough food year-round, degraded soils are restored to fertility, youth lead the transformation of agriculture, and farmers earn more through better practices and market access.",
-  "image": "/images/efss-future.jpg",
-  "items": [
-    "Every household produces enough food year-round.",
-    "Degraded soils are restored to fertility.",
-    "Youth lead the transformation of agriculture.",
-    "Farmers earn more through better practices and market access."
-  ]
-},
-  "strategy": {
-    "heading": "Our Strategy",
-    "intro": "We help farmers grow more food, restore their land, and build stable livelihoods through three proven strategies:",
+    "heading": "The Future We Are Building",
+    "intro": "A future where farming creates food security and opportunity",
     "items": [
       {
+        "icon": "🌾",
+        "title": "Every household produces enough food year-round",
+        "description": "Families are able to produce sufficient food using disciplined, productive and resource-efficient farming systems."
+      },
+      {
         "icon": "🌱",
-        "title": "1. Train Farmers Where They Are",
-        "description": "EFSS delivers training directly within farmers’ own communities and fields rather than in distant classrooms. By using household Pfumvudza plots, village demonstration sites, schools, and churches as training venues, farmers learn conservation agriculture in their real production environments. This approach removes barriers of distance and cost, reinforces practical learning, and ensures that skills are immediately applied, accelerating adoption and long-term behaviour change.",
-        "cta": "Learn how"
+        "title": "Degraded soils are restored to fertility",
+        "description": "Farmers restore soil health through conservation agriculture, composting, mulching, agroforestry and other climate-smart practices."
       },
       {
         "icon": "👥",
-        "title": "2. Equip Youth to Lead",
-        "description": "EFSS places youth at the centre of agricultural transformation by training and mentoring them as Interns, Fellows, and Champions. Through structured Train-the-Trainer courses, field supervision, and leadership development, young people gain the technical, facilitation, and ethical skills required to serve as community agriculture leaders. This investment builds a sustainable pipeline of local trainers who carry conservation agriculture forward beyond project cycles.",
-        "cta": "Learn how"
+        "title": "Youth lead the transformation of agriculture",
+        "description": "Young people become trained Interns, Fellows and Champions who carry agricultural knowledge into their communities."
       },
       {
-        "icon": "🌍",
-        "title": "3. Restore Land and Grow Markets",
-        "description": "EFSS combines soil restoration with market-focused farming to help smallholder households move from survival to surplus. Through composting, mulching, agroforestry, and moisture-conserving practices, degraded land is rehabilitated and productivity restored. At the same time, EFSS supports farmer organization, collective marketing, and buyer linkages so that increased yields translate into reliable income and stronger local food systems.",
-        "cta": "Learn how"
+        "icon": "📈",
+        "title": "Farmers earn more through better practices and market access",
+        "description": "Higher productivity is connected with farmer organisation, collective marketing and buyer linkages so that increased production can translate into stronger livelihoods."
+      }
+    ]
+  },
+  "philosophy": {
+    "heading": "Our Philosophy",
+    "intro": "Lasting agricultural change begins with people, not inputs",
+    "items": [
+      {
+        "icon": "👥",
+        "title": "Youth lead transformation",
+        "description": "Young people trained as Interns, Fellows and Champions carry skills, standards and accountability into their communities."
+      },
+      {
+        "icon": "🧑‍🌾",
+        "title": "Farmers are stewards",
+        "description": "Every farmer is a manager of land, time and resources, responsible for applying good practices faithfully."
+      },
+      {
+        "icon": "🌱",
+        "title": "Discipline creates prosperity",
+        "description": "When small actions are done correctly and consistently, land is restored, yields improve, and households and communities become more resilient."
+      }
+    ]
+  },
+  "strategy": {
+    "heading": "Our Strategy",
+    "intro": "Three pathways to stronger farms and stronger communities",
+    "items": [
+      {
+        "number": "01",
+        "title": "Train Farmers Where They Are",
+        "subtitle": "Practical learning in real farming environments",
+        "description": "EFSS delivers training directly within farmers' own communities and fields rather than in distant classrooms. Using household Pfumvudza plots, village demonstration sites, schools and churches as training venues, farmers learn conservation agriculture in their real production environments.",
+        "bullets": [
+          "Removes barriers of distance and cost",
+          "Reinforces practical learning",
+          "Allows farmers to apply skills immediately",
+          "Accelerates adoption",
+          "Supports long-term behaviour change"
+        ],
+        "ctaText": "Learn how EFSS trains farmers →",
+        "ctaLink": "#methods"
+      },
+      {
+        "number": "02",
+        "title": "Equip Youth to Lead",
+        "subtitle": "Building the next generation of agricultural leaders",
+        "description": "EFSS places youth at the centre of agricultural transformation. Young people are trained and mentored as Interns, Fellows, and Champions. Through structured Train-the-Trainer courses, field supervision and leadership development, young people gain the technical, facilitation and ethical skills required to serve as community agriculture leaders.",
+        "bullets": [],
+        "ctaText": "Explore Train-the-Trainer →",
+        "ctaLink": "#train-the-trainer"
+      },
+      {
+        "number": "03",
+        "title": "Restore Land and Grow Markets",
+        "subtitle": "Moving households from survival toward surplus",
+        "description": "EFSS combines soil restoration with market-focused farming. Through composting, mulching, agroforestry, moisture conservation, soil restoration, farmer organisation, collective marketing and buyer linkages, degraded land can be rehabilitated and productivity restored.",
+        "bullets": [
+          "Composting",
+          "Mulching",
+          "Agroforestry",
+          "Moisture conservation",
+          "Soil restoration",
+          "Farmer organisation",
+          "Collective marketing",
+          "Buyer linkages"
+        ],
+        "ctaText": "Explore our agriculture approach →",
+        "ctaLink": "#field-to-market"
       }
     ]
   },
   "methods": {
     "heading": "Our Methods",
-    "intro": "We teach the Foundations for Farming approach — on time, to a high standard, without waste, and with joy.",
-    "items": [
-      {
-        "icon": "📘",
-        "title": "Foundations for Farming Principles",
-        "description": "All activities are guided by the Foundations for Farming conservation agriculture model. Farmers learn to work On Time, At Standard, Without Wastage, and With Joy."
-      },
-      {
-        "icon": "🌾",
-        "title": "Pfumvudza Plot Setup",
-        "description": "A precision-based household farming system that enables a family of six to produce sufficient, high-quality staple food for one year from a small, well-managed plot measuring 16 metres by 39 metres, using permanent planting basins, early planting, mulch, and strict agronomic discipline."
-      },
-      {
-        "icon": "🧑‍🌾",
-        "title": "Demonstration Farming",
-        "description": "Empower Farmers South Sudan operates demonstration farms that serve as living classrooms. Farmers observe correct Pfumvudza layout, composting, mulching, thinning, and crop management before replicating these practices at home."
-      },
-      {
-        "icon": "📈",
-        "title": "Supervision, Quality Assurance, and Learning",
-        "description": "After training, farmers receive regular field visits, technical audits, and mentoring. Progress is tracked through farmer logbooks and inspection tools to ensure that conservation agriculture practices are applied correctly and consistently."
-      }
+    "intro": "Foundations for Farming",
+    "principles": [
+      { "title": "On Time", "description": "Farmers learn the importance of carrying out agricultural activities at the right time." },
+      { "title": "At Standard", "description": "Every stage of production is carried out according to defined standards." },
+      { "title": "Without Wastage", "description": "Farmers are encouraged to use land, water, inputs, time and other resources efficiently." },
+      { "title": "With Joy", "description": "Agriculture is approached with commitment, dignity, discipline and a positive attitude." }
     ]
   },
   "pfumvudza": {
-    "heading": "Pfumvudza Defined",
-    "text": "A precision-based household farming system that enables a family of six to produce sufficient, high-quality staple food for one year from a small, well-managed plot measuring 16 metres by 39 metres, using permanent planting basins, early planting, mulch, and strict agronomic discipline.",
+    "heading": "Pfumvudza",
+    "intro": "A precision-based household food security system",
+    "text": "Pfumvudza is a precision-based household farming system designed to enable a family of six to produce sufficient, high-quality staple food for one year from a small, well-managed plot. The system uses permanent planting basins, early planting, mulching, strict agronomic discipline, precise spacing and careful crop management.",
     "stats": [
-      { "value": "1,456", "label": "planting stations" },
-      { "value": "75cm", "label": "row spacing, 60cm in-row spacing" },
-      { "value": "12cm", "label": "hole depth" },
-      { "value": "3", "label": "seeds per station, thinned to 2 plants" }
+      { "value": "16m × 39m", "label": "Standard Pfumvudza Plot" },
+      { "value": "1,456", "label": "Planting Stations" },
+      { "value": "75cm", "label": "Row Spacing (60cm in-row spacing)" },
+      { "value": "12cm", "label": "Hole Depth" },
+      { "value": "3", "label": "Seeds per Station (thinned to 2 plants)" }
+    ]
+  },
+  "demonstrationFarming": {
+    "heading": "Demonstration Farming",
+    "intro": "Transforming learning into practice",
+    "text": "EFSS operates Pfumvudza demonstration farms as the foundation of its training and quality assurance system. These sites function as living classrooms where smallholder farmers, youth leaders, schools and partners can observe and practise conservation agriculture in real field conditions.",
+    "whatWeDo": [
+      { "title": "Establish standard plots", "description": "Establish standard 16m × 39m Pfumvudza plots as household food security units." },
+      { "title": "Demonstrate correct practices", "description": "Show farmers correct spacing, planting depth, compost application, mulching, thinning and crop management." },
+      { "title": "Host field learning", "description": "Host seasonal field days, farmer open days and institutional trainings." },
+      { "title": "Quality control", "description": "Use demonstration farms as quality-control hubs before scaling training into communities." }
+    ],
+    "whyItMatters": "Demonstration farms ensure that EFSS training moves beyond theory. Farmers can see visible results, including improved soil condition, stronger crop stands, better crop management and higher yields. This builds confidence and accelerates adoption of Conservation Agriculture – Foundations for Farming (CA-FfF) practices.",
+    "ctaText": "Explore Demonstration Farming →",
+    "ctaLink": "#demonstration-farming"
+  },
+  "pfumvudzaPractice": {
+    "heading": "Pfumvudza in Practice",
+    "intro": "From field preparation to harvest",
+    "steps": [
+      { "number": "01", "title": "Plot preparation", "description": "Establishing the correct Pfumvudza layout and permanent planting basins." },
+      { "number": "02", "title": "Planting", "description": "Applying correct timing, spacing and planting depth." },
+      { "number": "03", "title": "Soil restoration", "description": "Using compost and mulch to improve soil condition and conserve moisture." },
+      { "number": "04", "title": "Crop management", "description": "Applying correct thinning, weed control and crop-care practices." },
+      { "number": "05", "title": "Harvesting", "description": "Harvesting at the appropriate time and reducing post-harvest losses." },
+      { "number": "06", "title": "Storage", "description": "Supporting better handling and storage of harvested crops." }
     ]
   },
   "impact": {
     "heading": "Our Impact",
+    "intro": "Behind every number is a family taking a step toward food security",
     "stats": [
       { "value": "9", "label": "Youth Trained (Champions & Fellows)" },
-      { "value": "54", "label": "Smallholder farmers trained" },
-      { "value": "1", "label": "Demonstration farm operational in Juba" }
+      { "value": "54", "label": "Smallholder Farmers Trained" },
+      { "value": "1", "label": "Demonstration Farm Operational in Juba" }
     ],
-    "note": "Behind each number is a family taking a step toward food security. Launched in 2025 as a pilot, the Empower Farmers South Sudan Program is now building momentum for nationwide expansion in 2026."
+    "fromPilotToScale": "Launched in 2025 as a pilot, the Empower Farmers South Sudan Programme is now building momentum for nationwide expansion in 2026. The goal is to move from demonstration and training into broader community adoption, creating a scalable system of trained farmers and youth agricultural leaders across South Sudan."
   },
-  "training": {
+  "sequentialTraining": {
     "heading": "Sequential Training",
-    "intro": "Our practical training modules guide farmers through every part of the season:",
-    "modules": [
-      "Introduction to Conservation Agriculture",
-      "Foundations for Farming Principles",
-      "Pfumvudza Plot Setup",
-      "Composting & Mulching",
-      "Soil Fertility Management",
-      "Weed Control & Crop Care",
-      "Harvesting & Storage"
+    "intro": "A practical learning journey through the farming season",
+    "steps": [
+      { "number": "01", "title": "Introduction to Conservation Agriculture", "description": "Understanding the principles and purpose of conservation agriculture." },
+      { "number": "02", "title": "Foundations for Farming Principles", "description": "Learning to work On Time, At Standard, Without Wastage and With Joy." },
+      { "number": "03", "title": "Pfumvudza Plot Setup", "description": "Establishing the correct plot size, layout, planting stations and basins." },
+      { "number": "04", "title": "Composting & Mulching", "description": "Building soil health and conserving moisture." },
+      { "number": "05", "title": "Soil Fertility Management", "description": "Understanding how to restore and maintain productive soils." },
+      { "number": "06", "title": "Weed Control & Crop Care", "description": "Managing weeds and maintaining healthy crops throughout the season." },
+      { "number": "07", "title": "Harvesting & Storage", "description": "Harvesting properly and protecting production after the field." }
     ]
   },
-  "contact": {
-    "heading": "Contact Us",
-    "text": "Empower Farmers South Sudan welcomes farmers, youth, faith groups, schools, and partners to connect with us. Whether you have a question, need support, or want to join our training activities, our team is here for you. Send us a message and we’ll respond with joy and gratitude.",
+  "trainTheTrainer": {
+    "heading": "Train-the-Trainer",
+    "intro": "Building a national cadre of conservation agriculture leaders",
+    "text": "The EFSS Train-the-Trainer (ToT) Programme professionalises youth as conservation agriculture instructors and community resource persons.",
+    "whatWeDo": [
+      { "title": "Certify youth Champions and Fellows", "description": "Training young leaders in Foundations for Farming methodology." },
+      { "title": "Structured ToT courses", "description": "Delivering structured two-day Train-the-Trainer courses with optional field practicum extensions." },
+      { "title": "Build facilitation skills", "description": "Developing the communication and teaching abilities needed to train other farmers." },
+      { "title": "Ethics & safeguarding", "description": "Providing ethics orientation, safeguarding standards and assessment." },
+      { "title": "Professional ToT services", "description": "Offering professional Train-the-Trainer services to NGOs, schools, churches and community groups on a cost-recovery basis." }
+    ],
+    "whyItMatters": "By equipping youth with technical and leadership skills, EFSS creates a sustainable training system that can continue beyond individual programme cycles. The approach also creates a pathway for national replication of conservation agriculture.",
+    "ctaText": "Explore Train-the-Trainer Course →",
+    "ctaLink": "#train-the-trainer"
+  },
+  "nationalAdoption": {
+    "heading": "National Adoption Campaign",
+    "intro": "Scaling conservation agriculture across South Sudan",
+    "text": "The National Adoption Campaign is EFSS's pathway from pilot projects to nationwide agricultural transformation.",
+    "whatWeDo": [
+      { "title": "Mobilise communities", "description": "Engage farmers through community meetings, schools, churches and traditional leaders." },
+      { "title": "Deploy youth leaders", "description": "Deploy Interns, Fellows and Champions to priority communities." },
+      { "title": "Build institutional partnerships", "description": "Establish partnerships with schools and faith-based organisations." },
+      { "title": "Register and prepare farmers", "description": "Support farmer registration, land verification and training." },
+      { "title": "Provide post-training supervision", "description": "Follow up with farmers after training to support correct implementation." }
+    ],
+    "whyItMatters": "The campaign is designed to help make Conservation Agriculture – Foundations for Farming (CA-FfF) a community-owned movement. The goal is to embed conservation agriculture within everyday farming systems and local institutions.",
+    "ctaText": "Explore National Adoption Campaign →",
+    "ctaLink": "#national-adoption"
+  },
+  "agroforestry": {
+    "heading": "Agroforestry & Climate Change",
+    "intro": "Restoring land and protecting livelihoods",
+    "text": "EFSS integrates agroforestry and climate-smart practices throughout its conservation agriculture model to respond to climate change and environmental degradation.",
+    "whatWeDo": [
+      { "title": "Restore soil", "description": "Promote compost-based soil restoration and permanent soil cover through mulching." },
+      { "title": "Plant trees", "description": "Integrate tree planting and agroforestry into Pfumvudza systems." },
+      { "title": "Conserve moisture", "description": "Train farmers in moisture conservation and minimum tillage." },
+      { "title": "Diversify production", "description": "Promote crop diversification to strengthen resilience." },
+      { "title": "Establish nurseries", "description": "Develop demonstration tree nurseries and household woodlots." }
+    ],
+    "whyItMatters": "These practices help rebuild soil fertility, reduce vulnerability to drought, respond to erratic rainfall, protect smallholder livelihoods, improve long-term land productivity and support more resilient farming communities. The goal is to ensure that future generations inherit productive and resilient farmland.",
+    "ctaText": "Explore Agroforestry & Climate Action →",
+    "ctaLink": "#agroforestry-climate"
+  },
+  "focusAreas": {
+    "heading": "Our Focus Areas",
+    "intro": "Building a complete agricultural transformation system",
+    "items": [
+      {
+        "icon": "🌾",
+        "title": "Demonstration Farming",
+        "description": "Living classrooms where farmers and youth can see and practise conservation agriculture.",
+        "linkText": "Explore Demonstration Farming →",
+        "link": "/empower-farmers#demonstration-farming"
+      },
+      {
+        "icon": "👥",
+        "title": "Train-the-Trainer Course",
+        "description": "Equipping youth Champions and Fellows to become conservation agriculture instructors and community resource persons.",
+        "linkText": "Explore Train-the-Trainer →",
+        "link": "/empower-farmers#train-the-trainer"
+      },
+      {
+        "icon": "🌍",
+        "title": "National Adoption Campaigns",
+        "description": "Mobilising communities and institutions to expand conservation agriculture across South Sudan.",
+        "linkText": "Explore National Adoption Campaign →",
+        "link": "/empower-farmers#national-adoption"
+      },
+      {
+        "icon": "🌳",
+        "title": "Agroforestry & Climate Change",
+        "description": "Restoring soils, protecting livelihoods and building climate resilience.",
+        "linkText": "Explore Agroforestry & Climate Action →",
+        "link": "/empower-farmers#agroforestry-climate"
+      }
+    ]
+  },
+  "fieldToMarket": {
+    "heading": "Field to Market",
+    "intro": "From better farming practices to stronger livelihoods",
+    "text": "Food security is the first step. EFSS also works toward a future where farmers can translate better production into stronger household livelihoods.",
+    "items": [
+      { "title": "Farmer Organisation", "description": "Helping farmers work together around production and market opportunities." },
+      { "title": "Collective Marketing", "description": "Creating opportunities for farmers to aggregate production and engage markets more effectively." },
+      { "title": "Buyer Linkages", "description": "Connecting increased production with potential buyers and market opportunities." },
+      { "title": "Dignified Livelihoods", "description": "Helping farming households move beyond survival toward more stable agricultural income." }
+    ]
+  },
+  "youthAgriculture": {
+    "heading": "Youth & Agriculture",
+    "intro": "Young people at the centre of agricultural transformation",
+    "text": "Agriculture needs the energy, skills and leadership of young people. EFSS places youth at the centre of its model through:",
+    "items": [
+      { "title": "Internships", "description": "Practical agricultural experience and field learning." },
+      { "title": "Fellowships", "description": "Developing young people as agricultural leaders." },
+      { "title": "Champions", "description": "Training youth to support conservation agriculture adoption in their communities." },
+      { "title": "Train-the-Trainer", "description": "Building technical, facilitation and leadership capacity." }
+    ]
+  },
+  "efssInAction": {
+    "heading": "EFSS in Action",
+    "intro": "From the demonstration farm to the community",
+    "featuredImage": "/images/efss-demo-farm.jpg",
+    "featuredCaption": "A living classroom for South Sudan's agricultural future.",
+    "featuredText": "At the EFSS demonstration farm in Juba, farmers, youth leaders, schools and partners can see conservation agriculture in practice — from Pfumvudza plot layout and composting to mulching, crop management and harvesting.",
+    "gallery": [
+      { "image": "/images/efss-demo-farm.jpg", "caption": "Demonstration Farm – Pfumvudza plots and field demonstrations" },
+      { "image": "/images/efss-farmer-training.jpg", "caption": "Farmer Training – Smallholder farmers learning conservation agriculture practices" },
+      { "image": "/images/efss-youth-champions.jpg", "caption": "Youth Champions – Young people participating in EFSS training and leadership activities" },
+      { "image": "/images/efss-pfumvudza-practice.jpg", "caption": "Pfumvudza Practice – Farmers working on planting stations, spacing and crop management" },
+      { "image": "/images/efss-composting.jpg", "caption": "Composting & Mulching – Practical demonstrations of soil restoration techniques" },
+      { "image": "/images/efss-agroforestry.jpg", "caption": "Agroforestry – Tree planting, nurseries and climate-resilient farming activities" },
+      { "image": "/images/efss-field-day.jpg", "caption": "Field Days – Farmers, institutions and partners learning together" },
+      { "image": "/images/efss-harvest.jpg", "caption": "Harvest – Evidence of production and agricultural results" }
+    ]
+  },
+  "efssModel": {
+    "heading": "The EFSS Model",
+    "intro": "Learn → Practise → Supervise → Scale",
+    "steps": [
+      { "title": "LEARN", "description": "Farmers and youth receive practical training in conservation agriculture." },
+      { "title": "PRACTISE", "description": "Farmers apply what they learn on Pfumvudza plots and demonstration sites." },
+      { "title": "SUPERVISE", "description": "EFSS provides field visits, technical audits and mentoring." },
+      { "title": "SCALE", "description": "Successful practices are carried into communities through trained youth leaders and the National Adoption Campaign." }
+    ]
+  },
+  "supervisionQuality": {
+    "heading": "Supervision, Quality Assurance & Learning",
+    "intro": "Making sure training becomes practice",
+    "text": "Training alone is not enough. After training, farmers receive regular field visits, technical audits and mentoring. Progress is tracked through farmer logbooks and inspection tools to help ensure that conservation agriculture practices are applied correctly and consistently.",
+    "items": [
+      { "title": "Field Visits", "description": "Regular follow-up with participating farmers." },
+      { "title": "Technical Audits", "description": "Checking whether practices are being applied according to standards." },
+      { "title": "Farmer Logbooks", "description": "Tracking implementation and progress." },
+      { "title": "Mentoring", "description": "Helping farmers overcome challenges and improve practice." },
+      { "title": "Learning", "description": "Using field experience to strengthen future training and programme delivery." }
+    ]
+  },
+  "partnersEngagement": {
+    "heading": "Partners & Institutional Engagement",
+    "intro": "Growing the movement together",
+    "text": "EFSS welcomes collaboration with organisations and institutions that want to strengthen food security, climate resilience and agricultural livelihoods in South Sudan.",
+    "items": [
+      { "title": "Farmers", "description": "Join conservation agriculture training and apply practices in your own fields." },
+      { "title": "Youth", "description": "Become an Intern, Fellow or Champion and help lead agricultural transformation." },
+      { "title": "Schools", "description": "Partner around demonstration farming, agricultural learning and youth engagement." },
+      { "title": "Churches & Faith Groups", "description": "Support community mobilisation and agricultural training." },
+      { "title": "NGOs", "description": "Partner on farmer training, ToT services and community programmes." },
+      { "title": "Community Groups", "description": "Work with EFSS to bring conservation agriculture into local communities." },
+      { "title": "Agricultural & Market Actors", "description": "Support farmer organisation, market access and buyer linkages." },
+      { "title": "Donors & Institutions", "description": "Support the expansion of climate-resilient agriculture across South Sudan." }
+    ],
+    "ctaText": "Partner With EFSS",
+    "ctaLink": "/get-involved"
+  },
+  "resources": {
+    "heading": "Resources",
+    "intro": "Learn more about EFSS",
+    "items": [
+      { "title": "Foundations for Farming", "description": "Programme materials explaining the core conservation agriculture principles." },
+      { "title": "Pfumvudza Guides", "description": "Practical information about plot establishment and management." },
+      { "title": "Farmer Training Materials", "description": "Resources supporting the sequential training modules." },
+      { "title": "Train-the-Trainer Materials", "description": "Resources for Champions, Fellows and other agricultural trainers." },
+      { "title": "Agroforestry & Climate Resources", "description": "Materials related to soil restoration, tree planting and climate resilience." },
+      { "title": "Programme Reports", "description": "Updates and evidence from EFSS field activities." }
+    ],
+    "ctaText": "Explore EFSS Resources",
+    "ctaLink": "/resources"
+  },
+  "latestFromField": {
+    "heading": "Latest From the Field",
+    "intro": "Stories from Empower Farmers South Sudan",
+    "cards": [
+      { "title": "Farming & Harvest Updates", "description": "Stories from demonstration farms, farmers and agricultural activities.", "link": "/news" },
+      { "title": "Youth Agriculture Stories", "description": "Updates about Interns, Fellows and Champions.", "link": "/news" },
+      { "title": "Farmer Training", "description": "Stories from community training sessions and field days.", "link": "/news" },
+      { "title": "Climate & Agroforestry", "description": "Updates about soil restoration, tree planting and climate-resilient agriculture.", "link": "/news" },
+      { "title": "Programme Growth", "description": "Updates on EFSS expansion, partnerships and the National Adoption Campaign.", "link": "/news" }
+    ],
+    "viewAllText": "View All News & Updates",
+    "viewAllLink": "/news"
+  },
+  "journey": {
+    "heading": "Our Agricultural Journey",
+    "intro": "From pilot to nationwide ambition",
+    "timeline": [
+      { "year": "2025", "title": "EFSS launches as a pilot", "description": "The programme begins building its conservation agriculture model in South Sudan." },
+      { "year": "2025–2026", "title": "Training & demonstration", "description": "Farmers and youth leaders receive practical training while demonstration farming provides a living classroom." },
+      { "year": "2026", "title": "Building momentum for expansion", "description": "EFSS develops its youth leadership, Train-the-Trainer and National Adoption Campaign systems." },
+      { "year": "The Future", "title": "Nationwide adoption", "description": "The long-term ambition is to build a community-owned conservation agriculture movement across South Sudan." }
+    ]
+  },
+  "whyConservationAg": {
+    "heading": "Why Conservation Agriculture",
+    "intro": "More than a farming technique",
+    "items": [
+      { "title": "Food security", "description": "Helping households produce more reliable food." },
+      { "title": "Soil restoration", "description": "Rebuilding the productivity of degraded land." },
+      { "title": "Climate resilience", "description": "Reducing vulnerability to drought and unpredictable rainfall." },
+      { "title": "Youth leadership", "description": "Creating roles for young people as agricultural leaders." },
+      { "title": "Livelihoods", "description": "Connecting better production with markets and income opportunities." },
+      { "title": "Community resilience", "description": "Building stronger local food systems and farming communities." }
+    ]
+  },
+  "vision": {
+    "heading": "Our Vision",
+    "intro": "A hunger-free and resilient agricultural future",
+    "text": "EFSS envisions a South Sudan where farming households have the knowledge, tools and leadership needed to produce food sustainably. A future where:",
+    "items": [
+      "Households produce enough food.",
+      "Soils are restored.",
+      "Young people lead agricultural transformation.",
+      "Farmers access markets.",
+      "Communities become more resilient."
+    ]
+  },
+  "contactEfss": {
+    "heading": "Contact EFSS",
+    "intro": "Join the agricultural transformation",
+    "text": "Empower Farmers South Sudan welcomes:",
+    "audiences": [
+      { "title": "Farmers", "description": "Connect with us about conservation agriculture training." },
+      { "title": "Youth", "description": "Explore opportunities to become an Intern, Fellow or Champion." },
+      { "title": "Faith groups", "description": "Partner with us to reach farming communities." },
+      { "title": "Schools", "description": "Explore agricultural learning and demonstration opportunities." },
+      { "title": "NGOs & institutions", "description": "Discuss training, partnership and collaboration opportunities." },
+      { "title": "Partners & supporters", "description": "Help us scale climate-resilient agriculture across South Sudan." }
+    ],
     "email": "info@empowerfarmers.org",
     "phone": "+211 986 133 777",
-    "address": "Gudele West, Block 4, Plot 477, Luri Payam, Juba County, Central Equatoria State, South Sudan"
+    "address": "Gudele West, Block 4, Plot 477, Luri Payam, Juba County, Central Equatoria State, South Sudan",
+    "ctaText": "Contact EFSS",
+    "ctaLink": "/contact"
+  },
+  "supportFarming": {
+    "heading": "Support the Future of Farming",
+    "intro": "Help farmers grow more. Restore the land. Equip the next generation.",
+    "text": "South Sudan's agricultural future depends on farmers who have the knowledge to produce sustainably and young people who are ready to lead. Your support can help EFSS train farmers, equip youth leaders, strengthen demonstration farms, restore degraded land and expand conservation agriculture into more communities.",
+    "ways": [
+      { "title": "Donate", "description": "Help expand farmer training and agricultural activities." },
+      { "title": "Partner", "description": "Bring conservation agriculture to communities, schools and institutions." },
+      { "title": "Support Youth", "description": "Help train the next generation of agricultural Champions and Fellows." },
+      { "title": "Collaborate", "description": "Work with EFSS on training, research, climate resilience and market development." }
+    ],
+    "buttons": [
+      { "text": "Support EFSS", "link": "/get-involved" },
+      { "text": "Partner With Us", "link": "/get-involved" }
+    ]
+  },
+  "finalCta": {
+    "heading": "Grow more. Restore the land. Build the future.",
+    "text": "Empower Farmers South Sudan – Conservation Agriculture Programme of EmpowerKids–South Sudan",
+    "subtext": "Food Security • Soil Restoration • Youth Leadership • Climate Resilience",
+    "buttons": [
+      { "text": "Explore Our Work", "link": "#efss-in-action" },
+      { "text": "Contact EFSS", "link": "#contact-efss" }
+    ]
   }
 }

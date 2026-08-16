@@ -2,14 +2,21 @@
   "hero": {
     "tagline": "Education Programme",
     "title": "Widening access to quality, inclusive education",
-    "subtitle": "Keeping children in school and learning, especially girls and the most vulnerable.",
-    "image": "/images/ekss4.jpg"
+    "subtitle": "Keeping children in school and creating stronger learning opportunities, especially for girls and students facing the greatest barriers.",
+    "image": "/images/ekss4.jpg",
+    "buttons": [
+      { "text": "Support Education", "link": "/get-involved" },
+      { "text": "Explore Our Impact", "link": "#impact" }
+    ]
   },
-  "stats": [
-    { "value": 37, "label": "Scholars Placed" },
-    { "value": 15, "label": "Teachers Trained" },
-    { "value": 2, "label": "Schools Electrified" }
-  ],
+  "glance": {
+    "heading": "At a Glance",
+    "stats": [
+      { "value": 37, "label": "Scholars Placed" },
+      { "value": 15, "label": "Teachers Trained" },
+      { "value": 2, "label": "Schools Electrified" }
+    ]
+  },
   "challenge": {
     "heading": "The Challenge",
     "text": "Conflict, displacement and poverty keep many children in South Sudan out of school or in classrooms without trained teachers, learning materials or safe facilities. Girls, children with disabilities and displaced children are most likely to miss out, and hunger at home pulls children away from learning."
@@ -17,44 +24,175 @@
   "approach": {
     "heading": "Our Approach",
     "items": [
-      { "title": "Access & retention", "description": "removing barriers for the most marginalised." },
-      { "title": "Teaching quality", "description": "strengthening teachers and providing learning materials." },
-      { "title": "Safe, inclusive spaces", "description": "improving facilities and safeguarding." },
-      { "title": "Community ownership", "description": "engaging caregivers and local leaders." }
+      { "title": "Access & retention", "description": "Removing barriers for the most marginalised." },
+      { "title": "Teaching quality", "description": "Strengthening teachers and providing learning materials." },
+      { "title": "Safe, inclusive spaces", "description": "Improving facilities and safeguarding." },
+      { "title": "Community ownership", "description": "Engaging caregivers and local leaders." }
     ]
   },
-  "currentWork": {
-    "heading": "What We Are Doing Now",
+  "programme": {
+    "heading": "The Programme",
+    "intro": "Creating pathways to learn, grow and succeed",
+    "text1": "EmpowerKids–South Sudan’s Education Programme works to expand access to quality education and create opportunities for children and young people to continue learning.",
+    "text2": "Our work includes scholarship pathways, teacher development, school infrastructure improvements, solar electrification, school supplies and community engagement.",
+    "text3": "We focus particularly on students and communities facing barriers to education, while working with schools, teachers, families, partners and education stakeholders to strengthen learning opportunities."
+  },
+  "educationInAction": {
+    "heading": "Education in Action",
+    "intro": "Practical support for students, teachers and schools",
+    "cards": [
+      {
+        "icon": "📚",
+        "title": "Bridge2Rwanda Scholarship Pathway",
+        "description": "Creating pathways for high-performing South Sudanese students to pursue fully funded university education. Through the Bridge2Rwanda partnership, EKSS has supported scholarship placements for students who have demonstrated academic potential and are ready to continue their education.",
+        "tags": ["37 scholars placed", "Fully funded university scholarships", "Bridge2Rwanda partnership"],
+        "link": "#featured-programme"
+      },
+      {
+        "icon": "👩‍🏫",
+        "title": "Teacher Training",
+        "description": "Supporting teachers to strengthen their knowledge and classroom practice. EKSS has supported teachers to participate in training at Arizona State University, helping build teaching capacity and strengthen student-centred learning approaches.",
+        "tags": ["15 teachers trained", "Arizona State University", "Student-centred methods"],
+        "link": "#teacher-development"
+      },
+      {
+        "icon": "💡",
+        "title": "School Solar Electrification",
+        "description": "Helping schools access reliable electricity so that learning can continue beyond daylight hours and schools can make better use of digital and educational resources. EKSS has supported solar electrification at Juba Girls Secondary School and Nimule Model Secondary School.",
+        "tags": ["2 schools electrified", "Solar-powered learning environments"],
+        "link": "#powering-learning"
+      },
+      {
+        "icon": "🎒",
+        "title": "School Supplies & Community Engagement",
+        "description": "Education requires more than classrooms. EKSS supports school-related activities and community engagement that help strengthen the wider environment around children's education.",
+        "tags": ["School support", "Community engagement", "Learning environment"],
+        "link": "#education-community"
+      }
+    ]
+  },
+  "accessToOpportunity": {
+    "heading": "From Access to Opportunity",
+    "intro": "Building a stronger education journey",
+    "steps": [
+      { "number": "01", "title": "ACCESS", "description": "Helping students overcome barriers that can prevent them from accessing or continuing education." },
+      { "number": "02", "title": "LEARN", "description": "Supporting schools and teachers to create stronger learning environments and improve teaching capacity." },
+      { "number": "03", "title": "PROGRESS", "description": "Creating pathways for high-performing students to continue their education through scholarship opportunities." },
+      { "number": "04", "title": "OPPORTUNITY", "description": "Helping young people move from education towards higher education, skills and future opportunities." }
+    ]
+  },
+  "impact": {
+    "heading": "Our Education Impact",
+    "intro": "Measurable results from our education programme",
+    "stats": [
+      { "value": "37", "label": "Scholars Placed", "description": "Students placed on fully funded university scholarships through the Bridge2Rwanda partnership." },
+      { "value": "15", "label": "Teachers Trained", "description": "Secondary school teachers trained at Arizona State University in student-centred methods." },
+      { "value": "2", "label": "Schools Electrified", "description": "Schools fitted with solar electricity to strengthen their learning environments." }
+    ],
+    "resultsHeading": "Results",
+    "resultsRows": [
+      { "metric": "37", "outcome": "Students placed on fully funded university scholarships through the Bridge2Rwanda partnership", "verification": "B2R placement records" },
+      { "metric": "15", "outcome": "Secondary school teachers trained at Arizona State University in student-centred methods", "verification": "ASU completion records" },
+      { "metric": "2", "outcome": "Schools fitted with solar electricity", "verification": "Installation handover notes" }
+    ],
+    "resultsNote": "Our education results are supported by programme records and documentation."
+  },
+  "featuredProgramme": {
+    "title": "Bridge2Rwanda Scholarship Pathway",
+    "subtitle": "Opening pathways to university education",
+    "description": "For talented students, access to university can transform the opportunities available to them and their families. Through its partnership with Bridge2Rwanda, EKSS supports students on a pathway towards fully funded university scholarships.",
+    "image": "/images/ekss4.jpg",
+    "points": [
+      { "title": "Identify", "description": "Recognising students with strong academic potential." },
+      { "title": "Prepare", "description": "Supporting students through the preparation required for scholarship opportunities." },
+      { "title": "Place", "description": "Connecting successful candidates with fully funded university scholarship opportunities." },
+      { "title": "Progress", "description": "Helping students continue their education and work towards their future goals." }
+    ],
+    "reachStats": [
+      { "value": "37", "label": "Scholars Placed" }
+    ],
+    "ctaText": "Support Education",
+    "ctaLink": "/get-involved"
+  },
+  "teacherDevelopment": {
+    "heading": "Teacher Development",
+    "intro": "Strengthening the people who make learning possible",
+    "text": "Teachers play a central role in the quality of education. EKSS has supported secondary school teachers to participate in training at Arizona State University, with a focus on student-centred teaching methods.",
+    "stats": [
+      { "value": "15", "label": "Teachers trained" },
+      { "value": "Student-centred methods", "label": "Training focus" },
+      { "value": "Arizona State University", "label": "Training partner" }
+    ]
+  },
+  "poweringLearning": {
+    "heading": "Powering Learning",
+    "intro": "Bringing solar electricity to schools",
+    "text": "Reliable electricity can make a meaningful difference to a school's learning environment. EKSS has supported solar electrification at Juba Girls Secondary School and Nimule Model Secondary School.",
+    "schools": [
+      { "name": "Juba Girls Secondary School", "description": "Solar electricity installed to support the school's learning environment." },
+      { "name": "Nimule Model Secondary School", "description": "Solar electricity installed to support students and teachers." }
+    ],
+    "tags": ["2 schools electrified", "Solar-powered learning", "School infrastructure support"]
+  },
+  "inclusiveEducation": {
+    "heading": "Inclusive Education",
+    "intro": "Creating opportunities for students who face barriers",
     "items": [
-      "Scholarship placements via Bridge2Rwanda (37 scholars to date).",
-      "Teacher training at Arizona State University (15 teachers).",
-      "Solar electrification of Juba Girls and Nimule Model Secondary Schools.",
-      "School supplies and community engagement activities."
+      { "title": "Girls", "description": "Supporting educational opportunities for girls and reducing barriers that can prevent them from continuing their education." },
+      { "title": "Vulnerable students", "description": "Creating pathways for students facing economic, social or other barriers to education." },
+      { "title": "Schools & teachers", "description": "Strengthening the people and environments that support students every day." },
+      { "title": "Communities", "description": "Engaging caregivers and local stakeholders in supporting children's education." }
     ]
   },
-  "results": {
-    "heading": "Results",
-    "rows": [
-      { "metric": "37", "outcome": "Scholars placed on fully funded scholarships", "verification": "B2R placement records" },
-      { "metric": "15", "outcome": "Teachers trained at ASU", "verification": "ASU completion records" },
-      { "metric": "2", "outcome": "Schools solar‑powered", "verification": "Installation handover notes" }
-    ]
-  },
-  "projects": {
-    "heading": "Projects",
+  "educationCommunity": {
+    "heading": "Education & Community",
+    "intro": "Education works best when communities are involved",
+    "text": "Schools are part of their communities. EKSS works alongside communities, caregivers and local stakeholders to strengthen engagement around education.",
     "items": [
-      { "icon": "📚", "title": "Bridge2Rwanda Scholarship Pathway", "description": "Fully funded university scholarships for high‑performing students." },
-      { "icon": "💡", "title": "School Solar Electrification", "description": "Installing solar power in Juba Girls and Nimule Model Secondary Schools." }
+      { "title": "Families", "description": "Helping caregivers understand and support children's education." },
+      { "title": "Schools", "description": "Working with education institutions around learning and school support." },
+      { "title": "Local stakeholders", "description": "Building relationships that can strengthen education activities." }
     ]
   },
-  "partners": {
+  "connectedPathways": {
+    "heading": "Connected Pathways",
+    "intro": "Education is connected to everything we do",
+    "cards": [
+      {
+        "icon": "👥",
+        "title": "Youth Empowerment",
+        "description": "Education creates foundations for young people to develop skills, pursue livelihoods and become leaders in their communities.",
+        "link": "/youth",
+        "linkText": "Explore Youth Empowerment"
+      },
+      {
+        "icon": "🌱",
+        "title": "Conservation Agriculture Programme",
+        "description": "Agriculture and education can create complementary pathways towards practical skills, livelihoods and community resilience.",
+        "link": "/empower-farmers",
+        "linkText": "Explore Conservation Agriculture"
+      },
+      {
+        "icon": "🗣️",
+        "title": "Advocacy & Civic Engagement",
+        "description": "Education can strengthen people's ability to understand their rights, participate in their communities and engage constructively in public life.",
+        "link": "/advocacy",
+        "linkText": "Explore Advocacy & Civic Engagement"
+      }
+    ]
+  },
+  "partnersDonors": {
     "heading": "Partners & Donors",
-    "text": "Bridge2Rwanda, SolarSPELL, Arizona State University, CAF America, and local education authorities."
-  },
-  "resources": {
-    "heading": "Resources",
-    "text": "Programme brief, scholarship application guidance, and teacher training materials.",
-    "link": "/resources"
+    "intro": "Working together to expand education opportunities",
+    "items": [
+      { "title": "Bridge2Rwanda", "description": "Scholarship partner supporting pathways to fully funded university scholarships." },
+      { "title": "Arizona State University", "description": "Teacher training partner supporting student-centred methods." },
+      { "title": "SolarSPELL", "description": "Digital learning partner supporting digital library and learning opportunities." },
+      { "title": "CAF America", "description": "Validated charity supporting access to US charitable giving and tax-deductible donations." },
+      { "title": "Local Education Authorities", "description": "Working with local education stakeholders to support education activities." }
+    ],
+    "ctaText": "Partner With Us",
+    "ctaLink": "/get-involved"
   },
   "gallery": {
     "heading": "Education in Action",
@@ -64,10 +202,49 @@
       "/images/ekss6.jpg"
     ]
   },
-  "cta": {
+  "latestUpdates": {
+    "heading": "Latest From Education",
+    "intro": "Stories from the field",
+    "cards": [
+      { "title": "Scholarship & Student Updates", "description": "Updates about scholarship placements, student achievements and education opportunities.", "link": "/news" },
+      { "title": "School Electrification", "description": "Stories showing progress, installations and the impact of solar electricity in schools.", "link": "/news" },
+      { "title": "Teacher Development", "description": "Updates from teacher training, professional development and education partnerships.", "link": "/news" },
+      { "title": "School & Community Activities", "description": "Stories from schools, communities and education-related activities supported by EKSS.", "link": "/news" }
+    ],
+    "viewAllText": "View All News & Updates",
+    "viewAllLink": "/news"
+  },
+  "resources": {
+    "heading": "Resources",
+    "intro": "Education knowledge and programme documents",
+    "items": [
+      { "title": "Programme Brief", "description": "An overview of the Education Programme, its priorities and activities." },
+      { "title": "Scholarship Guidance", "description": "Information and guidance related to scholarship opportunities and applications." },
+      { "title": "Teacher Training Materials", "description": "Resources supporting teacher development and student-centred learning." },
+      { "title": "Education Reports", "description": "Programme reports, assessments and other documents related to EKSS education activities." }
+    ],
+    "ctaText": "Visit the Document Shelf →",
+    "ctaLink": "/resources"
+  },
+  "supportCta": {
     "heading": "Support Education",
-    "text": "Help a child stay in school. Donate, partner, or volunteer.",
-    "buttonText": "Donate now",
-    "buttonLink": "/get-involved"
+    "text": "Help create stronger opportunities for students. Every child deserves the opportunity to learn. Your support helps EmpowerKids–South Sudan expand education opportunities, strengthen schools, support teachers and create pathways for students to continue their education.",
+    "ways": [
+      { "title": "Donate", "description": "Help support education activities and opportunities for students." },
+      { "title": "Partner", "description": "Work with EKSS to strengthen education programmes and expand access." },
+      { "title": "Volunteer", "description": "Share your skills, knowledge or professional experience." }
+    ],
+    "buttons": [
+      { "text": "Donate Now", "link": "/get-involved" },
+      { "text": "Get Involved", "link": "/get-involved" }
+    ]
+  },
+  "footerCta": {
+    "heading": "Education can change the path of a child's future.",
+    "text": "Support EmpowerKids–South Sudan in creating stronger learning opportunities for children, supporting teachers and opening pathways to higher education.",
+    "buttons": [
+      { "text": "Donate Now", "link": "/get-involved" },
+      { "text": "Contact Us", "link": "/contact" }
+    ]
   }
 }

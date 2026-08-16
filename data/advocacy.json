@@ -2,79 +2,164 @@
   "hero": {
     "tagline": "Advocacy & Civic Engagement",
     "title": "Citizen voice & accountability",
-    "subtitle": "Strengthening participation, especially for women and youth, and building bridges to decision‑makers.",
-    "image": "/images/ekss1.jpg"
-  },
-  "stats": [
-    { "value": "8+", "label": "Community Dialogues" },
-    { "value": "3", "label": "Councillor Initiatives" },
-    { "value": "500+", "label": "Community Members Reached" }
-  ],
-  "challenge": {
-    "heading": "The Challenge",
-    "text": "Communities, especially women and youth, often lack the information, space and channels to participate in decisions that affect them or to hold service providers and authorities to account. EKSS’s Advocacy & Civic Engagement programme strengthens citizen voice, participation and accountability."
-  },
-  "approach": {
-    "heading": "Our Approach",
-    "items": [
-      {
-        "title": "Civic awareness",
-        "description": "Building understanding of rights, entitlements and how to engage in public processes."
-      },
-      {
-        "title": "Community platforms",
-        "description": "Strengthening inclusive community structures and forums for dialogue and accountability."
-      },
-      {
-        "title": "Constructive engagement",
-        "description": "Facilitating respectful, evidence‑based engagement with decision‑makers and service providers."
-      },
-      {
-        "title": "Inclusion of voice",
-        "description": "Creating deliberate space for women, youth and marginalised groups to be heard and to lead."
-      }
+    "subtitle": "Strengthening participation, especially for women and youth, and building bridges between communities, decision-makers and service providers.",
+    "image": "/images/ekss1.jpg",
+    "buttons": [
+      { "text": "Strengthen Civic Voice", "link": "/get-involved" },
+      { "text": "Get Involved", "link": "/get-involved" }
     ]
   },
-  "currentWork": {
-    "heading": "What We Are Doing Now",
-    "items": [
-      "Community dialogue series in Juba and surrounding areas, bringing together residents, local leaders and service providers.",
-      "\"Councillors for Citizens\" initiative, supporting elected representatives to be more responsive and accountable.",
-      "Civic awareness sessions on rights, governance and participation, with a focus on women and youth.",
-      "Facilitating constructive engagement between communities and local authorities on service delivery issues."
-    ]
+  "programme": {
+    "heading": "The Programme",
+    "intro": "Creating space for communities to be heard",
+    "text1": "EmpowerKids–South Sudan's Advocacy & Civic Engagement programme works to strengthen citizen participation, community voice and accountability.",
+    "text2": "We create opportunities for community members to understand their rights, raise concerns, engage with local leaders and participate constructively in decisions that affect their lives.",
+    "text3": "Our work places particular emphasis on creating space for women, youth and other groups whose voices may not always be represented in public decision-making."
   },
-  "results": {
-    "heading": "Results",
-    "rows": [
-      { "metric": "8", "outcome": "Community dialogues held", "verification": "Dialogue reports & attendance lists" },
-      { "metric": "3", "outcome": "Councillor accountability initiatives supported", "verification": "Project documentation" },
-      { "metric": "500+", "outcome": "Community members engaged in civic education and dialogue", "verification": "Participant registers" }
-    ]
-  },
-  "projects": {
-    "heading": "Projects",
-    "items": [
+  "civicInAction": {
+    "heading": "Civic Engagement in Action",
+    "intro": "From community concerns to constructive dialogue",
+    "cards": [
       {
         "icon": "💬",
         "title": "Community Dialogue Series",
-        "description": "Regular, facilitated dialogues that give community members a safe space to raise concerns and propose solutions directly to duty‑bearers."
+        "description": "Regular, facilitated dialogues bring community members together with local leaders and service providers. These conversations provide a structured space for residents to raise concerns, discuss community priorities and propose solutions.",
+        "tags": ["Community voice", "Dialogue", "Problem-solving"],
+        "link": "#community-dialogues"
       },
       {
         "icon": "🏛️",
         "title": "Councillors for Citizens",
-        "description": "Supporting elected local representatives to hold regular community meetings, report back and take action on citizen priorities."
+        "description": "Supporting elected local representatives to become more responsive and connected to the communities they serve. The initiative encourages councillors to hold community meetings, listen to citizen priorities, report back and take action.",
+        "tags": ["Accountability", "Representation", "Citizen priorities"],
+        "link": "#featured-initiative"
+      },
+      {
+        "icon": "📢",
+        "title": "Civic Awareness",
+        "description": "Civic awareness sessions help community members understand rights, governance and opportunities to participate in public processes, with emphasis on women and youth.",
+        "tags": ["Rights & responsibilities", "Governance awareness", "Participation"],
+        "link": "#inclusion-participation"
+      },
+      {
+        "icon": "🤝",
+        "title": "Community–Authority Engagement",
+        "description": "EKSS facilitates constructive engagement between communities, local authorities and service providers around issues affecting everyday life.",
+        "tags": ["Community priorities", "Service delivery", "Constructive engagement"],
+        "link": "#how-we-work"
       }
     ]
   },
-  "partners": {
-    "heading": "Partners & Donors",
-    "text": "Community structures, civil‑society networks, local authorities and service providers, and governance‑ and civic‑space donors."
+  "pathway": {
+    "heading": "From Voice to Action",
+    "intro": "A pathway for meaningful civic participation",
+    "steps": [
+      { "number": "01", "title": "UNDERSTAND", "description": "Community members gain greater awareness of their rights, responsibilities, governance processes and opportunities for participation." },
+      { "number": "02", "title": "SPEAK", "description": "People have safe and structured platforms to raise concerns, share experiences and communicate community priorities." },
+      { "number": "03", "title": "ENGAGE", "description": "Communities engage with councillors, local authorities and service providers through constructive dialogue." },
+      { "number": "04", "title": "ACT", "description": "Citizen priorities can inform discussions, follow-up actions and efforts to improve accountability and service delivery." }
+    ]
   },
-  "resources": {
-    "heading": "Resources",
-    "text": "Advocacy brief, dialogue guides and civic education materials.",
-    "link": "/resources"
+  "impact": {
+    "heading": "Our Civic Impact",
+    "intro": "Measuring participation and community engagement",
+    "stats": [
+      { "value": "8+", "label": "Community Dialogues", "description": "Facilitated community dialogues held in Juba and surrounding areas." },
+      { "value": "3", "label": "Councillor Initiatives", "description": "Councillor accountability initiatives supported." },
+      { "value": "500+", "label": "Community Members Reached", "description": "People engaged through civic education and community dialogue activities." }
+    ],
+    "resultsHeading": "Results",
+    "resultsRows": [
+      { "metric": "8", "outcome": "Community dialogues held", "verification": "Dialogue reports & attendance lists" },
+      { "metric": "3", "outcome": "Councillor accountability initiatives supported", "verification": "Project documentation" },
+      { "metric": "500+", "outcome": "Community members engaged in civic education and dialogue", "verification": "Participant registers" }
+    ],
+    "resultsNote": "Our programme results are supported by programme documentation and participant records."
+  },
+  "featuredInitiative": {
+    "title": "Councillors for Citizens",
+    "subtitle": "Building stronger connections between citizens and elected representatives",
+    "description": "Councillors for Citizens supports elected local representatives to maintain stronger relationships with the communities they serve. The initiative creates opportunities for councillors to meet residents, listen to community priorities, report back and respond to issues raised by citizens.",
+    "image": "/images/ekss4.jpg",
+    "points": [
+      { "title": "Community meetings", "description": "Creating opportunities for elected representatives to meet directly with residents." },
+      { "title": "Listening to citizens", "description": "Helping councillors understand the priorities and concerns of their communities." },
+      { "title": "Reporting back", "description": "Encouraging representatives to communicate with citizens about issues raised and actions taken." },
+      { "title": "Accountability", "description": "Strengthening the relationship between elected representatives and the people they represent." }
+    ],
+    "ctaText": "Support Civic Engagement",
+    "ctaLink": "/get-involved"
+  },
+  "communityDialogues": {
+    "heading": "Community Dialogues",
+    "intro": "Making space for conversation and solutions",
+    "description": "Community dialogue provides a structured environment where residents, local leaders and service providers can come together. Rather than simply identifying problems, the dialogue process encourages participants to discuss concerns, understand different perspectives and identify possible solutions.",
+    "participants": [
+      { "title": "Community members", "description": "People directly affected by local issues and service delivery challenges." },
+      { "title": "Local leaders", "description": "Leaders who can help understand and respond to community priorities." },
+      { "title": "Service providers", "description": "Relevant actors involved in delivering services to communities." },
+      { "title": "Civil society", "description": "Organisations and community structures that can support participation and accountability." }
+    ]
+  },
+  "inclusionParticipation": {
+    "heading": "Inclusion & Participation",
+    "intro": "Making sure more voices can be heard",
+    "items": [
+      { "title": "Women", "description": "Supporting greater participation and representation of women in community discussions and civic processes." },
+      { "title": "Youth", "description": "Creating opportunities for young people to develop their civic voice and participate constructively in community affairs." },
+      { "title": "Marginalised groups", "description": "Working to create more inclusive spaces where people who may otherwise be left out of decision-making can contribute their perspectives." },
+      { "title": "Communities", "description": "Strengthening collective participation so that community priorities can be communicated more effectively." }
+    ]
+  },
+  "howWeWork": {
+    "heading": "How We Work with Communities",
+    "intro": "Dialogue built on respect, evidence and participation",
+    "steps": [
+      { "title": "Listen", "description": "We begin by understanding community concerns, experiences and priorities." },
+      { "title": "Connect", "description": "We bring relevant community members, leaders and service providers together." },
+      { "title": "Discuss", "description": "Participants explore issues openly and respectfully." },
+      { "title": "Follow Up", "description": "Where appropriate, discussions can lead to further engagement, action and accountability." }
+    ]
+  },
+  "connectedPathways": {
+    "heading": "Connected Pathways",
+    "intro": "Civic voice is connected to wider community development",
+    "cards": [
+      {
+        "icon": "👥",
+        "title": "Youth Empowerment",
+        "description": "Young people need opportunities not only to develop skills and livelihoods, but also to participate in conversations about their communities and future.",
+        "link": "/youth",
+        "linkText": "Explore Youth Empowerment"
+      },
+      {
+        "icon": "📚",
+        "title": "Education Support",
+        "description": "Education can strengthen people's ability to understand opportunities, participate in society and pursue their aspirations.",
+        "link": "/education",
+        "linkText": "Explore Education Support"
+      },
+      {
+        "icon": "🌱",
+        "title": "Conservation Agriculture Programme",
+        "description": "Agriculture and livelihoods are connected to the wellbeing of communities, making community participation important to local development.",
+        "link": "/empower-farmers",
+        "linkText": "Explore Conservation Agriculture"
+      }
+    ]
+  },
+  "partnersDonors": {
+    "heading": "Partners & Donors",
+    "intro": "Working with communities and institutions",
+    "opportunities": [
+      { "title": "Community structures", "description": "Local groups and community structures that help identify priorities and mobilise participation." },
+      { "title": "Civil-society networks", "description": "Organisations working to strengthen community voice, participation and accountability." },
+      { "title": "Local authorities", "description": "Engaging decision-makers and elected representatives around community priorities." },
+      { "title": "Service providers", "description": "Supporting constructive conversations around services and community needs." },
+      { "title": "Governance & civic-space donors", "description": "Partners supporting stronger participation, accountability and civic engagement." }
+    ],
+    "ctaText": "Partner With Us",
+    "ctaLink": "/get-involved"
   },
   "gallery": {
     "heading": "Civic Engagement in Action",
@@ -84,10 +169,36 @@
       "/images/ekss6.jpg"
     ]
   },
-  "cta": {
-    "heading": "Strengthen Civic Voice",
-    "text": "Help communities participate in decisions that shape their lives.",
-    "buttonText": "Donate now",
-    "buttonLink": "/get-involved"
+  "resources": {
+    "heading": "Resources",
+    "intro": "Learn more about civic engagement",
+    "items": [
+      { "title": "Advocacy Briefs", "description": "Information and insights from EKSS's advocacy and civic engagement work." },
+      { "title": "Dialogue Guides", "description": "Materials supporting structured and constructive community dialogue." },
+      { "title": "Civic Education Materials", "description": "Resources designed to help communities understand participation, governance and civic engagement." }
+    ],
+    "ctaText": "Visit the Document Shelf →",
+    "ctaLink": "/resources"
+  },
+  "supportCta": {
+    "heading": "Support Civic Voice",
+    "text": "Help communities participate in decisions that shape their lives. Every community deserves opportunities to be heard. Your support helps create spaces where citizens can participate, raise concerns, engage decision-makers and contribute to solutions.",
+    "ways": [
+      { "title": "Donate", "description": "Help support community dialogue, civic education and participation activities." },
+      { "title": "Partner", "description": "Work with EKSS to strengthen civic engagement and accountability." },
+      { "title": "Volunteer", "description": "Contribute your skills, knowledge or professional experience." }
+    ],
+    "buttons": [
+      { "text": "Donate Now", "link": "/get-involved" },
+      { "text": "Get Involved", "link": "/get-involved" }
+    ]
+  },
+  "footerCta": {
+    "heading": "Stronger communities start with a voice.",
+    "text": "Support EmpowerKids–South Sudan in creating more opportunities for citizens to participate, engage and help shape the decisions that affect their lives.",
+    "buttons": [
+      { "text": "Donate Now", "link": "/get-involved" },
+      { "text": "Contact Us", "link": "/contact" }
+    ]
   }
 }

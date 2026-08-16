@@ -2,79 +2,147 @@
   "hero": {
     "tagline": "Youth Empowerment",
     "title": "Skills, livelihoods & youth leadership",
-    "subtitle": "Equipping young women and men with the tools to build their futures and shape their communities.",
-    "image": "/images/ekss3.jpg"
-  },
-  "stats": [
-    { "value": "3", "label": "States Reached" },
-    { "value": "7+", "label": "Essays Published" },
-    { "value": "120+", "label": "Youth Engaged" }
-  ],
-  "challenge": {
-    "heading": "The Challenge",
-    "text": "Young people in South Sudan face limited education and livelihood pathways, leaving many without income, skills or a stake in their communities – a driver of vulnerability and instability. EKSS’s Youth Empowerment programme builds young people’s skills, opportunities and leadership."
-  },
-  "approach": {
-    "heading": "Our Approach",
-    "items": [
-      {
-        "title": "Skills & training",
-        "description": "Market-relevant vocational, enterprise and life skills, linked to local opportunity."
-      },
-      {
-        "title": "Livelihoods & enterprise",
-        "description": "Supporting youth livelihoods and small enterprise, including links to finance, markets and mentorship."
-      },
-      {
-        "title": "Leadership & participation",
-        "description": "Creating platforms for youth leadership, voice and constructive engagement."
-      },
-      {
-        "title": "Integration",
-        "description": "Connecting youth work with EFSS (agri-enterprise) and education (transitions) to widen pathways."
-      }
+    "subtitle": "Equipping young women and men with the skills, opportunities and platforms they need to build their futures, participate in their communities and shape a more peaceful South Sudan.",
+    "image": "/images/ekss3.jpg",
+    "buttons": [
+      { "text": "Support Youth Leaders", "link": "/get-involved" },
+      { "text": "Explore Our Work", "link": "#youth-in-action" }
     ]
   },
-  "currentWork": {
-    "heading": "What We Are Doing Now",
-    "items": [
-      "Multi‑state youth peace essay competitions, with selected essays published in the national press.",
-      "Youth leadership forums and public speaking platforms in Juba and surrounding areas.",
-      "Entrepreneurship and agri‑business training in partnership with EFSS.",
-      "Mentorship linkages between young people and professionals."
-    ]
+  "programme": {
+    "heading": "The Programme",
+    "intro": "Creating pathways for young people to learn, participate and lead",
+    "text1": "Young people are central to the future of South Sudan. EmpowerKids–South Sudan’s Youth Empowerment programme creates practical opportunities for young women and men to develop skills, explore livelihoods, strengthen leadership abilities and have their voices heard.",
+    "text2": "The programme combines youth leadership, entrepreneurship, mentorship, public participation and platforms for young people to contribute ideas on peace and development.",
+    "text3": "Our youth work also connects with EKSS’s education and conservation agriculture programmes, creating wider pathways for learning, livelihoods and participation."
   },
-  "results": {
-    "heading": "Results",
-    "rows": [
-      { "metric": "3", "outcome": "States reached through youth essay competitions", "verification": "Competition records & press cuttings" },
-      { "metric": "7", "outcome": "Essays published in national newspapers", "verification": "Press cuttings" },
-      { "metric": "120+", "outcome": "Youth engaged in leadership and entrepreneurship activities", "verification": "Participant registers" }
-    ]
-  },
-  "projects": {
-    "heading": "Projects",
-    "items": [
+  "youthInAction": {
+    "heading": "Youth in Action",
+    "intro": "Young people learning, leading and taking part",
+    "cards": [
       {
         "icon": "📝",
         "title": "Youth Peace Essay Competition",
-        "description": "Annual competition giving young writers a national platform to voice their ideas for peace and development."
+        "description": "An annual competition giving young writers a national platform to share their ideas about peace, development and the future of South Sudan. Selected essays have been published in national newspapers.",
+        "tags": ["3 states reached", "7+ essays published"],
+        "link": "#featured-initiative"
       },
       {
         "icon": "🎤",
         "title": "Youth Leadership Forums",
-        "description": "Structured forums that build public speaking, critical thinking and community leadership skills."
+        "description": "Structured forums where young people develop public speaking, critical thinking and community leadership skills.",
+        "tags": ["Leadership", "Public speaking", "Critical thinking"],
+        "link": "#leadership-mentorship"
+      },
+      {
+        "icon": "💼",
+        "title": "Entrepreneurship & Enterprise",
+        "description": "Supporting young people to explore entrepreneurship, livelihoods and small enterprise opportunities, with mentorship and market connections.",
+        "tags": ["Enterprise skills", "Mentorship", "Livelihood opportunities"],
+        "link": "#connected-pathways"
+      },
+      {
+        "icon": "🌱",
+        "title": "Youth in Agribusiness",
+        "description": "Connecting youth empowerment with EKSS’s Conservation Agriculture Programme to create pathways into agriculture and enterprise.",
+        "tags": ["Agriculture", "Enterprise", "Practical skills"],
+        "link": "/empower-farmers"
       }
     ]
   },
-  "partners": {
-    "heading": "Partners & Donors",
-    "text": "Youth groups and networks, training providers, employers and enterprises, financial actors, and youth- and livelihoods-focused donors."
+  "pathway": {
+    "heading": "From Participation to Leadership",
+    "intro": "A pathway for young people to grow",
+    "steps": [
+      { "number": "01", "title": "DISCOVER", "description": "Young people access platforms where they can express their ideas, interests and aspirations." },
+      { "number": "02", "title": "LEARN", "description": "Training, mentorship, entrepreneurship activities and leadership forums help young people develop practical skills." },
+      { "number": "03", "title": "PARTICIPATE", "description": "Young people take part in competitions, forums, community activities and public platforms where their voices can be heard." },
+      { "number": "04", "title": "LEAD", "description": "With stronger skills, confidence and networks, young people are better positioned to contribute to their communities and shape conversations about peace and development." }
+    ]
   },
-  "resources": {
-    "heading": "Resources",
-    "text": "Youth programme brief, essay competition guidelines and success stories.",
-    "link": "/resources"
+  "impact": {
+    "heading": "Our Youth Impact",
+    "intro": "Turning participation into measurable results",
+    "stats": [
+      { "value": "3", "label": "States Reached", "description": "Through youth peace essay competitions and related activities." },
+      { "value": "7+", "label": "Essays Published", "description": "Selected youth essays published in national newspapers." },
+      { "value": "120+", "label": "Youth Engaged", "description": "Young people engaged through leadership, entrepreneurship and youth development activities." }
+    ],
+    "resultsHeading": "Results",
+    "resultsRows": [
+      { "metric": "3", "outcome": "States reached through youth essay competitions", "verification": "Competition records & press cuttings" },
+      { "metric": "7", "outcome": "Essays published in national newspapers", "verification": "Press cuttings" },
+      { "metric": "120+", "outcome": "Youth engaged in leadership and entrepreneurship activities", "verification": "Participant registers" }
+    ],
+    "resultsNote": "Our results are supported by programme records and can be made available for verification."
+  },
+  "featuredInitiative": {
+    "title": "Youth Peace Essay Competition",
+    "subtitle": "Giving young South Sudanese a national platform",
+    "description": "The Youth Peace Essay Competition gives young writers an opportunity to think critically about peace, development and the future of their communities. Through the competition, young people are encouraged to put their ideas into words and participate in national conversations. Selected essays are published in national newspapers, giving young writers an audience beyond their schools and communities.",
+    "image": "/images/ekss4.jpg",
+    "points": [
+      { "title": "A platform for youth voices", "description": "Young people can express their ideas about peace and development." },
+      { "title": "A culture of critical thinking", "description": "Participants are encouraged to research, reflect and communicate their ideas clearly." },
+      { "title": "National visibility", "description": "Selected essays reach wider audiences through publication in the national press." },
+      { "title": "Youth participation", "description": "Young people become active contributors to conversations about the future of South Sudan." }
+    ],
+    "reachStats": [
+      { "value": "3", "label": "States" },
+      { "value": "7", "label": "Essays Published" }
+    ],
+    "ctaText": "Support Youth Empowerment",
+    "ctaLink": "/get-involved"
+  },
+  "leadershipMentorship": {
+    "heading": "Leadership & Mentorship",
+    "intro": "Connecting young people with opportunities to grow",
+    "items": [
+      { "title": "Mentorship", "description": "Connecting young people with professionals who can share knowledge, experience and guidance." },
+      { "title": "Public Speaking", "description": "Creating opportunities for young people to communicate ideas with confidence." },
+      { "title": "Critical Thinking", "description": "Encouraging young people to analyse issues, develop ideas and engage constructively." },
+      { "title": "Community Leadership", "description": "Helping young people develop the confidence and experience to participate positively in their communities." }
+    ]
+  },
+  "connectedPathways": {
+    "heading": "Connected Pathways",
+    "intro": "Youth empowerment does not happen in isolation",
+    "cards": [
+      {
+        "icon": "📚",
+        "title": "Education Support",
+        "description": "Education creates pathways for young people to continue learning and pursue future opportunities.",
+        "link": "/education",
+        "linkText": "Explore Education Support"
+      },
+      {
+        "icon": "🌱",
+        "title": "Conservation Agriculture Programme",
+        "description": "Agriculture and enterprise activities can create practical livelihood pathways for young people.",
+        "link": "/empower-farmers",
+        "linkText": "Explore Conservation Agriculture"
+      },
+      {
+        "icon": "🗣️",
+        "title": "Advocacy & Civic Engagement",
+        "description": "Youth participation connects naturally with wider opportunities for community voice, governance awareness and civic engagement.",
+        "link": "/advocacy",
+        "linkText": "Explore Advocacy & Civic Engagement"
+      }
+    ]
+  },
+  "partnersDonors": {
+    "heading": "Partners & Donors",
+    "intro": "Working together to expand opportunities for young people",
+    "opportunities": [
+      { "title": "Youth networks", "description": "Connect young people with programmes, platforms and opportunities." },
+      { "title": "Training providers", "description": "Help deliver relevant skills and capacity-building activities." },
+      { "title": "Employers & enterprises", "description": "Create pathways to employment, mentorship and enterprise." },
+      { "title": "Financial actors", "description": "Support access to finance and livelihood opportunities." },
+      { "title": "Donors & institutions", "description": "Help scale youth leadership, livelihoods and participation programmes." }
+    ],
+    "ctaText": "Partner With Us",
+    "ctaLink": "/get-involved"
   },
   "gallery": {
     "heading": "Youth in Action",
@@ -84,10 +152,25 @@
       "/images/ekss6.jpg"
     ]
   },
-  "cta": {
+  "supportCta": {
     "heading": "Support Youth Leaders",
-    "text": "Help us create platforms where young South Sudanese can build skills and lead change.",
-    "buttonText": "Donate now",
-    "buttonLink": "/get-involved"
+    "text": "Help young South Sudanese build skills and lead change. Young people need opportunities to learn, participate and lead. Your support helps create platforms for youth leadership, entrepreneurship, mentorship and meaningful participation.",
+    "ways": [
+      { "title": "Donate", "description": "Help fund youth activities and opportunities." },
+      { "title": "Partner", "description": "Work with EKSS to expand youth programmes." },
+      { "title": "Volunteer", "description": "Share your skills, experience or professional network." }
+    ],
+    "buttons": [
+      { "text": "Donate Now", "link": "/get-involved" },
+      { "text": "Get Involved", "link": "/get-involved" }
+    ]
+  },
+  "footerCta": {
+    "heading": "Every young person deserves an opportunity to participate, learn and lead.",
+    "text": "Support Youth Empowerment and help create stronger pathways for the next generation of South Sudanese leaders.",
+    "buttons": [
+      { "text": "Donate Now", "link": "/get-involved" },
+      { "text": "Contact Us", "link": "/contact" }
+    ]
   }
 }

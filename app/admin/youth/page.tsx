@@ -7,29 +7,31 @@ import { savePageData } from '@/app/actions';
 
 type SectionKey =
   | 'hero'
-  | 'stats'
-  | 'challenge'
-  | 'approach'
-  | 'currentWork'
-  | 'results'
-  | 'projects'
-  | 'partners'
-  | 'resources'
+  | 'programme'
+  | 'youthInAction'
+  | 'pathway'
+  | 'impact'
+  | 'featuredInitiative'
+  | 'leadershipMentorship'
+  | 'connectedPathways'
+  | 'partnersDonors'
   | 'gallery'
-  | 'cta';
+  | 'supportCta'
+  | 'footerCta';
 
 const sectionNames: { key: SectionKey; label: string }[] = [
   { key: 'hero', label: 'Hero' },
-  { key: 'stats', label: 'Stats' },
-  { key: 'challenge', label: 'Challenge' },
-  { key: 'approach', label: 'Our Approach' },
-  { key: 'currentWork', label: 'What We Are Doing' },
-  { key: 'results', label: 'Results' },
-  { key: 'projects', label: 'Projects' },
-  { key: 'partners', label: 'Partners & Donors' },
-  { key: 'resources', label: 'Resources' },
+  { key: 'programme', label: 'Programme' },
+  { key: 'youthInAction', label: 'Youth in Action' },
+  { key: 'pathway', label: 'Pathway' },
+  { key: 'impact', label: 'Impact' },
+  { key: 'featuredInitiative', label: 'Featured Initiative' },
+  { key: 'leadershipMentorship', label: 'Leadership & Mentorship' },
+  { key: 'connectedPathways', label: 'Connected Pathways' },
+  { key: 'partnersDonors', label: 'Partners & Donors' },
   { key: 'gallery', label: 'Gallery' },
-  { key: 'cta', label: 'Call to Action' },
+  { key: 'supportCta', label: 'Support CTA' },
+  { key: 'footerCta', label: 'Footer CTA' },
 ];
 
 export default function AdminYouth() {
@@ -73,6 +75,7 @@ export default function AdminYouth() {
     if (!data) return null;
 
     switch (activeSection) {
+      // ================= HERO =================
       case 'hero':
         return (
           <div className="space-y-4">
@@ -86,158 +89,289 @@ export default function AdminYouth() {
             </div>
             <div>
               <label className="block text-sm font-medium">Subtitle</label>
-              <textarea value={data.hero.subtitle} onChange={(e) => update('hero.subtitle', e.target.value)} rows={2} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <textarea value={data.hero.subtitle} onChange={(e) => update('hero.subtitle', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
             <div>
               <label className="block text-sm font-medium">Background Image</label>
               <FileUploadField currentValue={data.hero.image} onChange={(url) => update('hero.image', url)} accept="image/*" />
             </div>
+            <h3 className="font-semibold mt-4">Buttons</h3>
+            {data.hero.buttons.map((btn: any, i: number) => (
+              <div key={i} className="flex gap-2 mb-2">
+                <input value={btn.text} onChange={(e) => { const b = [...data.hero.buttons]; b[i].text = e.target.value; update('hero.buttons', b); }} className="flex-1 border rounded px-3 py-2" placeholder="Text" />
+                <input value={btn.link} onChange={(e) => { const b = [...data.hero.buttons]; b[i].link = e.target.value; update('hero.buttons', b); }} className="flex-1 border rounded px-3 py-2" placeholder="Link" />
+                <button onClick={() => update('hero.buttons', data.hero.buttons.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
+              </div>
+            ))}
+            <button onClick={() => update('hero.buttons', [...data.hero.buttons, { text: '', link: '' }])} className="text-sm text-emerald-green">+ Add Button</button>
           </div>
         );
 
-      case 'stats':
+      // ================= PROGRAMME =================
+      case 'programme':
         return (
-          <div>
-            {data.stats.map((stat: any, i: number) => (
-              <div key={i} className="flex gap-3 items-end mb-3">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Heading</label>
+              <input value={data.programme.heading} onChange={(e) => update('programme.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.programme.intro} onChange={(e) => update('programme.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Text 1</label>
+              <textarea value={data.programme.text1} onChange={(e) => update('programme.text1', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Text 2</label>
+              <textarea value={data.programme.text2} onChange={(e) => update('programme.text2', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Text 3</label>
+              <textarea value={data.programme.text3} onChange={(e) => update('programme.text3', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+          </div>
+        );
+
+      // ================= YOUTH IN ACTION =================
+      case 'youthInAction':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Heading</label>
+              <input value={data.youthInAction.heading} onChange={(e) => update('youthInAction.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.youthInAction.intro} onChange={(e) => update('youthInAction.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <h3 className="font-semibold">Cards</h3>
+            {data.youthInAction.cards.map((card: any, i: number) => (
+              <div key={i} className="border rounded p-3 mb-2 space-y-2">
+                <input value={card.icon} onChange={(e) => { const c = [...data.youthInAction.cards]; c[i].icon = e.target.value; update('youthInAction.cards', c); }} className="w-full border rounded px-2 py-1" placeholder="Icon" />
+                <input value={card.title} onChange={(e) => { const c = [...data.youthInAction.cards]; c[i].title = e.target.value; update('youthInAction.cards', c); }} className="w-full border rounded px-2 py-1" placeholder="Title" />
+                <textarea value={card.description} onChange={(e) => { const c = [...data.youthInAction.cards]; c[i].description = e.target.value; update('youthInAction.cards', c); }} rows={2} className="w-full border rounded px-2 py-1" placeholder="Description" />
+                <label className="text-xs">Tags (comma separated)</label>
+                <input value={card.tags.join(', ')} onChange={(e) => { const c = [...data.youthInAction.cards]; c[i].tags = e.target.value.split(',').map((t: string) => t.trim()); update('youthInAction.cards', c); }} className="w-full border rounded px-2 py-1" />
+                <input value={card.link} onChange={(e) => { const c = [...data.youthInAction.cards]; c[i].link = e.target.value; update('youthInAction.cards', c); }} className="w-full border rounded px-2 py-1" placeholder="Link" />
+                <button onClick={() => update('youthInAction.cards', data.youthInAction.cards.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+              </div>
+            ))}
+            <button onClick={() => update('youthInAction.cards', [...data.youthInAction.cards, { icon: '', title: '', description: '', tags: [], link: '' }])} className="text-sm text-emerald-green">+ Add Card</button>
+          </div>
+        );
+
+      // ================= PATHWAY =================
+      case 'pathway':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Heading</label>
+              <input value={data.pathway.heading} onChange={(e) => update('pathway.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.pathway.intro} onChange={(e) => update('pathway.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <h3 className="font-semibold">Steps</h3>
+            {data.pathway.steps.map((step: any, i: number) => (
+              <div key={i} className="border rounded p-3 mb-2 space-y-2">
+                <input value={step.number} onChange={(e) => { const s = [...data.pathway.steps]; s[i].number = e.target.value; update('pathway.steps', s); }} className="w-full border rounded px-2 py-1" placeholder="Number" />
+                <input value={step.title} onChange={(e) => { const s = [...data.pathway.steps]; s[i].title = e.target.value; update('pathway.steps', s); }} className="w-full border rounded px-2 py-1" placeholder="Title" />
+                <textarea value={step.description} onChange={(e) => { const s = [...data.pathway.steps]; s[i].description = e.target.value; update('pathway.steps', s); }} rows={2} className="w-full border rounded px-2 py-1" placeholder="Description" />
+                <button onClick={() => update('pathway.steps', data.pathway.steps.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+              </div>
+            ))}
+            <button onClick={() => update('pathway.steps', [...data.pathway.steps, { number: '', title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Step</button>
+          </div>
+        );
+
+      // ================= IMPACT =================
+      case 'impact':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Heading</label>
+              <input value={data.impact.heading} onChange={(e) => update('impact.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.impact.intro} onChange={(e) => update('impact.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <h3 className="font-semibold">Stats</h3>
+            {data.impact.stats.map((stat: any, i: number) => (
+              <div key={i} className="flex gap-2 items-end mb-2">
                 <div className="flex-1">
                   <label className="text-xs">Value</label>
-                  <input value={stat.value} onChange={(e) => { const s = [...data.stats]; s[i].value = e.target.value; update('stats', s); }} className="w-full border rounded-lg px-2 py-1 mt-1" />
+                  <input value={stat.value} onChange={(e) => { const s = [...data.impact.stats]; s[i].value = e.target.value; update('impact.stats', s); }} className="w-full border rounded px-2 py-1" />
                 </div>
                 <div className="flex-1">
                   <label className="text-xs">Label</label>
-                  <input value={stat.label} onChange={(e) => { const s = [...data.stats]; s[i].label = e.target.value; update('stats', s); }} className="w-full border rounded-lg px-2 py-1 mt-1" />
+                  <input value={stat.label} onChange={(e) => { const s = [...data.impact.stats]; s[i].label = e.target.value; update('impact.stats', s); }} className="w-full border rounded px-2 py-1" />
                 </div>
-                <button onClick={() => update('stats', data.stats.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">✕</button>
+                <button onClick={() => update('impact.stats', data.impact.stats.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
               </div>
             ))}
-            <button onClick={() => update('stats', [...data.stats, { value: '', label: 'New stat' }])} className="text-sm text-emerald-green">+ Add Stat</button>
+            <button onClick={() => update('impact.stats', [...data.impact.stats, { value: '', label: '' }])} className="text-sm text-emerald-green">+ Add Stat</button>
+
+            <h3 className="font-semibold mt-4">Results Table</h3>
+            {data.impact.resultsRows.map((row: any, i: number) => (
+              <div key={i} className="border rounded p-3 mb-2">
+                <input value={row.metric} onChange={(e) => { const r = [...data.impact.resultsRows]; r[i].metric = e.target.value; update('impact.resultsRows', r); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Metric" />
+                <input value={row.outcome} onChange={(e) => { const r = [...data.impact.resultsRows]; r[i].outcome = e.target.value; update('impact.resultsRows', r); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Outcome" />
+                <input value={row.verification} onChange={(e) => { const r = [...data.impact.resultsRows]; r[i].verification = e.target.value; update('impact.resultsRows', r); }} className="w-full border rounded px-2 py-1" placeholder="Verification" />
+                <button onClick={() => update('impact.resultsRows', data.impact.resultsRows.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+              </div>
+            ))}
+            <button onClick={() => update('impact.resultsRows', [...data.impact.resultsRows, { metric: '', outcome: '', verification: '' }])} className="text-sm text-emerald-green">+ Add Row</button>
+
+            <div>
+              <label className="block text-sm font-medium">Results Note</label>
+              <textarea value={data.impact.resultsNote} onChange={(e) => update('impact.resultsNote', e.target.value)} rows={2} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
           </div>
         );
 
-      case 'challenge':
+      // ================= FEATURED INITIATIVE =================
+      case 'featuredInitiative':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Title</label>
+              <input value={data.featuredInitiative.title} onChange={(e) => update('featuredInitiative.title', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Subtitle</label>
+              <input value={data.featuredInitiative.subtitle} onChange={(e) => update('featuredInitiative.subtitle', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Description</label>
+              <textarea value={data.featuredInitiative.description} onChange={(e) => update('featuredInitiative.description', e.target.value)} rows={4} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Image</label>
+              <FileUploadField currentValue={data.featuredInitiative.image} onChange={(url) => update('featuredInitiative.image', url)} accept="image/*" />
+            </div>
+            <h3 className="font-semibold">Points</h3>
+            {data.featuredInitiative.points.map((point: any, i: number) => (
+              <div key={i} className="border rounded p-3 mb-2">
+                <input value={point.title} onChange={(e) => { const p = [...data.featuredInitiative.points]; p[i].title = e.target.value; update('featuredInitiative.points', p); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
+                <input value={point.description} onChange={(e) => { const p = [...data.featuredInitiative.points]; p[i].description = e.target.value; update('featuredInitiative.points', p); }} className="w-full border rounded px-2 py-1" placeholder="Description" />
+                <button onClick={() => update('featuredInitiative.points', data.featuredInitiative.points.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+              </div>
+            ))}
+            <button onClick={() => update('featuredInitiative.points', [...data.featuredInitiative.points, { title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Point</button>
+
+            <h3 className="font-semibold mt-4">Reach Stats</h3>
+            {data.featuredInitiative.reachStats.map((stat: any, i: number) => (
+              <div key={i} className="flex gap-2 items-end mb-2">
+                <input value={stat.value} onChange={(e) => { const s = [...data.featuredInitiative.reachStats]; s[i].value = e.target.value; update('featuredInitiative.reachStats', s); }} className="flex-1 border rounded px-2 py-1" placeholder="Value" />
+                <input value={stat.label} onChange={(e) => { const s = [...data.featuredInitiative.reachStats]; s[i].label = e.target.value; update('featuredInitiative.reachStats', s); }} className="flex-1 border rounded px-2 py-1" placeholder="Label" />
+                <button onClick={() => update('featuredInitiative.reachStats', data.featuredInitiative.reachStats.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
+              </div>
+            ))}
+            <button onClick={() => update('featuredInitiative.reachStats', [...data.featuredInitiative.reachStats, { value: '', label: '' }])} className="text-sm text-emerald-green">+ Add Stat</button>
+
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium">CTA Text</label>
+                <input value={data.featuredInitiative.ctaText} onChange={(e) => update('featuredInitiative.ctaText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">CTA Link</label>
+                <input value={data.featuredInitiative.ctaLink} onChange={(e) => update('featuredInitiative.ctaLink', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              </div>
+            </div>
+          </div>
+        );
+
+      // ================= LEADERSHIP & MENTORSHIP =================
+      case 'leadershipMentorship':
         return (
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium">Heading</label>
-              <input value={data.challenge.heading} onChange={(e) => update('challenge.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <input value={data.leadershipMentorship.heading} onChange={(e) => update('leadershipMentorship.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
             <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.challenge.text} onChange={(e) => update('challenge.text', e.target.value)} rows={4} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-          </div>
-        );
-
-      case 'approach':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.approach.heading} onChange={(e) => update('approach.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.leadershipMentorship.intro} onChange={(e) => update('leadershipMentorship.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
             <h3 className="font-semibold">Items</h3>
-            {data.approach.items.map((item: any, i: number) => (
+            {data.leadershipMentorship.items.map((item: any, i: number) => (
               <div key={i} className="border rounded p-3 mb-2">
-                <input value={item.title} onChange={(e) => { const a = [...data.approach.items]; a[i].title = e.target.value; update('approach.items', a); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
-                <input value={item.description} onChange={(e) => { const a = [...data.approach.items]; a[i].description = e.target.value; update('approach.items', a); }} className="w-full border rounded px-2 py-1" placeholder="Description" />
-                <button onClick={() => update('approach.items', data.approach.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+                <input value={item.title} onChange={(e) => { const l = [...data.leadershipMentorship.items]; l[i].title = e.target.value; update('leadershipMentorship.items', l); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
+                <input value={item.description} onChange={(e) => { const l = [...data.leadershipMentorship.items]; l[i].description = e.target.value; update('leadershipMentorship.items', l); }} className="w-full border rounded px-2 py-1" placeholder="Description" />
+                <button onClick={() => update('leadershipMentorship.items', data.leadershipMentorship.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
               </div>
             ))}
-            <button onClick={() => update('approach.items', [...data.approach.items, { title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Item</button>
+            <button onClick={() => update('leadershipMentorship.items', [...data.leadershipMentorship.items, { title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Item</button>
           </div>
         );
 
-      case 'currentWork':
+      // ================= CONNECTED PATHWAYS =================
+      case 'connectedPathways':
         return (
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium">Heading</label>
-              <input value={data.currentWork.heading} onChange={(e) => update('currentWork.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <input value={data.connectedPathways.heading} onChange={(e) => update('connectedPathways.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
-            <h3 className="font-semibold">Items</h3>
-            {data.currentWork.items.map((item: string, i: number) => (
-              <div key={i} className="flex gap-2 mb-2">
-                <input value={item} onChange={(e) => { const c = [...data.currentWork.items]; c[i] = e.target.value; update('currentWork.items', c); }} className="flex-1 border rounded px-3 py-2" />
-                <button onClick={() => update('currentWork.items', data.currentWork.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
-              </div>
-            ))}
-            <button onClick={() => update('currentWork.items', [...data.currentWork.items, ''])} className="text-sm text-emerald-green">+ Add Item</button>
-          </div>
-        );
-
-      case 'results':
-        return (
-          <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.results.heading} onChange={(e) => update('results.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.connectedPathways.intro} onChange={(e) => update('connectedPathways.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
-            <h3 className="font-semibold">Rows</h3>
-            {data.results.rows.map((row: any, i: number) => (
+            <h3 className="font-semibold">Cards</h3>
+            {data.connectedPathways.cards.map((card: any, i: number) => (
               <div key={i} className="border rounded p-3 mb-2">
-                <input value={row.metric} onChange={(e) => { const r = [...data.results.rows]; r[i].metric = e.target.value; update('results.rows', r); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Metric" />
-                <input value={row.outcome} onChange={(e) => { const r = [...data.results.rows]; r[i].outcome = e.target.value; update('results.rows', r); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Outcome" />
-                <input value={row.verification} onChange={(e) => { const r = [...data.results.rows]; r[i].verification = e.target.value; update('results.rows', r); }} className="w-full border rounded px-2 py-1" placeholder="Verification" />
-                <button onClick={() => update('results.rows', data.results.rows.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+                <input value={card.icon} onChange={(e) => { const c = [...data.connectedPathways.cards]; c[i].icon = e.target.value; update('connectedPathways.cards', c); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Icon" />
+                <input value={card.title} onChange={(e) => { const c = [...data.connectedPathways.cards]; c[i].title = e.target.value; update('connectedPathways.cards', c); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
+                <textarea value={card.description} onChange={(e) => { const c = [...data.connectedPathways.cards]; c[i].description = e.target.value; update('connectedPathways.cards', c); }} rows={2} className="w-full border rounded px-2 py-1 mb-1" placeholder="Description" />
+                <input value={card.link} onChange={(e) => { const c = [...data.connectedPathways.cards]; c[i].link = e.target.value; update('connectedPathways.cards', c); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Link" />
+                <input value={card.linkText} onChange={(e) => { const c = [...data.connectedPathways.cards]; c[i].linkText = e.target.value; update('connectedPathways.cards', c); }} className="w-full border rounded px-2 py-1" placeholder="Link Text" />
+                <button onClick={() => update('connectedPathways.cards', data.connectedPathways.cards.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
               </div>
             ))}
-            <button onClick={() => update('results.rows', [...data.results.rows, { metric: '', outcome: '', verification: '' }])} className="text-sm text-emerald-green">+ Add Row</button>
+            <button onClick={() => update('connectedPathways.cards', [...data.connectedPathways.cards, { icon: '', title: '', description: '', link: '', linkText: '' }])} className="text-sm text-emerald-green">+ Add Card</button>
           </div>
         );
 
-      case 'projects':
+      // ================= PARTNERS & DONORS =================
+      case 'partnersDonors':
         return (
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium">Heading</label>
-              <input value={data.projects.heading} onChange={(e) => update('projects.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <input value={data.partnersDonors.heading} onChange={(e) => update('partnersDonors.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
-            <h3 className="font-semibold">Projects</h3>
-            {data.projects.items.map((project: any, i: number) => (
+            <div>
+              <label className="block text-sm font-medium">Intro</label>
+              <input value={data.partnersDonors.intro} onChange={(e) => update('partnersDonors.intro', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <h3 className="font-semibold">Opportunities</h3>
+            {data.partnersDonors.opportunities.map((item: any, i: number) => (
               <div key={i} className="border rounded p-3 mb-2">
-                <input value={project.icon} onChange={(e) => { const p = [...data.projects.items]; p[i].icon = e.target.value; update('projects.items', p); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Icon (emoji)" />
-                <input value={project.title} onChange={(e) => { const p = [...data.projects.items]; p[i].title = e.target.value; update('projects.items', p); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
-                <textarea value={project.description} onChange={(e) => { const p = [...data.projects.items]; p[i].description = e.target.value; update('projects.items', p); }} rows={2} className="w-full border rounded px-2 py-1" placeholder="Description" />
-                <button onClick={() => update('projects.items', data.projects.items.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
+                <input value={item.title} onChange={(e) => { const p = [...data.partnersDonors.opportunities]; p[i].title = e.target.value; update('partnersDonors.opportunities', p); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
+                <input value={item.description} onChange={(e) => { const p = [...data.partnersDonors.opportunities]; p[i].description = e.target.value; update('partnersDonors.opportunities', p); }} className="w-full border rounded px-2 py-1" placeholder="Description" />
+                <button onClick={() => update('partnersDonors.opportunities', data.partnersDonors.opportunities.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
               </div>
             ))}
-            <button onClick={() => update('projects.items', [...data.projects.items, { icon: '', title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Project</button>
-          </div>
-        );
-
-      case 'partners':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.partners.heading} onChange={(e) => update('partners.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.partners.text} onChange={(e) => update('partners.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            <button onClick={() => update('partnersDonors.opportunities', [...data.partnersDonors.opportunities, { title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Opportunity</button>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium">CTA Text</label>
+                <input value={data.partnersDonors.ctaText} onChange={(e) => update('partnersDonors.ctaText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">CTA Link</label>
+                <input value={data.partnersDonors.ctaLink} onChange={(e) => update('partnersDonors.ctaLink', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              </div>
             </div>
           </div>
         );
 
-      case 'resources':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium">Heading</label>
-              <input value={data.resources.heading} onChange={(e) => update('resources.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.resources.text} onChange={(e) => update('resources.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Link</label>
-              <input value={data.resources.link} onChange={(e) => update('resources.link', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
-            </div>
-          </div>
-        );
-
+      // ================= GALLERY =================
       case 'gallery':
         return (
           <div className="space-y-4">
@@ -252,9 +386,7 @@ export default function AdminYouth() {
                   {img ? (
                     <img src={img} alt="" className="h-32 w-full object-cover rounded mb-2" />
                   ) : (
-                    <div className="h-32 w-full flex items-center justify-center bg-gray-100 rounded mb-2 text-gray-400 text-sm">
-                      No image
-                    </div>
+                    <div className="h-32 w-full flex items-center justify-center bg-gray-100 rounded mb-2 text-gray-400 text-sm">No image</div>
                   )}
                   <FileUploadField currentValue={img} onChange={(url) => { const g = [...data.gallery.images]; g[i] = url; update('gallery.images', g); }} accept="image/*" />
                   <button onClick={() => update('gallery.images', data.gallery.images.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm mt-1">Remove</button>
@@ -265,27 +397,60 @@ export default function AdminYouth() {
           </div>
         );
 
-      case 'cta':
+      // ================= SUPPORT CTA =================
+      case 'supportCta':
         return (
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium">Heading</label>
-              <input value={data.cta.heading} onChange={(e) => update('cta.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <input value={data.supportCta.heading} onChange={(e) => update('supportCta.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
             <div>
               <label className="block text-sm font-medium">Text</label>
-              <textarea value={data.cta.text} onChange={(e) => update('cta.text', e.target.value)} rows={2} className="w-full border rounded-lg px-3 py-2 mt-1" />
+              <textarea value={data.supportCta.text} onChange={(e) => update('supportCta.text', e.target.value)} rows={3} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium">Button Text</label>
-                <input value={data.cta.buttonText} onChange={(e) => update('cta.buttonText', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            <h3 className="font-semibold">Ways</h3>
+            {data.supportCta.ways.map((way: any, i: number) => (
+              <div key={i} className="border rounded p-3 mb-2">
+                <input value={way.title} onChange={(e) => { const w = [...data.supportCta.ways]; w[i].title = e.target.value; update('supportCta.ways', w); }} className="w-full border rounded px-2 py-1 mb-1" placeholder="Title" />
+                <input value={way.description} onChange={(e) => { const w = [...data.supportCta.ways]; w[i].description = e.target.value; update('supportCta.ways', w); }} className="w-full border rounded px-2 py-1" placeholder="Description" />
+                <button onClick={() => update('supportCta.ways', data.supportCta.ways.filter((_: any, idx: number) => idx !== i))} className="text-red-500 text-sm">Remove</button>
               </div>
-              <div>
-                <label className="block text-sm font-medium">Button Link</label>
-                <input value={data.cta.buttonLink} onChange={(e) => update('cta.buttonLink', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            ))}
+            <button onClick={() => update('supportCta.ways', [...data.supportCta.ways, { title: '', description: '' }])} className="text-sm text-emerald-green">+ Add Way</button>
+            <h3 className="font-semibold mt-4">Buttons</h3>
+            {data.supportCta.buttons.map((btn: any, i: number) => (
+              <div key={i} className="flex gap-2 mb-2">
+                <input value={btn.text} onChange={(e) => { const b = [...data.supportCta.buttons]; b[i].text = e.target.value; update('supportCta.buttons', b); }} className="flex-1 border rounded px-2 py-1" placeholder="Text" />
+                <input value={btn.link} onChange={(e) => { const b = [...data.supportCta.buttons]; b[i].link = e.target.value; update('supportCta.buttons', b); }} className="flex-1 border rounded px-2 py-1" placeholder="Link" />
+                <button onClick={() => update('supportCta.buttons', data.supportCta.buttons.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
               </div>
+            ))}
+            <button onClick={() => update('supportCta.buttons', [...data.supportCta.buttons, { text: '', link: '' }])} className="text-sm text-emerald-green">+ Add Button</button>
+          </div>
+        );
+
+      // ================= FOOTER CTA =================
+      case 'footerCta':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Heading</label>
+              <input value={data.footerCta.heading} onChange={(e) => update('footerCta.heading', e.target.value)} className="w-full border rounded-lg px-3 py-2 mt-1" />
             </div>
+            <div>
+              <label className="block text-sm font-medium">Text</label>
+              <textarea value={data.footerCta.text} onChange={(e) => update('footerCta.text', e.target.value)} rows={2} className="w-full border rounded-lg px-3 py-2 mt-1" />
+            </div>
+            <h3 className="font-semibold">Buttons</h3>
+            {data.footerCta.buttons.map((btn: any, i: number) => (
+              <div key={i} className="flex gap-2 mb-2">
+                <input value={btn.text} onChange={(e) => { const b = [...data.footerCta.buttons]; b[i].text = e.target.value; update('footerCta.buttons', b); }} className="flex-1 border rounded px-2 py-1" placeholder="Text" />
+                <input value={btn.link} onChange={(e) => { const b = [...data.footerCta.buttons]; b[i].link = e.target.value; update('footerCta.buttons', b); }} className="flex-1 border rounded px-2 py-1" placeholder="Link" />
+                <button onClick={() => update('footerCta.buttons', data.footerCta.buttons.filter((_: any, idx: number) => idx !== i))} className="text-red-500">✕</button>
+              </div>
+            ))}
+            <button onClick={() => update('footerCta.buttons', [...data.footerCta.buttons, { text: '', link: '' }])} className="text-sm text-emerald-green">+ Add Button</button>
           </div>
         );
 
