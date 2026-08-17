@@ -3,7 +3,7 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Known old URLs that might still be indexed
+      // Specific old URLs → new pages
       { source: '/about-us-empowerkids-south-sudan', destination: '/about', permanent: true },
       { source: '/index.html', destination: '/', permanent: true },
       { source: '/home.html', destination: '/', permanent: true },
@@ -20,18 +20,13 @@ const nextConfig: NextConfig = {
       { source: '/get-involved.html', destination: '/get-involved', permanent: true },
       { source: '/contact.html', destination: '/contact', permanent: true },
 
-      // Known malformed slugs (placeholders – replace with actual ones from client if known)
-      { source: '/aboutus-empowerkids', destination: '/about', permanent: true },
-      { source: '/empower-kids-south-sudan', destination: '/', permanent: true },
-      { source: '/ekks-about', destination: '/about', permanent: true },
-      { source: '/south-sudan-empowerkids', destination: '/', permanent: true },
-
-      // Catch-all: redirect any other unknown path to home, except admin, API, and static assets
-      {
-        source: '/((?!admin|api|_next|images|favicon.ico|icon.png|icon-192.png|apple-icon.png|robots.txt|sitemap.xml).*)',
-        destination: '/',
-        permanent: false,
-      },
+      // Optional: force www → non‑www (only if you want apex domain)
+      // {
+      //   source: '/(.*)',
+      //   has: [{ type: 'host', value: 'www.ekss.org' }],
+      //   destination: 'https://ekss.org/:path*',
+      //   permanent: true,
+      // },
     ]
   },
 }
