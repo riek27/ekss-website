@@ -70,7 +70,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-              <img src="/images/eksslogo.jpg" alt="EmpowerKids logo" className="h-16 w-auto rounded-full object-contain" />
+              <img src="/images/eksslogo.png" alt="EmpowerKids logo" className="h-16 w-auto rounded-full object-contain" />
               <span className="font-display font-semibold text-deep-forest text-sm sm:text-base leading-tight hidden sm:block">
   EmpowerKids–South Sudan
 </span>
