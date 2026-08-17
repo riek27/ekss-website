@@ -4,7 +4,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'EmpowerKids-South Sudan | Verified Results for Children & Communities',
   description: 'We train, we teach, we plant — and we count every result.',
-}
+  icons: {
+    icon: '/images/eksslogo.jpg',   // for regular browsers
+    apple: '/images/eksslogo.jpg',  // for Apple devices
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
