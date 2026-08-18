@@ -933,298 +933,308 @@ export default function AdminHome() {
           </div>
         );
 
-      // ================= RESOURCES (homepage resource summaries) =================
-      case 'resources':
-        return (
-          <div className="space-y-6">
-            <input
-              value={data.resources.heading}
-              onChange={(e) => update('resources.heading', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              placeholder="Heading"
+     // ================= RESOURCES (homepage resource summaries) =================
+case 'resources':
+  return (
+    <div className="space-y-6">
+      <input
+        value={data.resources.heading}
+        onChange={(e) => update('resources.heading', e.target.value)}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2"
+        placeholder="Heading"
+      />
+      <textarea
+        value={data.resources.subtitle}
+        onChange={(e) => update('resources.subtitle', e.target.value)}
+        rows={2}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2"
+        placeholder="Subtitle"
+      />
+
+      {/* Annual Reports */}
+      <h3 className="font-display font-bold text-lg text-deep-forest">Annual Reports</h3>
+      {data.resources.annualReports.map((report: any, i: number) => (
+        <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <input
+            value={report.title}
+            onChange={(e) => {
+              const a = [...data.resources.annualReports];
+              a[i].title = e.target.value;
+              update('resources.annualReports', a);
+            }}
+            className="w-full border border-gray-200 rounded-lg px-3 py-2"
+            placeholder="Title"
+          />
+          <textarea
+            value={report.description}
+            onChange={(e) => {
+              const a = [...data.resources.annualReports];
+              a[i].description = e.target.value;
+              update('resources.annualReports', a);
+            }}
+            rows={2}
+            className="w-full border border-gray-200 rounded-lg px-3 py-2"
+            placeholder="Description"
+          />
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
+            <FileUploadField
+              currentValue={report.link}
+              onChange={(url) => {
+                const a = [...data.resources.annualReports];
+                a[i].link = url;
+                update('resources.annualReports', a);
+              }}
+              accept=".pdf,.doc,.docx"
             />
-            <textarea
-              value={data.resources.subtitle}
-              onChange={(e) => update('resources.subtitle', e.target.value)}
-              rows={2}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              placeholder="Subtitle"
-            />
-
-            {/* Annual Reports */}
-            <h3 className="font-display font-bold text-lg text-deep-forest">Annual Reports</h3>
-            {data.resources.annualReports.map((report: any, i: number) => (
-              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
-                <input
-                  value={report.title}
-                  onChange={(e) => {
-                    const a = [...data.resources.annualReports];
-                    a[i].title = e.target.value;
-                    update('resources.annualReports', a);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Title"
-                />
-                <textarea
-                  value={report.description}
-                  onChange={(e) => {
-                    const a = [...data.resources.annualReports];
-                    a[i].description = e.target.value;
-                    update('resources.annualReports', a);
-                  }}
-                  rows={2}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Description"
-                />
-                <input
-                  value={report.link}
-                  onChange={(e) => {
-                    const a = [...data.resources.annualReports];
-                    a[i].link = e.target.value;
-                    update('resources.annualReports', a);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Link"
-                />
-                <button
-                  onClick={() =>
-                    update(
-                      'resources.annualReports',
-                      data.resources.annualReports.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500 text-sm"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={() =>
-                update('resources.annualReports', [
-                  ...data.resources.annualReports,
-                  { title: '', description: '', link: '' },
-                ])
-              }
-              className="text-sm text-emerald-green"
-            >
-              + Add Report
-            </button>
-
-            {/* Org Review */}
-            <h3 className="font-display font-bold text-lg text-deep-forest">Organizational Review</h3>
-            <input
-              value={data.resources.organizationalReview.title}
-              onChange={(e) => update('resources.organizationalReview.title', e.target.value)}
-              className="w-full border rounded-lg px-3 py-2"
-              placeholder="Title"
-            />
-            <textarea
-              value={data.resources.organizationalReview.description}
-              onChange={(e) =>
-                update('resources.organizationalReview.description', e.target.value)
-              }
-              rows={2}
-              className="w-full border rounded-lg px-3 py-2"
-              placeholder="Description"
-            />
-            <input
-              value={data.resources.organizationalReview.link}
-              onChange={(e) => update('resources.organizationalReview.link', e.target.value)}
-              className="w-full border rounded-lg px-3 py-2"
-              placeholder="Link"
-            />
-
-            {/* Program Reports */}
-            <h3 className="font-display font-bold text-lg text-deep-forest">Program Reports</h3>
-            {data.resources.programReports.map((r: any, i: number) => (
-              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
-                <input
-                  value={r.title}
-                  onChange={(e) => {
-                    const p = [...data.resources.programReports];
-                    p[i].title = e.target.value;
-                    update('resources.programReports', p);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Title"
-                />
-                <textarea
-                  value={r.description}
-                  onChange={(e) => {
-                    const p = [...data.resources.programReports];
-                    p[i].description = e.target.value;
-                    update('resources.programReports', p);
-                  }}
-                  rows={2}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Description"
-                />
-                <input
-                  value={r.link}
-                  onChange={(e) => {
-                    const p = [...data.resources.programReports];
-                    p[i].link = e.target.value;
-                    update('resources.programReports', p);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Link"
-                />
-                <button
-                  onClick={() =>
-                    update(
-                      'resources.programReports',
-                      data.resources.programReports.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500 text-sm"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={() =>
-                update('resources.programReports', [
-                  ...data.resources.programReports,
-                  { title: '', description: '', link: '' },
-                ])
-              }
-              className="text-sm text-emerald-green"
-            >
-              + Add Program Report
-            </button>
-
-            {/* Research */}
-            <h3 className="font-display font-bold text-lg text-deep-forest">Research</h3>
-            {data.resources.research.map((r: any, i: number) => (
-              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
-                <input
-                  value={r.title}
-                  onChange={(e) => {
-                    const re = [...data.resources.research];
-                    re[i].title = e.target.value;
-                    update('resources.research', re);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Title"
-                />
-                <textarea
-                  value={r.description}
-                  onChange={(e) => {
-                    const re = [...data.resources.research];
-                    re[i].description = e.target.value;
-                    update('resources.research', re);
-                  }}
-                  rows={2}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Description"
-                />
-                <input
-                  value={r.link}
-                  onChange={(e) => {
-                    const re = [...data.resources.research];
-                    re[i].link = e.target.value;
-                    update('resources.research', re);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Link"
-                />
-                <button
-                  onClick={() =>
-                    update(
-                      'resources.research',
-                      data.resources.research.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500 text-sm"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={() =>
-                update('resources.research', [
-                  ...data.resources.research,
-                  { title: '', description: '', link: '' },
-                ])
-              }
-              className="text-sm text-emerald-green"
-            >
-              + Add Research Item
-            </button>
-
-            {/* Policies */}
-            <h3 className="font-display font-bold text-lg text-deep-forest">Policies</h3>
-            {data.resources.policies.map((p: any, i: number) => (
-              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
-                <input
-                  value={p.title}
-                  onChange={(e) => {
-                    const po = [...data.resources.policies];
-                    po[i].title = e.target.value;
-                    update('resources.policies', po);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Title"
-                />
-                <input
-                  value={p.subtitle || ''}
-                  onChange={(e) => {
-                    const po = [...data.resources.policies];
-                    po[i].subtitle = e.target.value;
-                    update('resources.policies', po);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Subtitle (optional)"
-                />
-                <input
-                  value={p.link}
-                  onChange={(e) => {
-                    const po = [...data.resources.policies];
-                    po[i].link = e.target.value;
-                    update('resources.policies', po);
-                  }}
-                  className="w-full border rounded-lg px-3 py-2"
-                  placeholder="Link"
-                />
-                <button
-                  onClick={() =>
-                    update(
-                      'resources.policies',
-                      data.resources.policies.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500 text-sm"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={() =>
-                update('resources.policies', [
-                  ...data.resources.policies,
-                  { title: '', subtitle: '', link: '' },
-                ])
-              }
-              className="text-sm text-emerald-green"
-            >
-              + Add Policy
-            </button>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Footer Note</label>
-              <input
-                value={data.resources.footerNote}
-                onChange={(e) => update('resources.footerNote', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Footer note"
-              />
-            </div>
           </div>
-        );
+          <button
+            onClick={() =>
+              update(
+                'resources.annualReports',
+                data.resources.annualReports.filter((_: any, idx: number) => idx !== i)
+              )
+            }
+            className="text-red-500 text-sm"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() =>
+          update('resources.annualReports', [
+            ...data.resources.annualReports,
+            { title: '', description: '', link: '' },
+          ])
+        }
+        className="text-sm text-emerald-green"
+      >
+        + Add Report
+      </button>
+
+      {/* Organizational Review */}
+      <h3 className="font-display font-bold text-lg text-deep-forest">Organizational Review</h3>
+      <input
+        value={data.resources.organizationalReview.title}
+        onChange={(e) => update('resources.organizationalReview.title', e.target.value)}
+        className="w-full border rounded-lg px-3 py-2"
+        placeholder="Title"
+      />
+      <textarea
+        value={data.resources.organizationalReview.description}
+        onChange={(e) =>
+          update('resources.organizationalReview.description', e.target.value)
+        }
+        rows={2}
+        className="w-full border rounded-lg px-3 py-2"
+        placeholder="Description"
+      />
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
+        <FileUploadField
+          currentValue={data.resources.organizationalReview.link}
+          onChange={(url) => update('resources.organizationalReview.link', url)}
+          accept=".pdf,.doc,.docx"
+        />
+      </div>
+
+      {/* Program Reports */}
+      <h3 className="font-display font-bold text-lg text-deep-forest">Program Reports</h3>
+      {data.resources.programReports.map((r: any, i: number) => (
+        <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <input
+            value={r.title}
+            onChange={(e) => {
+              const p = [...data.resources.programReports];
+              p[i].title = e.target.value;
+              update('resources.programReports', p);
+            }}
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Title"
+          />
+          <textarea
+            value={r.description}
+            onChange={(e) => {
+              const p = [...data.resources.programReports];
+              p[i].description = e.target.value;
+              update('resources.programReports', p);
+            }}
+            rows={2}
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Description"
+          />
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
+            <FileUploadField
+              currentValue={r.link}
+              onChange={(url) => {
+                const p = [...data.resources.programReports];
+                p[i].link = url;
+                update('resources.programReports', p);
+              }}
+              accept=".pdf,.doc,.docx"
+            />
+          </div>
+          <button
+            onClick={() =>
+              update(
+                'resources.programReports',
+                data.resources.programReports.filter((_: any, idx: number) => idx !== i)
+              )
+            }
+            className="text-red-500 text-sm"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() =>
+          update('resources.programReports', [
+            ...data.resources.programReports,
+            { title: '', description: '', link: '' },
+          ])
+        }
+        className="text-sm text-emerald-green"
+      >
+        + Add Program Report
+      </button>
+
+      {/* Research */}
+      <h3 className="font-display font-bold text-lg text-deep-forest">Research</h3>
+      {data.resources.research.map((r: any, i: number) => (
+        <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <input
+            value={r.title}
+            onChange={(e) => {
+              const re = [...data.resources.research];
+              re[i].title = e.target.value;
+              update('resources.research', re);
+            }}
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Title"
+          />
+          <textarea
+            value={r.description}
+            onChange={(e) => {
+              const re = [...data.resources.research];
+              re[i].description = e.target.value;
+              update('resources.research', re);
+            }}
+            rows={2}
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Description"
+          />
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
+            <FileUploadField
+              currentValue={r.link}
+              onChange={(url) => {
+                const re = [...data.resources.research];
+                re[i].link = url;
+                update('resources.research', re);
+              }}
+              accept=".pdf,.doc,.docx"
+            />
+          </div>
+          <button
+            onClick={() =>
+              update(
+                'resources.research',
+                data.resources.research.filter((_: any, idx: number) => idx !== i)
+              )
+            }
+            className="text-red-500 text-sm"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() =>
+          update('resources.research', [
+            ...data.resources.research,
+            { title: '', description: '', link: '' },
+          ])
+        }
+        className="text-sm text-emerald-green"
+      >
+        + Add Research Item
+      </button>
+
+      {/* Policies */}
+      <h3 className="font-display font-bold text-lg text-deep-forest">Policies</h3>
+      {data.resources.policies.map((p: any, i: number) => (
+        <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <input
+            value={p.title}
+            onChange={(e) => {
+              const po = [...data.resources.policies];
+              po[i].title = e.target.value;
+              update('resources.policies', po);
+            }}
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Title"
+          />
+          <input
+            value={p.subtitle || ''}
+            onChange={(e) => {
+              const po = [...data.resources.policies];
+              po[i].subtitle = e.target.value;
+              update('resources.policies', po);
+            }}
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Subtitle (optional)"
+          />
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
+            <FileUploadField
+              currentValue={p.link}
+              onChange={(url) => {
+                const po = [...data.resources.policies];
+                po[i].link = url;
+                update('resources.policies', po);
+              }}
+              accept=".pdf,.doc,.docx"
+            />
+          </div>
+          <button
+            onClick={() =>
+              update(
+                'resources.policies',
+                data.resources.policies.filter((_: any, idx: number) => idx !== i)
+              )
+            }
+            className="text-red-500 text-sm"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() =>
+          update('resources.policies', [
+            ...data.resources.policies,
+            { title: '', subtitle: '', link: '' },
+          ])
+        }
+        className="text-sm text-emerald-green"
+      >
+        + Add Policy
+      </button>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Footer Note</label>
+        <input
+          value={data.resources.footerNote}
+          onChange={(e) => update('resources.footerNote', e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-3 py-2"
+          placeholder="Footer note"
+        />
+      </div>
+    </div>
+  );
 
       // ================= DONATE =================
       case 'donate':
