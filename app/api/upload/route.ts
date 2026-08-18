@@ -10,9 +10,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No file selected.' }, { status: 400 });
     }
 
-    // Upload directly to Vercel Blob using the server token (from env)
+    // Upload directly to Vercel Blob with a unique filename
     const blob = await put(file.name, file, {
       access: 'public',
+      addRandomSuffix: true,   // <-- prevents duplicate filename errors
     });
 
     return NextResponse.json({ url: blob.url });

@@ -45,14 +45,22 @@ export default function AdminHome() {
   const [saveMessage, setSaveMessage] = useState('');
 
   useEffect(() => {
-    fetch('/api/page-data?page=home')
-      .then(res => res.json())
-      .then(json => {
-        if (json) setData(json);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  fetch('/api/page-data?page=home')
+    .then(res => res.json())
+    .then(json => {
+      if (json && json.hero) {
+        // Ensure organizationalReview is always an array
+        if (json.resources && !Array.isArray(json.resources.organizationalReview)) {
+          json.resources.organizationalReview = json.resources.organizationalReview
+            ? [json.resources.organizationalReview]
+            : [];
+        }
+        setData(json);
+      }
+      setLoading(false);
+    })
+    .catch(() => setLoading(false));
+}, []);
 
   const handleSave = async () => {
     const result = await savePageData('home', data);
@@ -1014,30 +1022,66 @@ case 'resources':
       </button>
 
       {/* Organizational Review */}
-      <h3 className="font-display font-bold text-lg text-deep-forest">Organizational Review</h3>
-      <input
-        value={data.resources.organizationalReview.title}
-        onChange={(e) => update('resources.organizationalReview.title', e.target.value)}
-        className="w-full border rounded-lg px-3 py-2"
-        placeholder="Title"
+<h3 className="font-display font-bold text-lg text-deep-forest">Organizational Review</h3>
+{data.resources.organizationalReview.map((review: any, i: number) => (
+  <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+    <input
+      value={review.title}
+      onChange={(e) => {
+        const reviews = [...data.resources.organizationalReview];
+        reviews[i].title = e.target.value;
+        update('resources.organizationalReview', reviews);
+      }}
+      className="w-full border rounded-lg px-3 py-2"
+      placeholder="Title"
+    />
+    <textarea
+      value={review.description}
+      onChange={(e) => {
+        const reviews = [...data.resources.organizationalReview];
+        reviews[i].description = e.target.value;
+        update('resources.organizationalReview', reviews);
+      }}
+      rows={2}
+      className="w-full border rounded-lg px-3 py-2"
+      placeholder="Description"
+    />
+    <div>
+      <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
+      <FileUploadField
+        currentValue={review.link}
+        onChange={(url) => {
+          const reviews = [...data.resources.organizationalReview];
+          reviews[i].link = url;
+          update('resources.organizationalReview', reviews);
+        }}
+        accept=".pdf,.doc,.docx"
       />
-      <textarea
-        value={data.resources.organizationalReview.description}
-        onChange={(e) =>
-          update('resources.organizationalReview.description', e.target.value)
-        }
-        rows={2}
-        className="w-full border rounded-lg px-3 py-2"
-        placeholder="Description"
-      />
-      <div>
-        <label className="block text-xs font-medium text-gray-500 mb-1">PDF Document</label>
-        <FileUploadField
-          currentValue={data.resources.organizationalReview.link}
-          onChange={(url) => update('resources.organizationalReview.link', url)}
-          accept=".pdf,.doc,.docx"
-        />
-      </div>
+    </div>
+    <button
+      onClick={() =>
+        update(
+          'resources.organizationalReview',
+          data.resources.organizationalReview.filter((_: any, idx: number) => idx !== i)
+        )
+      }
+      className="text-red-500 text-sm"
+    >
+      Remove
+    </button>
+  </div>
+))}
+<button
+  onClick={() =>
+    update('resources.organizationalReview', [
+      ...data.resources.organizationalReview,
+      { title: '', description: '', link: '' },
+    ])
+  }
+  className="text-sm text-emerald-green"
+>
+  + Add Review
+</button>
 
       {/* Program Reports */}
       <h3 className="font-display font-bold text-lg text-deep-forest">Program Reports</h3>

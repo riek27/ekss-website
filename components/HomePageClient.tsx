@@ -80,11 +80,13 @@ export default function HomePageClient({ data }: { data: any }) {
 
       {/* Hero slider */}
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: '5rem' }}>
-        {hero.images.map((img: string, index: number) => (
-          <div key={index} className={`hero-slide ${index === currentSlide ? 'active' : ''}`}>
-            <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
-          </div>
-        ))}
+        {hero.images
+  .filter((img: string) => img && img.trim() !== '')
+  .map((img: string, index: number) => (
+    <div key={index} className={`hero-slide ${index === currentSlide ? 'active' : ''}`}>
+      <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+    </div>
+  ))}
         <div className="hero-overlay absolute inset-0 z-10"></div>
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 w-full">
           <div className="max-w-3xl">
@@ -422,24 +424,23 @@ export default function HomePageClient({ data }: { data: any }) {
           </div>
 
           {/* Organizational Review */}
-          <div id="organizational-review" className="mb-24">
-            <div className="text-center mb-10">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-deep-forest">Organizational Review</h3>
-              <p className="text-gray-500 mt-2 max-w-2xl mx-auto">A periodic publication summarising our strategic progress, lessons learned, and key milestones.</p>
-            </div>
-            <div className="max-w-2xl mx-auto">
-              <div className="fade-up card-hover resource-review-card bg-white rounded-4xl p-8 sm:p-10 shadow-xl border text-center relative overflow-hidden">
-                <div className="w-16 h-16 bg-gradient-to-br from-deep-forest/20 to-deep-forest/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-deep-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                </div>
-                <h4 className="font-display font-bold text-deep-forest text-2xl mb-3">{resources.organizationalReview.title}</h4>
-                <p className="text-gray-500 text-base mb-6">{resources.organizationalReview.description}</p>
-                <a href={resources.organizationalReview.link} className="btn-gold-pulse inline-flex items-center px-8 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-sm">
-                  Download PDF
-                </a>
-              </div>
-            </div>
-          </div>
+<div className="space-y-6 max-w-2xl mx-auto">
+  {(!Array.isArray(resources.organizationalReview)
+    ? [resources.organizationalReview]
+    : resources.organizationalReview
+  ).map((review: any, i: number) => (
+    <div key={i} className="fade-up card-hover resource-review-card bg-white rounded-4xl p-8 sm:p-10 shadow-xl border text-center relative overflow-hidden">
+      <div className="w-16 h-16 bg-gradient-to-br from-deep-forest/20 to-deep-forest/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <svg className="w-8 h-8 text-deep-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <h4 className="font-display font-bold text-deep-forest text-2xl mb-3">{review.title}</h4>
+      <p className="text-gray-500 text-base mb-6">{review.description}</p>
+      <a href={review.link} className="btn-gold-pulse inline-flex items-center px-8 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-sm">
+        Download PDF
+      </a>
+    </div>
+  ))}
+</div>
 
           {/* Program Reports */}
           <div className="mb-24">
