@@ -1,17 +1,14 @@
 import type { NextConfig } from 'next'
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   async redirects() {
     return [
-      // Force www (primary domain)
       {
         source: '/((?!www).*)',
         has: [{ type: 'host', value: 'ekss.org' }],
         destination: 'https://www.ekss.org/:path*',
         permanent: true,
       },
-
-      // Old URLs → new pages (no /programs)
       { source: '/about-us-empowerkids-south-sudan', destination: 'https://www.ekss.org/about', permanent: true },
       { source: '/index.html', destination: 'https://www.ekss.org/', permanent: true },
       { source: '/home.html', destination: 'https://www.ekss.org/', permanent: true },
@@ -27,6 +24,6 @@ const nextConfig: NextConfig = {
       { source: '/contact.html', destination: 'https://www.ekss.org/contact', permanent: true },
     ]
   },
-}
+} as NextConfig
 
 export default nextConfig

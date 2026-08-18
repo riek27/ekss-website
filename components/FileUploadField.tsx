@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { uploadFile } from '@/app/actions';
 
 export default function FileUploadField({
   currentValue,
@@ -17,15 +16,26 @@ export default function FileUploadField({
 
   const handleUpload = async (file: File) => {
     setUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
-    const result = await uploadFile(formData);
-    if (result.success && result.url) {
-      onChange(result.url);
-    } else {
-      alert('Upload failed: ' + (result.error || 'Unknown error'));
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await res.json();
+      if (res.ok && result.url) {
+        onChange(result.url);
+      } else {
+        alert('Upload failed: ' + (result.error || 'Unknown error'));
+      }
+    } catch (error: any) {
+      alert('Upload failed: ' + error.message);
+    } finally {
+      setUploading(false);
     }
-    setUploading(false);
   };
 
   return (
