@@ -145,9 +145,9 @@ export default function Footer() {
           <p className="text-gray-500 text-xs text-center sm:text-left">
             &copy; {currentYear} EmpowerKids–South Sudan. All rights reserved. 
             <span className="hidden sm:inline">|</span>
-            <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a> 
-            <span className="hidden sm:inline">|</span>
-            <a href="#" className="hover:text-gray-300 transition-colors">Terms of Service</a>
+            <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
+...
+<Link href="/terms" className="hover:text-gray-300 transition-colors">Terms of Service</Link>
           </p>
           <p className="text-gray-600 text-xs flex items-center gap-2">
             <span>RRC Reg. No. 169</span>

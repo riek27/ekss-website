@@ -7,7 +7,6 @@ import { savePageData } from '@/app/actions';
 
 type SectionKey =
   | 'hero'
-  | 'featured'
   | 'categories'
   | 'donorsPartners'
   | 'requestDocument'

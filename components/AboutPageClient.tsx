@@ -4,7 +4,128 @@ import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default function AboutPageClient({ data }: { data: any }) {
+interface AboutPageData {
+  hero: {
+    title: string;
+    subtitle: string;
+    image: string;
+  };
+  whoWeAre: {
+    heading: string;
+    description1: string;
+    description2: string;
+    missionStatement: string;
+    visionStatement: string;
+    whereWeWorkStatement: string;
+    image: string;
+    ctaText: string;
+    ctaLink: string;
+  };
+  governance: {
+    heading: string;
+    description: string;
+    board: Array<{
+      name: string;
+      title: string;
+      image: string;
+      bio: string;
+    }>;
+    executiveDirector: {
+      name: string;
+      title: string;
+      image: string;
+      bio: string;
+      email: string;
+      phone: string;
+    };
+    leadershipTeam: Array<{
+      name: string;
+      title: string;
+      image: string;
+      bio: string;
+    }>;
+    advisory: Array<{
+      name: string;
+      title: string;
+      image: string;
+      bio: string;
+    }>;
+    teamCta: {
+      text: string;
+      link: string;
+    };
+  };
+  journey: {
+    heading: string;
+    timeline: Array<{
+      year: string;
+      title: string;
+      description: string;
+    }>;
+  };
+  partners: {
+    heading: string;
+    list: Array<{
+      name: string;
+      label: string;
+      image: string;
+    }>;
+  };
+  transparency: {
+    heading: string;
+    intro: string;
+    items: Array<{
+      title: string;
+      description: string;
+    }>;
+    recordsNote: string;
+    documentsLinkText: string;
+    documentsLinkUrl: string;
+  };
+}
+
+// Helper component for person avatars (executive, board, leadership, advisory)
+function PersonAvatar({ name, image, size = 'w-24 h-24' }: { name: string; image?: string; size?: string }) {
+  if (image && image.trim() !== '') {
+    return (
+      <img
+        src={image}
+        alt={name}
+        className={`${size} rounded-full object-cover mx-auto mb-4`}
+      />
+    );
+  }
+  // Fallback: initials
+  const initials = name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+  return (
+    <div
+      className={`${size} rounded-full bg-emerald-green/10 flex items-center justify-center mx-auto mb-4 border-2 border-emerald-green/30`}
+    >
+      <span className="text-2xl font-bold text-emerald-green">{initials || '?'}</span>
+    </div>
+  );
+}
+
+// Helper for partner logos
+function PartnerLogo({ name, image }: { name: string; image?: string }) {
+  if (image && image.trim() !== '') {
+    return (
+      <img src={image} alt={name} className="h-12 w-auto object-contain mb-2" />
+    );
+  }
+  return (
+    <div className="h-12 w-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+      <span className="text-gray-400 text-lg">🏢</span>
+    </div>
+  );
+}
+
+export default function AboutPageClient({ data }: { data: AboutPageData }) {
   // Fade-up observer
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,19 +143,7 @@ export default function AboutPageClient({ data }: { data: any }) {
     return () => observer.disconnect();
   }, []);
 
-  const {
-    hero,
-    whoWeAre,
-    coreValues,
-    missionVision,
-    whatWeDo,
-    background,
-    impact,
-    whereWeWork,
-    transparency,
-    partners,
-    governance,
-  } = data;
+  const { hero, whoWeAre, governance, journey, partners, transparency } = data;
 
   return (
     <>
@@ -44,7 +153,9 @@ export default function AboutPageClient({ data }: { data: any }) {
       <section
         className="relative h-[60vh] flex items-center justify-center overflow-hidden"
         style={{
-          backgroundImage: `url(${hero.image})`,
+          backgroundImage: hero.image
+            ? `url(${hero.image})`
+            : 'linear-gradient(135deg, #0B3D2E 0%, #159957 100%)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -58,17 +169,23 @@ export default function AboutPageClient({ data }: { data: any }) {
         </div>
       </section>
 
-      {/* Who We Are */}
+      {/* Who We Are + Mission/Vision/Where We Work */}
       <section id="who-we-are" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="fade-up image-zoom-wrapper rounded-4xl overflow-hidden shadow-2xl">
-              <img
-                src={whoWeAre.image}
-                alt="Who We Are"
-                className="w-full h-80 lg:h-[480px] object-cover"
-                loading="lazy"
-              />
+              {whoWeAre.image ? (
+                <img
+                  src={whoWeAre.image}
+                  alt="Who We Are"
+                  className="w-full h-80 lg:h-[480px] object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-80 lg:h-[480px] bg-soft-bg flex items-center justify-center">
+                  <span className="text-6xl">🌱</span>
+                </div>
+              )}
             </div>
             <div className="fade-up fade-up-delay-2">
               <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">
@@ -82,6 +199,29 @@ export default function AboutPageClient({ data }: { data: any }) {
               />
               <p className="text-gray-600 leading-relaxed mb-5">{whoWeAre.description1}</p>
               <p className="text-gray-600 leading-relaxed mb-8">{whoWeAre.description2}</p>
+
+              {/* Three concise statements */}
+              <div className="space-y-4 mb-8">
+                <div className="flex gap-3">
+                  <span className="text-emerald-green text-xl">🎯</span>
+                  <p className="text-gray-700">
+                    <strong>Mission:</strong> {whoWeAre.missionStatement}
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-emerald-green text-xl">🔭</span>
+                  <p className="text-gray-700">
+                    <strong>Vision:</strong> {whoWeAre.visionStatement}
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-emerald-green text-xl">📍</span>
+                  <p className="text-gray-700">
+                    <strong>Where We Work:</strong> {whoWeAre.whereWeWorkStatement}
+                  </p>
+                </div>
+              </div>
+
               <a
                 href={whoWeAre.ctaLink}
                 className="inline-flex items-center gap-2 text-emerald-green font-semibold hover:text-deep-forest transition-colors group"
@@ -106,198 +246,6 @@ export default function AboutPageClient({ data }: { data: any }) {
         </div>
       </section>
 
-      {/* Core Values */}
-      <section id="core-values" className="py-20 lg:py-28 bg-soft-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest">
-              {coreValues.heading}
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {coreValues.list.map((value: any, i: number) => (
-              <div
-                key={i}
-                className="fade-up card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <span className="text-3xl block mb-3">{value.icon}</span>
-                <h3 className="font-display font-bold text-lg text-deep-forest mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section id="mission-vision" className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-dark-section text-white rounded-4xl p-8 md:p-10 shadow-xl">
-              <h3 className="font-display text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-gray-300 leading-relaxed">{missionVision.mission}</p>
-            </div>
-            <div className="bg-emerald-green text-white rounded-4xl p-8 md:p-10 shadow-xl">
-              <h3 className="font-display text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-gray-100 leading-relaxed">{missionVision.vision}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Do */}
-      <section id="what-we-do" className="py-20 lg:py-28 bg-soft-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest">
-              {whatWeDo.heading}
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whatWeDo.cards.map((card: any, i: number) => (
-              <div
-                key={i}
-                className="fade-up card-hover bg-white rounded-3xl overflow-hidden shadow-md border p-6"
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <span className="text-3xl block mb-3">{card.icon}</span>
-                <h3 className="font-display font-bold text-lg text-deep-forest mb-2">
-                  {card.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{card.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <a
-              href={whatWeDo.ctaLink}
-              className="btn-gold-pulse inline-flex items-center gap-2 px-8 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition"
-            >
-              {whatWeDo.ctaText}
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Background / Timeline */}
-      <section id="background" className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
-            {background.heading}
-          </h2>
-          <div className="relative border-l-2 border-emerald-green ml-6 md:ml-12">
-            {background.timeline.map((item: any, i: number) => (
-              <div key={i} className="mb-10 ml-8 md:ml-10">
-                <div className="absolute w-4 h-4 bg-emerald-green rounded-full -left-[9px] mt-1.5" />
-                <span className="text-warm-gold font-semibold text-sm uppercase tracking-wide">
-                  {item.year}
-                </span>
-                <h3 className="text-xl font-bold text-deep-forest mt-1">{item.title}</h3>
-                <p className="text-gray-600 mt-1">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Impact */}
-      <section id="impact" className="py-20 lg:py-28 bg-soft-bg">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-4">
-            {impact.heading}
-          </h2>
-          {impact.subtitle && <p className="text-gray-500 text-sm mb-10">{impact.subtitle}</p>}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {impact.stats.map((stat: any, i: number) => (
-              <div
-                key={i}
-                className="fade-up bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border"
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-deep-forest mb-1">
-                  {stat.value}
-                </div>
-                <p className="text-xs sm:text-sm text-gray-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Where We Work */}
-      <section id="where-we-work" className="py-20 lg:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
-            {whereWeWork.heading}
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whereWeWork.locations.map((loc: any, i: number) => (
-              <div
-                key={i}
-                className="fade-up card-hover bg-white rounded-2xl p-6 shadow-md border"
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <h3 className="font-semibold text-lg text-deep-forest">{loc.name}</h3>
-                <p className="text-gray-500 text-sm mt-1">{loc.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Transparency & Accountability */}
-      <section id="transparency" className="py-20 lg:py-28 bg-soft-bg">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
-            {transparency.heading}
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {transparency.items.map((item: any, i: number) => (
-              <div
-                key={i}
-                className="fade-up card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <h3 className="font-display font-bold text-lg text-deep-forest mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-500 text-sm">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partners */}
-      <section id="partners" className="py-16 lg:py-20 bg-white overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10">
-            {partners.heading}
-          </h2>
-          <div className="relative w-full overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="marquee-wrapper">
-              <div className="marquee-track">
-                {[...partners.list, ...partners.list].map((partner: any, i: number) => (
-                  <div key={i} className="partner-card">
-                    <img src={partner.image} alt={partner.name} className="h-12 w-auto object-contain mb-2" />
-                    <span className="partner-name">{partner.name}</span>
-                    <span className="partner-label">{partner.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Governance & Leadership */}
       <section id="governance" className="py-20 lg:py-28 bg-soft-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -308,53 +256,21 @@ export default function AboutPageClient({ data }: { data: any }) {
             <p className="text-gray-600 text-lg">{governance.description}</p>
           </div>
 
-          {/* Governance Columns */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            {governance.columns.map((col: any, i: number) => (
-              <div
-                key={i}
-                className={`fade-up card-hover bg-white rounded-3xl p-8 shadow-lg border ${
-                  col.highlight ? 'border-2 border-warm-gold/30 relative overflow-hidden' : 'border-gray-100'
-                } text-center`}
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                {col.highlight && (
-                  <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-warm-gold to-emerald-green" />
-                )}
-                <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 ${
-                    col.highlight ? 'bg-warm-gold/20' : 'bg-deep-forest/10'
-                  }`}
-                >
-                  <span className="text-2xl">
-                    {col.icon === 'user-group' && '👥'}
-                    {col.icon === 'user' && '👤'}
-                    {col.icon === 'light-bulb' && '💡'}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl font-bold text-deep-forest mb-3">{col.title}</h3>
-                <p className="text-gray-500 text-sm">{col.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Executive Spotlight */}
+          {/* Executive Director Spotlight */}
           <div className="fade-up mb-16">
             <div className="bg-white rounded-4xl overflow-hidden shadow-2xl border border-gray-100 grid md:grid-cols-5">
               <div className="md:col-span-2 bg-gradient-to-br from-deep-forest to-emerald-green p-10 flex items-center justify-center min-h-[280px]">
                 <div className="text-center">
-                  <div className="w-32 h-32 rounded-full border-4 border-white/60 shadow-xl overflow-hidden mx-auto mb-4">
-                    <img
-                      src={governance.executive.image}
-                      alt={governance.executive.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <PersonAvatar
+                    name={governance.executiveDirector.name}
+                    image={governance.executiveDirector.image}
+                    size="w-32 h-32"
+                  />
                   <h3 className="text-2xl font-display font-bold text-white">
-                    {governance.executive.name}
+                    {governance.executiveDirector.name}
                   </h3>
                   <p className="text-warm-gold font-semibold text-sm">
-                    {governance.executive.title}
+                    {governance.executiveDirector.title}
                   </p>
                 </div>
               </div>
@@ -362,18 +278,84 @@ export default function AboutPageClient({ data }: { data: any }) {
                 <span className="text-xs text-emerald-green font-semibold uppercase tracking-wider mb-2">
                   Leadership
                 </span>
-                <p className="text-gray-600 leading-relaxed">{governance.executive.bio1}</p>
-                <p className="text-gray-500 text-sm leading-relaxed mt-3">
-                  {governance.executive.bio2}
-                </p>
+                <p className="text-gray-600 leading-relaxed">{governance.executiveDirector.bio}</p>
                 <div className="flex flex-wrap items-center gap-4 mt-4">
-                  <span className="text-xs text-gray-400">✉️ {governance.executive.email}</span>
+                  <span className="text-xs text-gray-400">✉️ {governance.executiveDirector.email}</span>
                   <span className="text-xs text-gray-300 hidden sm:inline">|</span>
-                  <span className="text-xs text-gray-400">📞 {governance.executive.phone}</span>
+                  <span className="text-xs text-gray-400">📞 {governance.executiveDirector.phone}</span>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Board of Directors */}
+          {governance.board.length > 0 && (
+            <div className="mb-16">
+              <h3 className="font-display text-2xl font-bold text-deep-forest text-center mb-8">
+                Board of Directors
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {governance.board.map((member, i) => (
+                  <div
+                    key={i}
+                    className="fade-up card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
+                    style={{ transitionDelay: `${i * 0.1}s` }}
+                  >
+                    <PersonAvatar name={member.name} image={member.image} />
+                    <h4 className="font-bold text-lg text-deep-forest">{member.name}</h4>
+                    <p className="text-emerald-green text-sm font-medium mb-2">{member.title}</p>
+                    <p className="text-gray-500 text-sm leading-snug">{member.bio}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Leadership Team */}
+          {governance.leadershipTeam.length > 0 && (
+            <div className="mb-16">
+              <h3 className="font-display text-2xl font-bold text-deep-forest text-center mb-8">
+                Leadership Team
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {governance.leadershipTeam.map((member, i) => (
+                  <div
+                    key={i}
+                    className="fade-up card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
+                    style={{ transitionDelay: `${i * 0.1}s` }}
+                  >
+                    <PersonAvatar name={member.name} image={member.image} />
+                    <h4 className="font-bold text-lg text-deep-forest">{member.name}</h4>
+                    <p className="text-emerald-green text-sm font-medium mb-2">{member.title}</p>
+                    <p className="text-gray-500 text-sm leading-snug">{member.bio}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Advisory Committee */}
+          {governance.advisory.length > 0 && (
+            <div className="mb-8">
+              <h3 className="font-display text-2xl font-bold text-deep-forest text-center mb-8">
+                Advisory Committee
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {governance.advisory.map((member, i) => (
+                  <div
+                    key={i}
+                    className="fade-up card-hover bg-white rounded-3xl p-6 shadow-md border text-center"
+                    style={{ transitionDelay: `${i * 0.1}s` }}
+                  >
+                    <PersonAvatar name={member.name} image={member.image} />
+                    <h4 className="font-bold text-lg text-deep-forest">{member.name}</h4>
+                    <p className="text-emerald-green text-sm font-medium mb-2">{member.title}</p>
+                    <p className="text-gray-500 text-sm leading-snug">{member.bio}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {governance.teamCta.text && (
             <div className="text-center mt-10">
@@ -388,6 +370,92 @@ export default function AboutPageClient({ data }: { data: any }) {
               </a>
             </div>
           )}
+        </div>
+      </section>
+
+            {/* Our Journey */}
+      <section id="journey" className="py-20 lg:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-12 text-center">
+            {journey.heading}
+          </h2>
+          <div className="relative border-l-2 border-emerald-green ml-6 md:ml-12">
+            {journey.timeline.map((item, i) => (
+              <div key={i} className="mb-10 pl-8 md:pl-10 relative">
+                {/* Dot marker – now positioned to the far left, not overlapping text */}
+                <div className="absolute left-0 top-1.5 w-4 h-4 bg-emerald-green rounded-full -translate-x-1/2" />
+                <span className="block text-warm-gold font-semibold text-sm uppercase tracking-wide bg-transparent">
+                  {item.year}
+                </span>
+                <h3 className="text-xl font-bold text-deep-forest mt-1">{item.title}</h3>
+                <p className="text-gray-600 mt-1">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section id="partners" className="py-16 lg:py-20 bg-soft-bg overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-10">
+            {partners.heading}
+          </h2>
+          <div className="relative w-full overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-soft-bg to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-soft-bg to-transparent z-10 pointer-events-none"></div>
+            <div className="marquee-wrapper">
+              <div className="marquee-track">
+                {[...partners.list, ...partners.list].map((partner, i) => (
+                  <div key={i} className="partner-card">
+                    <PartnerLogo name={partner.name} image={partner.image} />
+                    <span className="partner-name">{partner.name}</span>
+                    <span className="partner-label">{partner.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Transparency */}
+      <section id="transparency" className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mb-6 text-center">
+            {transparency.heading}
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-3xl mx-auto">{transparency.intro}</p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {transparency.items.map((item, i) => (
+              <div
+                key={i}
+                className="fade-up card-hover bg-soft-bg rounded-3xl p-6 shadow-md border text-center"
+                style={{ transitionDelay: `${i * 0.1}s` }}
+              >
+                <h3 className="font-display font-bold text-lg text-deep-forest mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-500 text-sm">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-emerald-green/5 border border-emerald-green/20 rounded-2xl p-6 md:p-8">
+            <p className="text-gray-700 leading-relaxed">{transparency.recordsNote}</p>
+            {transparency.documentsLinkText && transparency.documentsLinkUrl && (
+              <a
+                href={transparency.documentsLinkUrl}
+                className="inline-flex items-center gap-2 mt-4 text-emerald-green font-semibold hover:text-deep-forest transition-colors"
+              >
+                {transparency.documentsLinkText}
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            )}
+          </div>
         </div>
       </section>
 

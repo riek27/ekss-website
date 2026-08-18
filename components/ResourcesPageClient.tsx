@@ -46,29 +46,7 @@ export default function ResourcesPageClient({ data }: { data: any }) {
         </div>
       </section>
 
-      {/* Featured Resource */}
-      {featured && (
-        <section className="py-16 lg:py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-dark-section rounded-4xl overflow-hidden shadow-2xl grid md:grid-cols-5">
-              <div className="md:col-span-2 image-zoom-wrapper h-64 md:h-full">
-                <img src={featured.image} alt={featured.title} className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-center">
-                <span className="text-warm-gold font-semibold text-sm uppercase mb-2">Featured Publication</span>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">{featured.title}</h2>
-                <p className="text-gray-300 mb-6">{featured.description}</p>
-                <a
-                  href={featured.link}
-                  className="btn-gold-pulse inline-flex items-center self-start px-6 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition"
-                >
-                  {featured.linkText}
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+      
 
       {/* Categories */}
       <section className="py-16 lg:py-24 bg-soft-bg">

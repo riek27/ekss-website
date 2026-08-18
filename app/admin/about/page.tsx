@@ -1,36 +1,58 @@
-// @ts-nocheck
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import FileUploadField from '@/components/FileUploadField';
 import { savePageData } from '@/app/actions';
 
-type SectionKey =
-  | 'hero'
-  | 'whoWeAre'
-  | 'coreValues'
-  | 'missionVision'
-  | 'whatWeDo'
-  | 'background'
-  | 'impact'
-  | 'whereWeWork'
-  | 'transparency'
-  | 'partners'
-  | 'governance';
+type SectionKey = 'hero' | 'whoWeAre' | 'governance' | 'journey' | 'partners' | 'transparency';
 
 const sectionNames: { key: SectionKey; label: string }[] = [
   { key: 'hero', label: 'Hero' },
   { key: 'whoWeAre', label: 'Who We Are' },
-  { key: 'coreValues', label: 'Core Values' },
-  { key: 'missionVision', label: 'Mission & Vision' },
-  { key: 'whatWeDo', label: 'What We Do' },
-  { key: 'background', label: 'Background / Timeline' },
-  { key: 'impact', label: 'Impact' },
-  { key: 'whereWeWork', label: 'Where We Work' },
-  { key: 'transparency', label: 'Transparency & Accountability' },
-  { key: 'partners', label: 'Our Partners' },
   { key: 'governance', label: 'Governance & Leadership' },
+  { key: 'journey', label: 'Our Journey' },
+  { key: 'partners', label: 'Our Partners' },
+  { key: 'transparency', label: 'Transparency' },
 ];
+
+// ---------- Reusable input components (defined outside) ----------
+function TextInput({ label, value, onChange, placeholder }: any) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+      />
+    </div>
+  );
+}
+
+function TextArea({ label, value, onChange, rows = 3, placeholder }: any) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={rows}
+        placeholder={placeholder}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+      />
+    </div>
+  );
+}
+
+function ImageUpload({ label, value, onChange }: any) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <FileUploadField currentValue={value} onChange={onChange} accept="image/*" />
+    </div>
+  );
+}
 
 export default function AdminAbout() {
   const [data, setData] = useState<any>(null);
@@ -40,8 +62,8 @@ export default function AdminAbout() {
 
   useEffect(() => {
     fetch('/api/page-data?page=about')
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         if (json) setData(json);
         setLoading(false);
       })
@@ -49,12 +71,16 @@ export default function AdminAbout() {
   }, []);
 
   const handleSave = async () => {
-    const result = await savePageData('about', data);
-    if (result.success) {
-      setSaveMessage('✅ All changes saved!');
-      setTimeout(() => setSaveMessage(''), 4000);
-    } else {
-      setSaveMessage('❌ Error: ' + result.error);
+    try {
+      const result = await savePageData('about', data);
+      if (result.success) {
+        setSaveMessage('✅ All changes saved!');
+        setTimeout(() => setSaveMessage(''), 4000);
+      } else {
+        setSaveMessage('❌ Error: ' + result.error);
+      }
+    } catch (err: any) {
+      setSaveMessage('❌ Error: ' + err.message);
     }
   };
 
@@ -69,6 +95,46 @@ export default function AdminAbout() {
     });
   };
 
+  // Helper to update an array item
+  const updateArrayItem = (arrayPath: string, index: number, field: string, value: any) => {
+    const keys = arrayPath.split('.');
+    setData((prev: any) => {
+      const newData = JSON.parse(JSON.stringify(prev));
+      let arr = newData;
+      // Traverse to the array
+      for (let i = 0; i < keys.length; i++) arr = arr[keys[i]];
+      // Now arr is the array, update the item
+      arr[index][field] = value;
+      return newData;
+    });
+  };
+
+  // Helper to add an item to an array
+  const addArrayItem = (arrayPath: string, newItem: any) => {
+    const keys = arrayPath.split('.');
+    setData((prev: any) => {
+      const newData = JSON.parse(JSON.stringify(prev));
+      let arr = newData;
+      // Traverse to the array's parent object, then push
+      for (let i = 0; i < keys.length; i++) arr = arr[keys[i]];
+      arr.push(newItem);
+      return newData;
+    });
+  };
+
+  // Helper to remove an item from an array
+  const removeArrayItem = (arrayPath: string, index: number) => {
+    const keys = arrayPath.split('.');
+    setData((prev: any) => {
+      const newData = JSON.parse(JSON.stringify(prev));
+      let arr = newData;
+      // Traverse to the array
+      for (let i = 0; i < keys.length; i++) arr = arr[keys[i]];
+      arr.splice(index, 1);
+      return newData;
+    });
+  };
+
   // --------------- RENDER SECTION ---------------
   const renderSection = () => {
     if (!data) return null;
@@ -77,800 +143,217 @@ export default function AdminAbout() {
       case 'hero':
         return (
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-              <input
-                value={data.hero.title}
-                onChange={(e) => update('hero.title', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label>
-              <input
-                value={data.hero.subtitle}
-                onChange={(e) => update('hero.subtitle', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
-              <FileUploadField
-                currentValue={data.hero.image}
-                onChange={(url) => update('hero.image', url)}
-                accept="image/*"
-              />
-            </div>
+            <TextInput label="Title" value={data.hero.title} onChange={(v: string) => update('hero.title', v)} />
+            <TextInput label="Subtitle" value={data.hero.subtitle} onChange={(v: string) => update('hero.subtitle', v)} />
+            <ImageUpload label="Background Image" value={data.hero.image} onChange={(url: string) => update('hero.image', url)} />
           </div>
         );
 
       case 'whoWeAre':
         return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading (use \n for line break)</label>
-              <textarea
-                value={data.whoWeAre.heading}
-                onChange={(e) => update('whoWeAre.heading', e.target.value)}
-                rows={2}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description 1</label>
-              <textarea
-                value={data.whoWeAre.description1}
-                onChange={(e) => update('whoWeAre.description1', e.target.value)}
-                rows={4}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description 2</label>
-              <textarea
-                value={data.whoWeAre.description2}
-                onChange={(e) => update('whoWeAre.description2', e.target.value)}
-                rows={3}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
-              <FileUploadField
-                currentValue={data.whoWeAre.image}
-                onChange={(url) => update('whoWeAre.image', url)}
-                accept="image/*"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">CTA Text</label>
-              <input
-                value={data.whoWeAre.ctaText}
-                onChange={(e) => update('whoWeAre.ctaText', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">CTA Link</label>
-              <input
-                value={data.whoWeAre.ctaLink}
-                onChange={(e) => update('whoWeAre.ctaLink', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-          </div>
-        );
-
-      case 'coreValues':
-        return (
           <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.coreValues.heading}
-                onChange={(e) => update('coreValues.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Values</h3>
-              {data.coreValues.list.map((value: any, i: number) => (
-                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
-                  <input
-                    value={value.icon}
-                    onChange={(e) => {
-                      const v = [...data.coreValues.list];
-                      v[i].icon = e.target.value;
-                      update('coreValues.list', v);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Icon (emoji)"
-                  />
-                  <input
-                    value={value.title}
-                    onChange={(e) => {
-                      const v = [...data.coreValues.list];
-                      v[i].title = e.target.value;
-                      update('coreValues.list', v);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Title"
-                  />
-                  <textarea
-                    value={value.description}
-                    onChange={(e) => {
-                      const v = [...data.coreValues.list];
-                      v[i].description = e.target.value;
-                      update('coreValues.list', v);
-                    }}
-                    rows={2}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Description"
-                  />
-                  <button
-                    onClick={() =>
-                      update(
-                        'coreValues.list',
-                        data.coreValues.list.filter((_: any, idx: number) => idx !== i)
-                      )
-                    }
-                    className="text-red-500 text-sm hover:text-red-700"
-                  >
-                    Remove value
-                  </button>
-                </div>
-              ))}
-              <button
-                onClick={() =>
-                  update('coreValues.list', [
-                    ...data.coreValues.list,
-                    { icon: '', title: '', description: '' },
-                  ])
-                }
-                className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-              >
-                <span>+</span> Add Value
-              </button>
-            </div>
-          </div>
-        );
-
-      case 'missionVision':
-        return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Mission</label>
-              <textarea
-                value={data.missionVision.mission}
-                onChange={(e) => update('missionVision.mission', e.target.value)}
-                rows={5}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Vision</label>
-              <textarea
-                value={data.missionVision.vision}
-                onChange={(e) => update('missionVision.vision', e.target.value)}
-                rows={5}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-          </div>
-        );
-
-      case 'whatWeDo':
-        return (
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.whatWeDo.heading}
-                onChange={(e) => update('whatWeDo.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Cards</h3>
-              {data.whatWeDo.cards.map((card: any, i: number) => (
-                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
-                  <input
-                    value={card.icon}
-                    onChange={(e) => {
-                      const c = [...data.whatWeDo.cards];
-                      c[i].icon = e.target.value;
-                      update('whatWeDo.cards', c);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Icon (emoji)"
-                  />
-                  <input
-                    value={card.title}
-                    onChange={(e) => {
-                      const c = [...data.whatWeDo.cards];
-                      c[i].title = e.target.value;
-                      update('whatWeDo.cards', c);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Title"
-                  />
-                  <textarea
-                    value={card.description}
-                    onChange={(e) => {
-                      const c = [...data.whatWeDo.cards];
-                      c[i].description = e.target.value;
-                      update('whatWeDo.cards', c);
-                    }}
-                    rows={2}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Description"
-                  />
-                  <button
-                    onClick={() =>
-                      update(
-                        'whatWeDo.cards',
-                        data.whatWeDo.cards.filter((_: any, idx: number) => idx !== i)
-                      )
-                    }
-                    className="text-red-500 text-sm hover:text-red-700"
-                  >
-                    Remove card
-                  </button>
-                </div>
-              ))}
-              <button
-                onClick={() =>
-                  update('whatWeDo.cards', [
-                    ...data.whatWeDo.cards,
-                    { icon: '', title: '', description: '' },
-                  ])
-                }
-                className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-              >
-                <span>+</span> Add Card
-              </button>
-            </div>
+            <TextArea label="Heading (use \n for line break)" value={data.whoWeAre.heading} onChange={(v: string) => update('whoWeAre.heading', v)} rows={2} />
+            <TextArea label="Description 1" value={data.whoWeAre.description1} onChange={(v: string) => update('whoWeAre.description1', v)} rows={4} />
+            <TextArea label="Description 2" value={data.whoWeAre.description2} onChange={(v: string) => update('whoWeAre.description2', v)} rows={3} />
+            <TextArea label="Mission Statement (one sentence)" value={data.whoWeAre.missionStatement} onChange={(v: string) => update('whoWeAre.missionStatement', v)} rows={2} />
+            <TextArea label="Vision Statement (one sentence)" value={data.whoWeAre.visionStatement} onChange={(v: string) => update('whoWeAre.visionStatement', v)} rows={2} />
+            <TextArea label="Where We Work Statement (one sentence)" value={data.whoWeAre.whereWeWorkStatement} onChange={(v: string) => update('whoWeAre.whereWeWorkStatement', v)} rows={2} />
+            <ImageUpload label="Image" value={data.whoWeAre.image} onChange={(url: string) => update('whoWeAre.image', url)} />
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">CTA Text</label>
-                <input
-                  value={data.whatWeDo.ctaText}
-                  onChange={(e) => update('whatWeDo.ctaText', e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">CTA Link</label>
-                <input
-                  value={data.whatWeDo.ctaLink}
-                  onChange={(e) => update('whatWeDo.ctaLink', e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                />
-              </div>
+              <TextInput label="CTA Text" value={data.whoWeAre.ctaText} onChange={(v: string) => update('whoWeAre.ctaText', v)} />
+              <TextInput label="CTA Link" value={data.whoWeAre.ctaLink} onChange={(v: string) => update('whoWeAre.ctaLink', v)} />
             </div>
           </div>
         );
 
-      case 'background':
+      case 'governance':
+        return (
+          <div className="space-y-8">
+            <TextInput label="Heading" value={data.governance.heading} onChange={(v: string) => update('governance.heading', v)} />
+            <TextArea label="Description" value={data.governance.description} onChange={(v: string) => update('governance.description', v)} rows={3} />
+
+            {/* Executive Director */}
+            <div className="border-t pt-6">
+              <h3 className="font-bold text-lg text-deep-forest mb-4">Executive Director</h3>
+              <div className="space-y-3">
+                <TextInput label="Name" value={data.governance.executiveDirector.name} onChange={(v: string) => update('governance.executiveDirector.name', v)} />
+                <TextInput label="Title" value={data.governance.executiveDirector.title} onChange={(v: string) => update('governance.executiveDirector.title', v)} />
+                <ImageUpload label="Photo" value={data.governance.executiveDirector.image} onChange={(url: string) => update('governance.executiveDirector.image', url)} />
+                <TextArea label="Bio" value={data.governance.executiveDirector.bio} onChange={(v: string) => update('governance.executiveDirector.bio', v)} rows={4} />
+                <div className="grid grid-cols-2 gap-4">
+                  <TextInput label="Email" value={data.governance.executiveDirector.email} onChange={(v: string) => update('governance.executiveDirector.email', v)} />
+                  <TextInput label="Phone" value={data.governance.executiveDirector.phone} onChange={(v: string) => update('governance.executiveDirector.phone', v)} />
+                </div>
+              </div>
+            </div>
+
+            {/* Board of Directors */}
+            <div className="border-t pt-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-deep-forest">Board of Directors</h3>
+                <button
+                  onClick={() => addArrayItem('governance.board', { name: '', title: '', image: '', bio: '' })}
+                  className="text-sm text-emerald-green font-medium hover:text-deep-forest"
+                >
+                  + Add Member
+                </button>
+              </div>
+              {data.governance.board.map((member: any, i: number) => (
+                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
+                  <TextInput label="Name" value={member.name} onChange={(v: string) => updateArrayItem('governance.board', i, 'name', v)} />
+                  <TextInput label="Title" value={member.title} onChange={(v: string) => updateArrayItem('governance.board', i, 'title', v)} />
+                  <ImageUpload label="Photo" value={member.image} onChange={(url: string) => updateArrayItem('governance.board', i, 'image', url)} />
+                  <TextArea label="Bio" value={member.bio} onChange={(v: string) => updateArrayItem('governance.board', i, 'bio', v)} rows={2} />
+                  <button onClick={() => removeArrayItem('governance.board', i)} className="text-red-500 text-sm hover:text-red-700">
+                    Remove Member
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Leadership Team */}
+            <div className="border-t pt-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-deep-forest">Leadership Team</h3>
+                <button
+                  onClick={() => addArrayItem('governance.leadershipTeam', { name: '', title: '', image: '', bio: '' })}
+                  className="text-sm text-emerald-green font-medium hover:text-deep-forest"
+                >
+                  + Add Member
+                </button>
+              </div>
+              {data.governance.leadershipTeam.map((member: any, i: number) => (
+                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
+                  <TextInput label="Name" value={member.name} onChange={(v: string) => updateArrayItem('governance.leadershipTeam', i, 'name', v)} />
+                  <TextInput label="Title" value={member.title} onChange={(v: string) => updateArrayItem('governance.leadershipTeam', i, 'title', v)} />
+                  <ImageUpload label="Photo" value={member.image} onChange={(url: string) => updateArrayItem('governance.leadershipTeam', i, 'image', url)} />
+                  <TextArea label="Bio" value={member.bio} onChange={(v: string) => updateArrayItem('governance.leadershipTeam', i, 'bio', v)} rows={2} />
+                  <button onClick={() => removeArrayItem('governance.leadershipTeam', i)} className="text-red-500 text-sm hover:text-red-700">
+                    Remove Member
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Advisory Committee */}
+            <div className="border-t pt-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-deep-forest">Advisory Committee</h3>
+                <button
+                  onClick={() => addArrayItem('governance.advisory', { name: '', title: '', image: '', bio: '' })}
+                  className="text-sm text-emerald-green font-medium hover:text-deep-forest"
+                >
+                  + Add Member
+                </button>
+              </div>
+              {data.governance.advisory.map((member: any, i: number) => (
+                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
+                  <TextInput label="Name" value={member.name} onChange={(v: string) => updateArrayItem('governance.advisory', i, 'name', v)} />
+                  <TextInput label="Title" value={member.title} onChange={(v: string) => updateArrayItem('governance.advisory', i, 'title', v)} />
+                  <ImageUpload label="Photo" value={member.image} onChange={(url: string) => updateArrayItem('governance.advisory', i, 'image', url)} />
+                  <TextArea label="Bio" value={member.bio} onChange={(v: string) => updateArrayItem('governance.advisory', i, 'bio', v)} rows={2} />
+                  <button onClick={() => removeArrayItem('governance.advisory', i)} className="text-red-500 text-sm hover:text-red-700">
+                    Remove Member
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="grid grid-cols-2 gap-4 border-t pt-6">
+              <TextInput label="Team CTA Text" value={data.governance.teamCta.text} onChange={(v: string) => update('governance.teamCta.text', v)} />
+              <TextInput label="Team CTA Link" value={data.governance.teamCta.link} onChange={(v: string) => update('governance.teamCta.link', v)} />
+            </div>
+          </div>
+        );
+
+      case 'journey':
         return (
           <div className="space-y-6">
+            <TextInput label="Heading" value={data.journey.heading} onChange={(v: string) => update('journey.heading', v)} />
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.background.heading}
-                onChange={(e) => update('background.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
-              />
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Timeline Events</h3>
-              {data.background.timeline.map((item: any, i: number) => (
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-deep-forest">Timeline Events</h3>
+                <button
+                  onClick={() => addArrayItem('journey.timeline', { year: '', title: '', description: '' })}
+                  className="text-sm text-emerald-green font-medium hover:text-deep-forest"
+                >
+                  + Add Event
+                </button>
+              </div>
+              {data.journey.timeline.map((item: any, i: number) => (
                 <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
-                  <input
-                    value={item.year}
-                    onChange={(e) => {
-                      const t = [...data.background.timeline];
-                      t[i].year = e.target.value;
-                      update('background.timeline', t);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Year (e.g., 2014)"
-                  />
-                  <input
-                    value={item.title}
-                    onChange={(e) => {
-                      const t = [...data.background.timeline];
-                      t[i].title = e.target.value;
-                      update('background.timeline', t);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Title"
-                  />
-                  <textarea
-                    value={item.description}
-                    onChange={(e) => {
-                      const t = [...data.background.timeline];
-                      t[i].description = e.target.value;
-                      update('background.timeline', t);
-                    }}
-                    rows={2}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Description"
-                  />
-                  <button
-                    onClick={() =>
-                      update(
-                        'background.timeline',
-                        data.background.timeline.filter((_: any, idx: number) => idx !== i)
-                      )
-                    }
-                    className="text-red-500 text-sm hover:text-red-700"
-                  >
-                    Remove event
+                  <TextInput label="Year" value={item.year} onChange={(v: string) => updateArrayItem('journey.timeline', i, 'year', v)} />
+                  <TextInput label="Title" value={item.title} onChange={(v: string) => updateArrayItem('journey.timeline', i, 'title', v)} />
+                  <TextArea label="Description" value={item.description} onChange={(v: string) => updateArrayItem('journey.timeline', i, 'description', v)} rows={2} />
+                  <button onClick={() => removeArrayItem('journey.timeline', i)} className="text-red-500 text-sm hover:text-red-700">
+                    Remove Event
                   </button>
                 </div>
               ))}
-              <button
-                onClick={() =>
-                  update('background.timeline', [
-                    ...data.background.timeline,
-                    { year: '', title: '', description: '' },
-                  ])
-                }
-                className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-              >
-                <span>+</span> Add Event
-              </button>
             </div>
           </div>
         );
 
-      case 'impact':
+      case 'partners':
         return (
-          <div className="space-y-4">
+          <div className="space-y-6">
+            <TextInput label="Heading" value={data.partners.heading} onChange={(v: string) => update('partners.heading', v)} />
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.impact.heading}
-                onChange={(e) => update('impact.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label>
-              <input
-                value={data.impact.subtitle || ''}
-                onChange={(e) => update('impact.subtitle', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              />
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Stats</h3>
-              {data.impact.stats.map((stat: any, i: number) => (
-                <div key={i} className="flex gap-3 items-end mb-3">
-                  <div className="flex-1">
-                    <label className="text-xs text-gray-500">Value</label>
-                    <input
-                      type="number"
-                      value={stat.value}
-                      onChange={(e) => {
-                        const s = [...data.impact.stats];
-                        s[i].value = Number(e.target.value);
-                        update('impact.stats', s);
-                      }}
-                      className="w-full border border-gray-200 rounded-lg px-2 py-1 mt-1"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-xs text-gray-500">Label</label>
-                    <input
-                      value={stat.label}
-                      onChange={(e) => {
-                        const s = [...data.impact.stats];
-                        s[i].label = e.target.value;
-                        update('impact.stats', s);
-                      }}
-                      className="w-full border border-gray-200 rounded-lg px-2 py-1 mt-1"
-                    />
-                  </div>
-                  <button
-                    onClick={() =>
-                      update(
-                        'impact.stats',
-                        data.impact.stats.filter((_: any, idx: number) => idx !== i)
-                      )
-                    }
-                    className="text-red-500 text-sm hover:text-red-700 mb-1"
-                  >
-                    ✕
-                  </button>
-                </div>
-              ))}
-              <button
-                onClick={() =>
-                  update('impact.stats', [...data.impact.stats, { value: 0, label: 'New stat' }])
-                }
-                className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-              >
-                <span>+</span> Add Stat
-              </button>
-            </div>
-          </div>
-        );
-
-      case 'whereWeWork':
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.whereWeWork.heading}
-                onChange={(e) => update('whereWeWork.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              />
-            </div>
-            <div>
-              <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Locations</h3>
-              {data.whereWeWork.locations.map((loc: any, i: number) => (
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-deep-forest">Partner List</h3>
+                <button
+                  onClick={() => addArrayItem('partners.list', { name: '', label: '', image: '' })}
+                  className="text-sm text-emerald-green font-medium hover:text-deep-forest"
+                >
+                  + Add Partner
+                </button>
+              </div>
+              {data.partners.list.map((partner: any, i: number) => (
                 <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
-                  <input
-                    value={loc.name}
-                    onChange={(e) => {
-                      const l = [...data.whereWeWork.locations];
-                      l[i].name = e.target.value;
-                      update('whereWeWork.locations', l);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Location name"
-                  />
-                  <input
-                    value={loc.description}
-                    onChange={(e) => {
-                      const l = [...data.whereWeWork.locations];
-                      l[i].description = e.target.value;
-                      update('whereWeWork.locations', l);
-                    }}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                    placeholder="Description"
-                  />
-                  <button
-                    onClick={() =>
-                      update(
-                        'whereWeWork.locations',
-                        data.whereWeWork.locations.filter((_: any, idx: number) => idx !== i)
-                      )
-                    }
-                    className="text-red-500 text-sm hover:text-red-700"
-                  >
-                    Remove location
+                  <div className="grid grid-cols-2 gap-3">
+                    <TextInput label="Name" value={partner.name} onChange={(v: string) => updateArrayItem('partners.list', i, 'name', v)} />
+                    <TextInput label="Label" value={partner.label} onChange={(v: string) => updateArrayItem('partners.list', i, 'label', v)} />
+                  </div>
+                  <ImageUpload label="Logo" value={partner.image} onChange={(url: string) => updateArrayItem('partners.list', i, 'image', url)} />
+                  <button onClick={() => removeArrayItem('partners.list', i)} className="text-red-500 text-sm hover:text-red-700">
+                    Remove Partner
                   </button>
                 </div>
               ))}
-              <button
-                onClick={() =>
-                  update('whereWeWork.locations', [
-                    ...data.whereWeWork.locations,
-                    { name: '', description: '' },
-                  ])
-                }
-                className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-              >
-                <span>+</span> Add Location
-              </button>
             </div>
           </div>
         );
 
       case 'transparency':
         return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.transparency.heading}
-                onChange={(e) => update('transparency.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              />
-            </div>
-            <h3 className="font-display font-bold text-lg text-deep-forest mb-4">Items</h3>
-            {data.transparency.items.map((item: any, i: number) => (
-              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
-                <input
-                  value={item.title}
-                  onChange={(e) => {
-                    const items = [...data.transparency.items];
-                    items[i].title = e.target.value;
-                    update('transparency.items', items);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Title"
-                />
-                <input
-                  value={item.description}
-                  onChange={(e) => {
-                    const items = [...data.transparency.items];
-                    items[i].description = e.target.value;
-                    update('transparency.items', items);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Description"
-                />
-                <button
-                  onClick={() =>
-                    update(
-                      'transparency.items',
-                      data.transparency.items.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500 text-sm hover:text-red-700"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={() =>
-                update('transparency.items', [
-                  ...data.transparency.items,
-                  { title: '', description: '' },
-                ])
-              }
-              className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-            >
-              <span>+</span> Add Item
-            </button>
-          </div>
-        );
-
-      case 'partners':
-  return (
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-        <input
-          value={data.partners.heading}
-          onChange={(e) => update('partners.heading', e.target.value)}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2"
-        />
-      </div>
-
-      <h3 className="font-display font-bold text-lg text-deep-forest">Partner List</h3>
-      <div className="space-y-3">
-        {data.partners.list.map((partner: any, i: number) => (
-          <div key={i} className="border border-gray-200 rounded-xl p-3 bg-gray-50">
-            <div className="flex gap-2 items-start">
-              <input
-                value={partner.name}
-                onChange={(e) => {
-                  const l = [...data.partners.list];
-                  l[i].name = e.target.value;
-                  update('partners.list', l);
-                }}
-                className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Partner Name"
-              />
-              <input
-                value={partner.label}
-                onChange={(e) => {
-                  const l = [...data.partners.list];
-                  l[i].label = e.target.value;
-                  update('partners.list', l);
-                }}
-                className="flex-1 border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Label"
-              />
-              <button
-                onClick={() =>
-                  update(
-                    'partners.list',
-                    data.partners.list.filter((_: any, idx: number) => idx !== i)
-                  )
-                }
-                className="text-red-500 hover:text-red-700"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Logo Upload with preview */}
-            <div className="mt-2">
-              <label className="text-xs text-gray-500 font-medium mb-1 block">Logo</label>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                  {partner.image ? (
-                    <img src={partner.image} alt="" className="w-full h-full object-contain" />
-                  ) : (
-                    <span className="text-gray-300 text-xs">No logo</span>
-                  )}
-                </div>
-                <FileUploadField
-                  currentValue={partner.image || ''}
-                  onChange={(url) => {
-                    const l = [...data.partners.list];
-                    l[i].image = url;
-                    update('partners.list', l);
-                  }}
-                  accept="image/*"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <button
-        onClick={() =>
-          update('partners.list', [
-            ...data.partners.list,
-            { name: '', label: '', image: '' },
-          ])
-        }
-        className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-      >
-        <span>+</span> Add Partner
-      </button>
-    </div>
-  );
-
-      case 'governance':
-        return (
           <div className="space-y-6">
+            <TextInput label="Heading" value={data.transparency.heading} onChange={(v: string) => update('transparency.heading', v)} />
+            <TextArea label="Introduction" value={data.transparency.intro} onChange={(v: string) => update('transparency.intro', v)} rows={3} />
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
-              <input
-                value={data.governance.heading}
-                onChange={(e) => update('governance.heading', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-              <textarea
-                value={data.governance.description}
-                onChange={(e) => update('governance.description', e.target.value)}
-                rows={3}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-              />
-            </div>
-
-            <h3 className="font-display font-bold text-lg text-deep-forest mt-4">Governance Columns</h3>
-            {data.governance.columns.map((col: any, i: number) => (
-              <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
-                <input
-                  value={col.title}
-                  onChange={(e) => {
-                    const c = [...data.governance.columns];
-                    c[i].title = e.target.value;
-                    update('governance.columns', c);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Title"
-                />
-                <input
-                  value={col.description}
-                  onChange={(e) => {
-                    const c = [...data.governance.columns];
-                    c[i].description = e.target.value;
-                    update('governance.columns', c);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Description"
-                />
-                <input
-                  value={col.icon}
-                  onChange={(e) => {
-                    const c = [...data.governance.columns];
-                    c[i].icon = e.target.value;
-                    update('governance.columns', c);
-                  }}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Icon (user-group, user, light-bulb)"
-                />
-                <label className="inline-flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={col.highlight}
-                    onChange={(e) => {
-                      const c = [...data.governance.columns];
-                      c[i].highlight = e.target.checked;
-                      update('governance.columns', c);
-                    }}
-                    className="rounded"
-                  />
-                  <span className="text-sm">Highlight this column?</span>
-                </label>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-deep-forest">Items</h3>
                 <button
-                  onClick={() =>
-                    update(
-                      'governance.columns',
-                      data.governance.columns.filter((_: any, idx: number) => idx !== i)
-                    )
-                  }
-                  className="text-red-500 text-sm hover:text-red-700"
+                  onClick={() => addArrayItem('transparency.items', { title: '', description: '' })}
+                  className="text-sm text-emerald-green font-medium hover:text-deep-forest"
                 >
-                  Remove column
+                  + Add Item
                 </button>
               </div>
-            ))}
-            <button
-              onClick={() =>
-                update('governance.columns', [
-                  ...data.governance.columns,
-                  { title: '', description: '', icon: 'user-group', highlight: false },
-                ])
-              }
-              className="text-sm text-emerald-green font-medium hover:text-deep-forest inline-flex items-center gap-1"
-            >
-              <span>+</span> Add Column
-            </button>
-
-            <h3 className="font-display font-bold text-lg text-deep-forest mt-6">Executive Director</h3>
-            <div className="space-y-3">
-              <input
-                value={data.governance.executive.name}
-                onChange={(e) => update('governance.executive.name', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Full Name"
-              />
-              <input
-                value={data.governance.executive.title}
-                onChange={(e) => update('governance.executive.title', e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Job Title"
-              />
-              <label className="block text-sm font-medium text-gray-700">Photo</label>
-              <FileUploadField
-                currentValue={data.governance.executive.image}
-                onChange={(url) => update('governance.executive.image', url)}
-                accept="image/*"
-              />
-              <textarea
-                value={data.governance.executive.bio1}
-                onChange={(e) => update('governance.executive.bio1', e.target.value)}
-                rows={3}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Bio paragraph 1"
-              />
-              <textarea
-                value={data.governance.executive.bio2}
-                onChange={(e) => update('governance.executive.bio2', e.target.value)}
-                rows={2}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                placeholder="Bio paragraph 2"
-              />
-              <div className="grid grid-cols-2 gap-3">
-                <input
-                  value={data.governance.executive.email}
-                  onChange={(e) => update('governance.executive.email', e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Email"
-                />
-                <input
-                  value={data.governance.executive.phone}
-                  onChange={(e) => update('governance.executive.phone', e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                  placeholder="Phone"
-                />
-              </div>
+              {data.transparency.items.map((item: any, i: number) => (
+                <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3 mb-3">
+                  <TextInput label="Title" value={item.title} onChange={(v: string) => updateArrayItem('transparency.items', i, 'title', v)} />
+                  <TextInput label="Description" value={item.description} onChange={(v: string) => updateArrayItem('transparency.items', i, 'description', v)} />
+                  <button onClick={() => removeArrayItem('transparency.items', i)} className="text-red-500 text-sm hover:text-red-700">
+                    Remove Item
+                  </button>
+                </div>
+              ))}
             </div>
-
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Team CTA Text</label>
-                <input
-                  value={data.governance.teamCta.text}
-                  onChange={(e) => update('governance.teamCta.text', e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Team CTA Link</label>
-                <input
-                  value={data.governance.teamCta.link}
-                  onChange={(e) => update('governance.teamCta.link', e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2"
-                />
-              </div>
+            <TextArea label="Records Note" value={data.transparency.recordsNote} onChange={(v: string) => update('transparency.recordsNote', v)} rows={4} />
+            <div className="grid grid-cols-2 gap-4">
+              <TextInput label="Documents Link Text" value={data.transparency.documentsLinkText} onChange={(v: string) => update('transparency.documentsLinkText', v)} />
+              <TextInput label="Documents Link URL" value={data.transparency.documentsLinkUrl} onChange={(v: string) => update('transparency.documentsLinkUrl', v)} />
             </div>
           </div>
         );

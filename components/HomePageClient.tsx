@@ -1,4 +1,3 @@
-// components/HomePageClient.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -8,13 +7,15 @@ import Footer from '@/components/Footer';
 export default function HomePageClient({ data }: { data: any }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [backToTopVisible, setBackToTopVisible] = useState(false);
-  const homeData = data; // now from server
+  const homeData = data;
 
   // Hero slider
   useEffect(() => {
     if (!homeData?.hero?.images || homeData.hero.images.length <= 1) return;
+    const validImages = homeData.hero.images.filter((img: string) => img && img.trim() !== '');
+    if (validImages.length <= 1) return;
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % homeData.hero.images.length);
+      setCurrentSlide((prev) => (prev + 1) % validImages.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [homeData?.hero?.images]);
@@ -72,7 +73,23 @@ export default function HomePageClient({ data }: { data: any }) {
     return () => counterObserver.disconnect();
   }, [homeData]);
 
-  const { hero, stats, about, board, programs, scholarSpotlight, featuredProject, resultsLedger, news, resources, donate, partners, getInvolved, contact } = homeData;
+  const {
+    hero,
+    stats,
+    about,
+    board,
+    programs,
+    scholarSpotlight,
+    featuredProject,
+    resultsLedger,
+    news,
+    donate,
+    partners,
+    getInvolved,
+    contact,
+  } = homeData;
+
+  const validHeroImages = hero.images.filter((img: string) => img && img.trim() !== '');
 
   return (
     <>
@@ -80,13 +97,11 @@ export default function HomePageClient({ data }: { data: any }) {
 
       {/* Hero slider */}
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: '5rem' }}>
-        {hero.images
-  .filter((img: string) => img && img.trim() !== '')
-  .map((img: string, index: number) => (
-    <div key={index} className={`hero-slide ${index === currentSlide ? 'active' : ''}`}>
-      <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
-    </div>
-  ))}
+        {validHeroImages.map((img: string, index: number) => (
+          <div key={index} className={`hero-slide ${index === currentSlide % validHeroImages.length ? 'active' : ''}`}>
+            <img src={img} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
         <div className="hero-overlay absolute inset-0 z-10"></div>
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 w-full">
           <div className="max-w-3xl">
@@ -97,7 +112,7 @@ export default function HomePageClient({ data }: { data: any }) {
               dangerouslySetInnerHTML={{ __html: hero.title.replace(/\n/g, '<br/>') }} />
             <p className="text-lg sm:text-xl text-gray-200 leading-relaxed mb-8 max-w-xl">{hero.subtitle}</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="/programs" className="btn-gold-pulse inline-flex items-center justify-center px-7 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-xl hover:bg-yellow-600 transition text-base">
+              <a href="/get-involved" className="btn-gold-pulse inline-flex items-center justify-center px-7 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-xl hover:bg-yellow-600 transition text-base">
                 Fund a programme
               </a>
               <a href="/resources" className="inline-flex items-center justify-center px-7 py-3.5 bg-white/15 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/40 hover:bg-white/25 transition text-base">
@@ -392,132 +407,6 @@ export default function HomePageClient({ data }: { data: any }) {
         </div>
       </section>
 
-      {/* Resources */}
-      <section id="resources" className="py-20 lg:py-28 bg-gradient-to-b from-soft-bg to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">Resources</span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mt-3 mb-5">{resources.heading}</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">{resources.subtitle}</p>
-          </div>
-
-          {/* Annual Reports */}
-          <div id="annual-reports" className="mb-24">
-            <div className="text-center mb-10">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-deep-forest">Annual Reports</h3>
-              <p className="text-gray-500 mt-2 max-w-2xl mx-auto">Updates on programs, achievements, financial information, and organizational progress. Each report tells the story of our impact.</p>
-            </div>
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {resources.annualReports.map((report: any, i: number) => (
-                <div key={i} className="fade-up card-hover resource-annual-card bg-white rounded-4xl p-8 shadow-xl border flex flex-col text-center items-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-green/20 to-emerald-green/5 rounded-2xl flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-emerald-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                  </div>
-                  <h4 className="font-display font-bold text-deep-forest text-xl mb-2">{report.title}</h4>
-                  <p className="text-gray-500 text-sm mb-6 flex-1">{report.description}</p>
-                  <a href={report.link} className="btn-gold-pulse inline-flex items-center px-6 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-sm">
-                    Download PDF
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Organizational Review */}
-<div className="space-y-6 max-w-2xl mx-auto">
-  {(!Array.isArray(resources.organizationalReview)
-    ? [resources.organizationalReview]
-    : resources.organizationalReview
-  ).map((review: any, i: number) => (
-    <div key={i} className="fade-up card-hover resource-review-card bg-white rounded-4xl p-8 sm:p-10 shadow-xl border text-center relative overflow-hidden">
-      <div className="w-16 h-16 bg-gradient-to-br from-deep-forest/20 to-deep-forest/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
-        <svg className="w-8 h-8 text-deep-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-      </div>
-      <h4 className="font-display font-bold text-deep-forest text-2xl mb-3">{review.title}</h4>
-      <p className="text-gray-500 text-base mb-6">{review.description}</p>
-      <a href={review.link} className="btn-gold-pulse inline-flex items-center px-8 py-3.5 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-sm">
-        Download PDF
-      </a>
-    </div>
-  ))}
-</div>
-
-          {/* Program Reports */}
-          <div className="mb-24">
-            <div className="text-center mb-10">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-deep-forest">Program Reports</h3>
-              <p className="text-gray-500 mt-2 max-w-2xl mx-auto">Detailed information about specific projects and activities.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {resources.programReports.map((report: any, i: number) => (
-                <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-6 border flex flex-col items-center text-center`} style={{ transitionDelay: `${i * 0.1}s` }}>
-                  <div className={`w-14 h-14 ${i === 0 ? 'bg-emerald-green/10' : i === 1 ? 'bg-deep-forest/10' : 'bg-warm-gold/10'} rounded-2xl flex items-center justify-center mb-4`}>
-                    {i === 0 ? (
-                      <svg className="w-8 h-8 text-emerald-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                    ) : i === 1 ? (
-                      <svg className="w-8 h-8 text-deep-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    ) : (
-                      <svg className="w-8 h-8 text-warm-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
-                    )}
-                  </div>
-                  <h4 className="font-display font-bold text-deep-forest text-lg mb-1">{report.title}</h4>
-                  <p className="text-gray-500 text-xs mb-4">{report.description}</p>
-                  <a href={report.link} className="btn-gold-pulse inline-flex items-center px-5 py-2.5 bg-warm-gold text-white text-sm font-semibold rounded-full">Download PDF</a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Research & Assessments */}
-          <div className="mb-24">
-            <div className="text-center mb-10">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-deep-forest">Research & Assessments</h3>
-              <p className="text-gray-500 mt-2 max-w-2xl mx-auto">Evidence, studies, and evaluations that guide our work.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {resources.research.map((item: any, i: number) => (
-                <div key={i} className={`fade-up card-hover bg-white rounded-4xl p-8 shadow-xl border flex flex-col items-center text-center`} style={{ transitionDelay: `${i * 0.1}s` }}>
-                  <div className={`w-16 h-16 ${i === 0 ? 'bg-emerald-green/10' : 'bg-deep-forest/10'} rounded-2xl flex items-center justify-center mb-4`}>
-                    {i === 0 ? (
-                      <svg className="w-8 h-8 text-emerald-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                    ) : (
-                      <svg className="w-8 h-8 text-deep-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                    )}
-                  </div>
-                  <h4 className="font-display font-bold text-deep-forest text-xl mb-2">{item.title}</h4>
-                  <p className="text-gray-500 text-sm mb-6 flex-1">{item.description}</p>
-                  <a href={item.link} className="btn-gold-pulse inline-flex items-center px-6 py-3 bg-warm-gold text-white font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition text-sm">Download PDF</a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Policies & Strategic Documents */}
-          <div id="documents" className="mb-10">
-            <div className="text-center mb-10">
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-deep-forest">Policies & Strategic Documents</h3>
-              <p className="text-gray-500 max-w-2xl mx-auto">Documents that guide our organization — publicly available for transparency.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {resources.policies.map((policy: any, i: number) => (
-                <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-6 border flex flex-col items-center text-center`} style={{ transitionDelay: `${i * 0.05}s` }}>
-                  <div className={`w-14 h-14 ${i % 3 === 0 ? 'bg-emerald-green/10' : i % 3 === 1 ? 'bg-deep-forest/10' : 'bg-warm-gold/10'} rounded-2xl flex items-center justify-center mb-4`}>
-                    <svg className={`w-8 h-8 ${i % 3 === 0 ? 'text-emerald-green' : i % 3 === 1 ? 'text-deep-forest' : 'text-warm-gold'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                  </div>
-                  <h4 className="font-display font-bold text-deep-forest text-lg mb-1">{policy.title}</h4>
-                  {policy.subtitle && <p className="text-gray-500 text-xs mb-4">{policy.subtitle}</p>}
-                  <a href={policy.link} className="btn-gold-pulse inline-flex items-center px-5 py-2.5 bg-warm-gold text-white text-sm font-semibold rounded-full">Download PDF</a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-16 text-center">
-            <p className="text-sm text-gray-500">{resources.footerNote} <a href="/contact" className="text-emerald-green font-semibold">contact us</a>.</p>
-          </div>
-        </div>
-      </section>
-
       {/* Donate */}
       <section id="donate" className="relative py-20 lg:py-28 bg-dark-section overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-warm-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
@@ -590,7 +479,9 @@ export default function HomePageClient({ data }: { data: any }) {
             <div className="marquee-track">
               {[...partners.list, ...partners.list].map((partner: any, i: number) => (
                 <div key={i} className="partner-card">
-                  <img src={partner.image} alt={partner.name} className="h-12 w-auto object-contain mb-2" />
+                  {partner.image && (
+                    <img src={partner.image} alt={partner.name} className="h-12 w-auto object-contain mb-2" />
+                  )}
                   <span className="partner-name">{partner.name}</span>
                   <span className="partner-label">{partner.label}</span>
                 </div>

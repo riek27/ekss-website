@@ -8,67 +8,90 @@
     "heading": "Verified impact.\nRadical transparency.",
     "description1": "EmpowerKids–South Sudan is a non‑governmental organisation registered under the NGO Act 2016 (RRC Reg. No. 169). Founded in 2014, we operate in Juba, Central Equatoria State. Our Juba Demonstration Farm is located at Juba 2, Gumbo‑Sherikat Area. Our programmes span education, agriculture, youth empowerment, and civic voice. Our work is validated by CAF America, allowing US donors to give tax‑deductibly.",
     "description2": "Every figure on this page is taken directly from our programme monitoring records. Funders and evaluators can request the underlying data at any time — we have nothing to hide.",
+    "missionStatement": "To empower children, youth, and farmers in South Sudan through quality education, sustainable agriculture, and civic engagement.",
+    "visionStatement": "A South Sudan where every child can learn, every farmer can thrive, and every community has a voice.",
+    "whereWeWorkStatement": "Juba, Central Equatoria State; our demonstration farm in Juba 2 – Gumbo‑Sherikat; and youth activities across three states.",
     "image": "/images/1786279843309-ekss7.jpg",
     "ctaText": "Meet our leadership",
     "ctaLink": "/about#governance"
   },
-  "coreValues": {
-    "heading": "Our Core Values",
-    "list": [
+  "governance": {
+    "heading": "Governance & Leadership",
+    "description": "EmpowerKids–South Sudan is guided by a strong governance framework and led by a dedicated management team committed to delivering impact.",
+    "board": [
       {
-        "icon": "🌱",
-        "title": "Sustainability",
-        "description": "We build lasting solutions through climate‑smart agriculture and community ownership."
+        "name": "John Malish",
+        "title": "Chairperson",
+        "image": "/images/board/john-malish.jpg",
+        "bio": "Experienced community leader and advocate for education in South Sudan."
       },
       {
-        "icon": "📚",
-        "title": "Education",
-        "description": "Knowledge is the foundation of empowerment — from classrooms to farms."
+        "name": "Sarah Nyandeng",
+        "title": "Vice Chairperson",
+        "image": "/images/board/sarah-nyandeng.jpg",
+        "bio": "Expert in non-profit governance and financial oversight."
       },
       {
-        "icon": "🤝",
-        "title": "Partnership",
-        "description": "We collaborate with local communities, governments, and global partners."
+        "name": "David Ladu",
+        "title": "Secretary",
+        "image": "/images/board/david-ladu.jpg",
+        "bio": "Legal professional with focus on NGO compliance."
       },
       {
-        "icon": "🔍",
-        "title": "Transparency",
-        "description": "Every number we publish is traceable to our field records."
-      }
-    ]
-  },
-  "missionVision": {
-    "mission": "To empower children, youth, and farmers in South Sudan through quality education, sustainable agriculture, and civic engagement — built on a foundation of transparency and measurable results.",
-    "vision": "A South Sudan where every child can learn, every farmer can thrive, and every community has a voice in its own future."
-  },
-  "whatWeDo": {
-    "heading": "What We Do",
-    "cards": [
-      {
-        "icon": "📚",
-        "title": "Education Support",
-        "description": "School partnerships, teacher capacity building and scholarship pathways to universities abroad."
-      },
-      {
-        "icon": "🌱",
-        "title": "Empower Farmers South Sudan",
-        "description": "Climate‑smart conservation agriculture using the Foundations for Farming model."
-      },
-      {
-        "icon": "👥",
-        "title": "Youth Empowerment",
-        "description": "Entrepreneurship, leadership and platforms for young people."
-      },
-      {
-        "icon": "🗣️",
-        "title": "Advocacy & Civic Engagement",
-        "description": "Community voice, governance awareness and local participation."
+        "name": "Mary Achol",
+        "title": "Treasurer",
+        "image": "/images/board/mary-achol.jpg",
+        "bio": "Accountant and financial management specialist."
       }
     ],
-    "ctaText": "Explore Our Programs",
-    "ctaLink": "/programs"
+    "executiveDirector": {
+      "name": "Hakim Monykuer Awuok",
+      "title": "Executive Director",
+      "image": "/images/eksshakim.png",
+      "bio": "Hakim Monykuer Awuok is a public policy and governance professional with extensive experience in nonprofit leadership, currently serving as Executive Director of EmpowerKids–South Sudan. He brings expertise in strategic planning, partnership development, and programme management, driving the mission to create lasting impact for children and communities.",
+      "email": "hakim@ekss.org",
+      "phone": "+211 926 133 777"
+    },
+    "leadershipTeam": [
+      {
+        "name": "Amina Joseph",
+        "title": "Programmes Director",
+        "image": "/images/team/amina-joseph.jpg",
+        "bio": "Oversees education and youth empowerment programmes."
+      },
+      {
+        "name": "Peter Kuot",
+        "title": "Agriculture Manager",
+        "image": "/images/team/peter-kuot.jpg",
+        "bio": "Leads the demonstration farm and farmer training initiatives."
+      },
+      {
+        "name": "Grace Adut",
+        "title": "Finance & Admin Officer",
+        "image": "/images/team/grace-adut.jpg",
+        "bio": "Manages finance, human resources, and daily operations."
+      }
+    ],
+    "advisory": [
+      {
+        "name": "Dr. James Wani",
+        "title": "Education Advisor",
+        "image": "/images/advisory/james-wani.jpg",
+        "bio": "Provides technical guidance on curriculum and teacher training."
+      },
+      {
+        "name": "Dr. Jane Achieng",
+        "title": "Agriculture Advisor",
+        "image": "/images/advisory/jane-achieng.jpg",
+        "bio": "Expert in climate-smart agriculture and rural development."
+      }
+    ],
+    "teamCta": {
+      "text": "Support our work",
+      "link": "/contact"
+    }
   },
-  "background": {
+  "journey": {
     "heading": "Our Journey",
     "timeline": [
       {
@@ -82,135 +105,85 @@
         "description": "Registered under the NGO Act 2016, RRC Reg. No. 169."
       },
       {
+        "year": "2018",
+        "title": "First Demonstration Farm",
+        "description": "Established the Juba 2 – Gumbo‑Sherikat Demonstration Farm."
+      },
+      {
+        "year": "2020",
+        "title": "Education Partnerships",
+        "description": "Launched teacher training and scholarship placements."
+      },
+      {
+        "year": "2022",
+        "title": "Youth Empowerment Expansion",
+        "description": "Extended youth activities to three states."
+      },
+      {
+        "year": "2023",
+        "title": "CAF America Validation",
+        "description": "Validated charity status enabling tax‑deductible US donations."
+      },
+      {
         "year": "Today",
         "title": "Four Programme Areas",
         "description": "Education, agriculture, youth empowerment and civic engagement."
       }
     ]
   },
-  "impact": {
-    "heading": "Our Impact",
-    "subtitle": "Figures drawn from programme monitoring records.",
-    "stats": [
+  "partners": {
+    "heading": "Our Partners & Collaborators",
+    "list": [
       {
-        "value": 37,
-        "label": "Scholars Placed"
+        "name": "Bridge2Rwanda",
+        "label": "Scholarship partner",
+        "image": "/images/partners/bridge2rwanda.png"
       },
       {
-        "value": 129,
-        "label": "Farmers Trained"
+        "name": "SolarSPELL",
+        "label": "Digital libraries",
+        "image": "/images/partners/solarspell.png"
       },
       {
-        "value": 15,
-        "label": "Teachers Trained"
+        "name": "Arizona State University",
+        "label": "Teacher training",
+        "image": "/images/partners/asu.png"
       },
       {
-        "value": 2,
-        "label": "Schools Electrified"
-      }
-    ]
-  },
-  "whereWeWork": {
-    "heading": "Where We Work",
-    "locations": [
-      {
-        "name": "Juba, Central Equatoria State",
-        "description": "Headquarters / organisational base"
+        "name": "Foundations for Farming",
+        "label": "Agriculture model",
+        "image": "/images/partners/foundations-for-farming.png"
       },
       {
-        "name": "Juba 2 – Gumbo‑Sherikat",
-        "description": "Demonstration Farm"
-      },
-      {
-        "name": "3 States Reached",
-        "description": "Youth empowerment activities"
+        "name": "CAF America",
+        "label": "Validated charity",
+        "image": "/images/partners/caf-america.png"
       }
     ]
   },
   "transparency": {
     "heading": "Transparency & Accountability",
+    "intro": "We publish our core documents and invite scrutiny. Every figure we publish carries the record it comes from.",
     "items": [
       {
         "title": "Registration",
         "description": "RRC Reg. No. 169, NGO Act 2016"
       },
       {
-        "title": "Annual Reports",
-        "description": "Programme and organisational reporting"
+        "title": "Constitution",
+        "description": "Published in full"
       },
       {
         "title": "Policies",
         "description": "Safeguarding, anti‑fraud, data protection and more"
       },
       {
-        "title": "Results",
-        "description": "Programme monitoring and impact data"
-      }
-    ]
-  },
-  "partners": {
-  "heading": "Our Partners & Collaborators",
-  "list": [
-    {
-      "name": "Bridge2Rwanda",
-      "label": "Scholarship partner",
-      "image": "/images/partners/bridge2rwanda.png"
-    },
-    {
-      "name": "SolarSPELL",
-      "label": "Digital libraries",
-      "image": "/images/partners/solarspell.png"
-    },
-    {
-      "name": "Arizona State University",
-      "label": "Teacher training",
-      "image": "/images/partners/asu.png"
-    },
-    {
-      "name": "Foundations for Farming",
-      "label": "Agriculture model",
-      "image": "/images/partners/foundations-for-farming.png"
-    },
-    {
-      "name": "CAF America",
-      "label": "Validated charity",
-      "image": "/images/partners/caf-america.png"
-    }
-  ]
-},
-  "governance": {
-    "heading": "Governance & Leadership",
-    "description": "EmpowerKids–South Sudan is guided by a strong governance framework and led by a dedicated management team committed to delivering impact.",
-    "columns": [
-      {
-        "title": "Board of Directors",
-        "description": "Provides strategic direction, policy oversight, and fiduciary responsibility.",
-        "icon": "user-group"
-      },
-      {
-        "title": "Executive Leadership",
-        "description": "Responsible for programme implementation, operations, and execution of strategic priorities.",
-        "icon": "user",
-        "highlight": true
-      },
-      {
-        "title": "Advisory Committee",
-        "description": "Provides technical expertise and strategic guidance to strengthen programme quality.",
-        "icon": "light-bulb"
+        "title": "Annual Reports",
+        "description": "Programme and organisational reporting"
       }
     ],
-    "executive": {
-      "name": "Hakim Monykuer Awuok",
-      "title": "Executive Director",
-      "image": "/images/eksshakim.png",
-      "bio1": "Hakim Monykuer Awuok is a public policy and governance professional with extensive experience in nonprofit leadership, currently serving as Executive Director of EmpowerKids–South Sudan.",
-      "bio2": "He brings expertise in strategic planning, partnership development, and programme management, driving the mission to create lasting impact for children and communities.",
-      "email": "hakim@ekss.org",
-      "phone": "+211 926 133 777"
-    },
-    "teamCta": {
-      "text": "Support our work",
-      "link": "/contact"
-    }
+    "recordsNote": "Every figure we publish carries the record it comes from. Our registration, constitution, policies, and annual report are published in full. Our wider policy register is supplied to funders on request. If you are assessing us, ask us for the underlying data.",
+    "documentsLinkText": "See our document page",
+    "documentsLinkUrl": "/resources"
   }
 }

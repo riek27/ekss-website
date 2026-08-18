@@ -72,8 +72,8 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
               <img src="/images/eksslogo.png" alt="EmpowerKids logo" className="h-16 w-auto rounded-full object-contain" />
               <span className="font-display font-semibold text-deep-forest text-sm sm:text-base leading-tight hidden sm:block">
-  EmpowerKids–South Sudan
-</span>
+                EmpowerKids–South Sudan
+              </span>
               <span className="font-display font-semibold text-deep-forest text-sm sm:hidden">EK-SS</span>
             </Link>
 
@@ -89,9 +89,11 @@ export default function Header() {
                   About <svg className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
-                  <Link href="/about" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Our Story</Link>
-                  <Link href="/about#governance" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Board & Leadership</Link>
-                  <Link href="/about#partners" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Partners</Link>
+                  <Link href="/about#who-we-are" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Who We Are</Link>
+                  <Link href="/about#governance" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Governance & Leadership</Link>
+                  <Link href="/about#journey" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Our Journey</Link>
+                  <Link href="/about#partners" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Our Partners</Link>
+                  <Link href="/about#transparency" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-soft-bg hover:text-emerald-green">Transparency</Link>
                 </div>
               </div>
 
@@ -158,9 +160,11 @@ export default function Header() {
               About <svg className="accordion-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div id="aboutMobile" className="mobile-accordion-content">
-              <Link href="/about" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Our Story</Link>
-              <Link href="/about#governance" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Board & Leadership</Link>
-              <Link href="/about#partners" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Partners</Link>
+              <Link href="/about#who-we-are" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Who We Are</Link>
+              <Link href="/about#governance" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Governance & Leadership</Link>
+              <Link href="/about#journey" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Our Journey</Link>
+              <Link href="/about#partners" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Our Partners</Link>
+              <Link href="/about#transparency" className="mobile-link-sub" onClick={() => setMobileOpen(false)}>Transparency</Link>
             </div>
 
             <button className="mobile-accordion-btn" data-target="programsMobile">
