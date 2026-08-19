@@ -77,7 +77,6 @@ export default function HomePageClient({ data }: { data: any }) {
     hero,
     stats,
     about,
-    board,
     programs,
     scholarSpotlight,
     featuredProject,
@@ -155,85 +154,6 @@ export default function HomePageClient({ data }: { data: any }) {
               <p className="text-gray-600 leading-relaxed mb-8">{about.description2}</p>
               <a href="/about#governance" className="inline-flex items-center gap-2 text-emerald-green font-semibold hover:text-deep-forest transition-colors group">
                 {about.ctaText} <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Board */}
-      <section id="board-leadership" className="py-20 lg:py-28 bg-soft-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-emerald-green font-semibold text-sm uppercase tracking-wider">Governance</span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-forest mt-3 mb-5">{board.heading}</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">{board.subtitle}</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            {board.columns.map((col: any, i: number) => (
-              <div key={i} className={`fade-up card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-center ${col.highlight ? 'border-2 border-warm-gold/30 relative overflow-hidden' : ''}`}
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                {col.highlight && (
-                  <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-warm-gold to-emerald-green"></div>
-                )}
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 ${col.highlight ? 'bg-warm-gold/20' : 'bg-deep-forest/10'}`}>
-                  {col.icon === 'user-group' && (
-                    <svg className="w-8 h-8 text-deep-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2m8-10a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                  )}
-                  {col.icon === 'user' && (
-                    <svg className="w-8 h-8 text-warm-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                  )}
-                  {col.icon === 'light-bulb' && (
-                    <svg className="w-8 h-8 text-emerald-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                  )}
-                </div>
-                <h3 className="font-display text-xl font-bold text-deep-forest mb-3">{col.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{col.description}</p>
-                {col.executive && (
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Executive Director</p>
-                    <p className="font-display font-bold text-deep-forest text-base mt-1">{col.executive.name}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Executive Director Spotlight */}
-          <div className="fade-up mb-16">
-            <div className="bg-white rounded-4xl overflow-hidden shadow-2xl border border-gray-100 grid md:grid-cols-5">
-              <div className="md:col-span-2 bg-gradient-to-br from-deep-forest to-emerald-green p-10 flex items-center justify-center min-h-[280px]">
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full border-4 border-white/60 shadow-xl overflow-hidden mx-auto mb-4">
-                    <img src={board.executiveSpotlight.image} alt={board.executiveSpotlight.name} className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold text-white">{board.executiveSpotlight.name}</h3>
-                  <p className="text-warm-gold font-semibold text-sm">{board.executiveSpotlight.title}</p>
-                </div>
-              </div>
-              <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-center">
-                <span className="text-xs text-emerald-green font-semibold uppercase tracking-wider mb-2">Leadership</span>
-                <p className="text-gray-600 leading-relaxed">{board.executiveSpotlight.bio1}</p>
-                <p className="text-gray-500 text-sm leading-relaxed mt-3">{board.executiveSpotlight.bio2}</p>
-                <div className="flex flex-wrap items-center gap-4 mt-4">
-                  <span className="text-xs text-gray-400">✉️ {board.executiveSpotlight.email}</span>
-                  <span className="text-xs text-gray-300 hidden sm:inline">|</span>
-                  <span className="text-xs text-gray-400">📞 {board.executiveSpotlight.phone}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <div className="fade-up bg-white rounded-4xl p-8 sm:p-10 max-w-2xl mx-auto border border-gray-200 shadow-sm">
-              <span className="text-3xl block mb-3">👥</span>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-deep-forest mb-2">{board.teamCTA.heading}</h3>
-              <p className="text-gray-600 text-sm sm:text-base mb-6">{board.teamCTA.text}</p>
-              <a href="/about#governance" className="inline-flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-warm-gold to-yellow-500 text-white font-bold rounded-full shadow-lg shadow-warm-gold/30 hover:from-yellow-500 hover:to-warm-gold hover:shadow-xl hover:shadow-warm-gold/50 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
-                {board.teamCTA.buttonText}
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </a>
             </div>
           </div>

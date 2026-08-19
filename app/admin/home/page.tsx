@@ -9,7 +9,6 @@ type SectionKey =
   | 'hero'
   | 'stats'
   | 'about'
-  | 'board'
   | 'programs'
   | 'scholar'
   | 'featured'
@@ -25,7 +24,6 @@ const sectionNames: { key: SectionKey; label: string }[] = [
   { key: 'hero', label: 'Hero' },
   { key: 'stats', label: 'Stats' },
   { key: 'about', label: 'About' },
-  { key: 'board', label: 'Board & Leadership' },
   { key: 'programs', label: 'Programs' },
   { key: 'scholar', label: 'Scholar Spotlight' },
   { key: 'featured', label: 'Featured Project' },
