@@ -131,6 +131,11 @@
       ]
     }
   ],
+  "theoryOfChange": {
+    "heading": "Our Theory of Change",
+    "image": "/images/theory-of-change.png",
+    "caption": "Optional caption describing the theory of change."
+  },
   "donorsPartners": {
     "heading": "For Donors & Partners",
     "text": "Looking for organizational information, programme documentation or governance materials? Explore our reports, policies and strategic documents.",

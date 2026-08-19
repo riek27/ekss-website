@@ -102,6 +102,27 @@ export default function ResourcesPageClient({ data }: { data: any }) {
         </div>
       </section>
 
+            {/* Theory of Change (optional) */}
+      {data.theoryOfChange && data.theoryOfChange.image && (
+        <section className="py-16 lg:py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-deep-forest mb-6">
+              {data.theoryOfChange.heading || 'Theory of Change'}
+            </h2>
+            <div className="rounded-4xl overflow-hidden shadow-2xl border border-gray-200">
+              <img
+                src={data.theoryOfChange.image}
+                alt={data.theoryOfChange.heading || 'Theory of Change'}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            {data.theoryOfChange.caption && (
+              <p className="text-gray-500 mt-4 text-sm">{data.theoryOfChange.caption}</p>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Donors & Partners */}
       <section className="py-16 lg:py-20 bg-soft-bg">
         <div className="max-w-4xl mx-auto px-4 text-center">

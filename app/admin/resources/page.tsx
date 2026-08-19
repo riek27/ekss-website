@@ -7,7 +7,9 @@ import { savePageData } from '@/app/actions';
 
 type SectionKey =
   | 'hero'
+  | 'featured'
   | 'categories'
+  | 'theoryOfChange'
   | 'donorsPartners'
   | 'requestDocument'
   | 'transparency';
@@ -16,6 +18,7 @@ const sectionNames: { key: SectionKey; label: string }[] = [
   { key: 'hero', label: 'Hero' },
   { key: 'featured', label: 'Featured Resource' },
   { key: 'categories', label: 'Categories & Documents' },
+  { key: 'theoryOfChange', label: 'Theory of Change' },
   { key: 'donorsPartners', label: 'Donors & Partners' },
   { key: 'requestDocument', label: 'Request a Document' },
   { key: 'transparency', label: 'Transparency Statement' },
@@ -283,6 +286,39 @@ export default function AdminResources() {
             >
               + Add Category
             </button>
+          </div>
+        );
+
+              // ================= THEORY OF CHANGE =================
+      case 'theoryOfChange':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Heading</label>
+              <input
+                value={data.theoryOfChange.heading}
+                onChange={(e) => update('theoryOfChange.heading', e.target.value)}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+              <FileUploadField
+                currentValue={data.theoryOfChange.image}
+                onChange={(url) => update('theoryOfChange.image', url)}
+                accept="image/*"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Caption</label>
+              <textarea
+                value={data.theoryOfChange.caption}
+                onChange={(e) => update('theoryOfChange.caption', e.target.value)}
+                rows={2}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-green focus:border-emerald-green outline-none"
+                placeholder="Optional caption"
+              />
+            </div>
           </div>
         );
 
